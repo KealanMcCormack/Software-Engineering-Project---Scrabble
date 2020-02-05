@@ -38,8 +38,10 @@ public class Frame {
     }
 
     public char playLetter() {//removes characters from the frame
-        int a = -1;                 //Do we want to be able to play multiple tiles at once or just call
-                            //multiple times?
+        int a = -1;
+
+        System.out.println("PLease input a valid index");
+        System.out.println("To exit please enter -1");
         Scanner in = new Scanner(System.in);
 
         if(in.hasNext()) {
@@ -47,16 +49,22 @@ public class Frame {
         }
 
         in.close();//closes scanner
+
+        if(a == -2){//Allows an escape if the player decides to change their play
+            return ' ';
+        }
+
         char playerInput;
         if(a > -1 && a < playerTiles.size()) {//checks if input is valid
             playerInput = playerTiles.get(a);
             playerTiles.remove(a);
             return playerInput;
-        }else {
-            System.out.println("Error, you goober");
+        }else {//If input is invalid asks for another entry
+            System.out.println("Error");
+            System.out.println("PLease input a valid index");
             playerInput = playLetter();
         }
-        //What to do if the index given doesn't work
+
         return  playerInput;
 
     }
@@ -67,37 +75,36 @@ public class Frame {
         }
     }
 
-    public void setPlayer(char a) {
+    public void setPlayerTiles(char a) {//Adds a letter to the ArrayList
         this.playerTiles.add(a);
     }
 
-  public void swap() {
-	  int temp;
+//Not needed for assignment 1
+ public void swap() {        //Allows the player to exchange tiles one at a time, will require more work
+
+      int temp;              //Needs protection against exploitation
 	  ArrayList<Integer> a = new ArrayList<Integer>();
 	  Scanner in = new Scanner(System.in);
 	  System.out.println("How many tiles would you like to exchange?");
 	  temp = in.nextInt();
+
 	  for(int count = 0;count < temp;count++) {
 
 		  if(in.hasNext()) {
-			pool.TileToBag(playerTiles.get(in.nextInt()));
-			//playerTiles.remove();
+		    int intake = in.nextInt();
+		    if(playerTiles.size() < intake) {
+
+		        playerTiles.add(pool.TileToPlayer());
+                pool.TileToBag(playerTiles.get(intake));
+                playerTiles.remove(intake);
+
+            }
 		  }
 
 	  }
 	  in.close();
 
   }
-    //Will have two frame classes
-    //char TileToPlayer(void)
-    //movement of letters possibly by index through terminal
-    //Check function for letters in frame - say has letters - public --
-    //Check if frame is empty - Say empty frame - public --
-    //Function to remove letters from the frame --
-    //Refill function --
-    //Display frame - public --
-    //Make tests
-    //Swap function which takes tiles first and sends back chars
-    //TileToBag(char v)
+
 
 }
