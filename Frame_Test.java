@@ -4,21 +4,20 @@ public class Frame_Test {
     public static void main(String[] args) {
         Frame a = new Frame();
         char temp;
-        System.out.println(a.empty() + " " + a.nonEmpty());
+
+        System.out.println(a.empty() + " " + a.hasLetters());
         System.out.println(a.displayFrame());
 
-        a.setPlayer('a');
-        a.setPlayer('b');
-        a.setPlayer('c');
-        a.setPlayer('d');
-        a.setPlayer('e');
-        a.setPlayer('f');
-        a.setPlayer('g');
+
+            a.refill();
+
 
 
         System.out.println(a.displayFrame());
-        System.out.println(a.empty() + " " + a.nonEmpty());
-        temp = a.play();
+        System.out.println(a.empty() + " " + a.hasLetters());
+        temp = a.playLetter();
         System.out.println(a.displayFrame());
+
+
     }
 }
