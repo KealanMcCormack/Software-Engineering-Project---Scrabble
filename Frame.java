@@ -1,5 +1,6 @@
 package com.company;
 
+import javax.management.InvalidAttributeValueException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -37,47 +38,30 @@ public class Frame {
         return temp;
     }
 
-    public char playLetter() {//removes characters from the frame
-        int a = -1;
+    public char playLetter(int index) {//removes characters from the frame
 
-        System.out.println("PLease input a valid index");
-        System.out.println("To exit please enter -1");
-        Scanner in = new Scanner(System.in);
+        char removedChar;
 
-        if(in.hasNext()) {
-            a = in.nextInt() - 1;//Will use 1-7 for playerTiles input
+        if(index > -1 && index < playerTiles.size()) {//checks if input is valid
+            removedChar = playerTiles.get(index);
+            playerTiles.remove(index);
+            return removedChar;
+        } else{
+            return ' ';//if input is invalid simply returns an empty character
         }
-
-        in.close();//closes scanner
-
-        if(a == -2){//Allows an escape if the player decides to change their play
-            return ' ';
-        }
-
-        char playerInput;
-        if(a > -1 && a < playerTiles.size()) {//checks if input is valid
-            playerInput = playerTiles.get(a);
-            playerTiles.remove(a);
-            return playerInput;
-        }else {//If input is invalid asks for another entry
-            System.out.println("Error");
-            System.out.println("PLease input a valid index");
-            playerInput = playLetter();
-        }
-
-        return  playerInput;
 
     }
 
     public void refill() {//Adds tiles back into the frame from the pool
-        for(int count = 0;count < (7 - playerTiles.size());count++) {
+
+        for(int count = (7 - playerTiles.size());count > 0;count--) {
             playerTiles.add(pool.TileToPlayer());
         }
     }
 
     public void setPlayerTiles(char a) {//Adds a letter to the ArrayList
         this.playerTiles.add(a);
-    }
+    }//Allows addition of letters into frame
 
 //Not needed for assignment 1
  public void swap() {        //Allows the player to exchange tiles one at a time, will require more work
