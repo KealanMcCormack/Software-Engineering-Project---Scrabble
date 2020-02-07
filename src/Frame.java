@@ -1,7 +1,15 @@
+package com.company;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * @author Kealan
+ * The frame class uses an ArrayList (playerTiles) to hold the values associated
+ * with the players frame and contains methods that allow the use and manipulation of this data
+ * Requires the ScrabbleBag class to function
+ */
 public class Frame {
 
     ScrabbleBag pool = new ScrabbleBag();
@@ -13,10 +21,22 @@ public class Frame {
         refill();
     }
 
+    /**
+     * The method empty returns a boolean value based on whether the Arraylist is empty
+     * True - empty
+     * False - contains letters
+     *
+     */
     public boolean empty() {//Checks if the arrayList has any contents
         return playerTiles.isEmpty();
     }
 
+    /**
+     * The method hasLetters checks whether there are any letters in the Arraylist
+     * If the Arraylist contains letters the Arraylist is returned as a String
+     * Otherwise No letters is returned
+     *
+     */
     public String hasLetters() {//Checks if there are any letters in the frame and returns a string of them
         if(playerTiles.isEmpty()) {
             return "No letters";
@@ -29,6 +49,10 @@ public class Frame {
         }
     }
 
+    /**
+     * The method displayFrame returns a String of the
+     * letters contained in the Arraylist
+     */
     public String displayFrame() {//returns a string of the characters in the frame
 
         String temp = "";
@@ -40,6 +64,10 @@ public class Frame {
         return temp;
     }
 
+    /**
+     * The method playLetter takes an integer value for the index (will remove 1 from the value) of the tile being played
+     * and removes it from the ArrayList. It then returns the char value that has been removed
+     */
     public char playLetter(int index) {//removes characters from the frame
         index--;
         char removedChar;
@@ -54,6 +82,11 @@ public class Frame {
 
     }
 
+    /**
+     * The method refill checks how many tiles have been played
+     * and refills the ArrayList using the TileToPLayer method in the
+     * class scrabbleBag
+     */
     public void refill() {//Adds tiles back into the frame from the pool
 
         for(int count = (7 - playerTiles.size());count > 0;count--) {
@@ -61,6 +94,10 @@ public class Frame {
         }
     }
 
+    /**
+     * The method setPlayerTiles takes a char that should be
+     * added to the ArrayList and adds it
+     */
     public void setPlayerTiles(char a) {//Adds a letter to the ArrayList
         this.playerTiles.add(a);
     }//Allows addition of letters into frame
