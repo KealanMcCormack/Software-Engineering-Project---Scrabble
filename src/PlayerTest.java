@@ -1,7 +1,15 @@
+/**
+ * @author Lukasz Filanowski
+ * Class to test the methods in the  Player class
+ */
+
 public class PlayerTest {
 
     public static void main(String[] args) {
-
+        /**
+         * Tests for Player class, testing the constructor, get methods, increment score methods, reset methods and creating new instances.
+         *
+         */
         Player p = new Player("Steve", 0);  //Creating object (which inherently tests setName and setScore
 
         System.out.println("Score: " + p.getScore());           //Testing getScore method
