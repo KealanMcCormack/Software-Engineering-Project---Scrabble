@@ -44,8 +44,12 @@ public class ScrabbleBag {
         return ConvertTile(RandomNumber);
     }
     private char ConvertTile(int Tile){
-        Tile = Tile + 65; //Adding 65 Ascii value to Tile
-        return (char)Tile;
+        if(Tile == 26){
+            return '@'; //@ symbol = Blank
+        }else{
+            Tile = Tile + 65; //Adding 65 Ascii value to Tile
+            return (char)Tile;
+        }
     }
     public boolean isEmpty(){
         boolean isEmpty = true;
