@@ -12,6 +12,11 @@ public class Player {
         {
             throw new IllegalArgumentException("Name is not initialised");
         }
+
+        if(score != 0)
+        {
+            throw new IllegalArgumentException("Score has invalid value");
+        }
     }
 
     public void setName(String name)   //Method to set name of player
@@ -39,9 +44,9 @@ public class Player {
         return name;
     }
 
-    protected void increaseScore(int increment, int score)   //Method that takes in the player score and a value to increment the score by and increases the score
+    protected void increaseScore(int increment)   //Method that takes in the player score and a value to increment the score by and increases the score
     {
-        setScore((score + increment));
+        setScore((this.score + increment));
     }
 
     protected void resetScore()  //Method to reset the score of the player
