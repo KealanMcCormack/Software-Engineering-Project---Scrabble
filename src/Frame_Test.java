@@ -5,12 +5,15 @@ public class Frame_Test {
         Frame a = new Frame();
         char temp;
 
-        System.out.println(a.empty() + " " + a.hasLetters());//checks that functions work on an empty frame
+        System.out.println(a.empty() + " " + a.hasLetters());//checks that functions work on frame
         System.out.println(a.displayFrame());
 
-        a.refill();//tests refill correctly adds 7 letters
+        a.playLetter(1);
+        a.playLetter(2);
+        a.playLetter(3);
+
         System.out.println(a.displayFrame());
-        System.out.println(a.empty() + " " + a.hasLetters());//checks that functions work on a filled frame
+        System.out.println(a.empty() + " " + a.hasLetters());//checks that functions work on an empty frame
 
         temp = a.playLetter(1);//Tests removal of tile and addition of tile
         a.setPlayerTiles('A');
@@ -18,11 +21,12 @@ public class Frame_Test {
 
         a.playLetter(3);
         System.out.println(a.displayFrame());
-        a.playLetter(4);
+        a.playLetter(1);
         System.out.println(a.displayFrame());
         a.playLetter(1);
         System.out.println(a.displayFrame());
-        a.playLetter(2);
+        a.playLetter(1);
+
         System.out.println(a.displayFrame());//Further tests on removal and refill
         a.refill();
         System.out.println(a.displayFrame());

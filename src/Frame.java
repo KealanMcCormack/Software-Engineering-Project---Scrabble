@@ -1,6 +1,6 @@
-package com.company;
+package com.company;//remove
 
-import javax.management.InvalidAttributeValueException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,6 +10,10 @@ public class Frame {
 
     //Data structure storing player tiles
     private ArrayList<Character> playerTiles = new ArrayList<>();
+
+    public Frame(){
+        refill();
+    }
 
     public boolean empty() {//Checks if the arrayList has any contents
         return playerTiles.isEmpty();
@@ -39,15 +43,15 @@ public class Frame {
     }
 
     public char playLetter(int index) {//removes characters from the frame
-
+        index--;
         char removedChar;
 
         if(index > -1 && index < playerTiles.size()) {//checks if input is valid
             removedChar = playerTiles.get(index);
             playerTiles.remove(index);
             return removedChar;
-        } else{
-            return ' ';//if input is invalid simply returns an empty character
+        } else{//throw error if they select an index that is invalid
+            throw new IllegalArgumentException("Invalid index, please check remaining tiles");
         }
 
     }
@@ -73,21 +77,23 @@ public class Frame {
 	  temp = in.nextInt();
 
 	  for(int count = 0;count < temp;count++) {
-
+        System.out.println("Please write the index of the tile you wish to swap");
 		  if(in.hasNext()) {
 		    int intake = in.nextInt();
 		    if(playerTiles.size() < intake) {
 
-		        playerTiles.add(pool.TileToPlayer());
                 pool.TileToBag(playerTiles.get(intake));
                 playerTiles.remove(intake);
 
             }
 		  }
-
 	  }
-	  in.close();
 
+     for(int count = 0;count < temp;count++){
+         playerTiles.add(pool.TileToPlayer());
+     }
+
+	  in.close();
   }
 
 
