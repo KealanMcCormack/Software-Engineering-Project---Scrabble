@@ -104,7 +104,4 @@ public class Player {
         setName("");
     }
 
-    public static void main(String[] args) {
-
-    }
 }

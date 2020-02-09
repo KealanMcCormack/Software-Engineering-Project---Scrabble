@@ -25,6 +25,7 @@ public class Frame {
      * The method empty returns a boolean value based on whether the Arraylist is empty
      * True - empty
      * False - contains letters
+     * @return true/false value
      *
      */
     public boolean empty() {//Checks if the arrayList has any contents
@@ -35,9 +36,12 @@ public class Frame {
      * The method hasLetters checks whether there are any letters in the Arraylist
      * If the Arraylist contains letters the Arraylist is returned as a String
      * Otherwise No letters is returned
-     *
+     * @return String of letters in frame
      */
     public String hasLetters() {//Checks if there are any letters in the frame and returns a string of them
+        /**
+         * @return returns string of letters in frame
+         */
         if(playerTiles.isEmpty()) {
             return "No letters";
         }else {
@@ -52,9 +56,12 @@ public class Frame {
     /**
      * The method displayFrame returns a String of the
      * letters contained in the Arraylist
+     * @return letters in frame
      */
     public String displayFrame() {//returns a string of the characters in the frame
-
+        /**
+         * @return string of characters in the frame
+         */
         String temp = "";
 
         for(char a:playerTiles) {
@@ -67,6 +74,8 @@ public class Frame {
     /**
      * The method playLetter takes an integer value for the index (will remove 1 from the value) of the tile being played
      * and removes it from the ArrayList. It then returns the char value that has been removed
+     * @param index amount of characters you want removed
+     * @return removed character
      */
     public char playLetter(int index) {//removes characters from the frame
         index--;
@@ -97,6 +106,7 @@ public class Frame {
     /**
      * The method setPlayerTiles takes a char that should be
      * added to the ArrayList and adds it
+     * @param a character added to frame
      */
     public void setPlayerTiles(char a) {//Adds a letter to the ArrayList
         this.playerTiles.add(a);

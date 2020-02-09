@@ -46,10 +46,12 @@ public class ScrabbleBag {
 
     public ScrabbleBag(){
     }
+
+    /**
+     * Gives Tiles from bag into player frame
+     * @return character to player frame
+     */
     public char TileToPlayer(){
-        /**
-         * Gives Tiles from bag into player frame
-         */
         Random rand = new Random();
         int RandomNumber = rand.nextInt(27);
         while(Bag[RandomNumber] == 0){ //Checking if Tiles are empty
@@ -58,6 +60,12 @@ public class ScrabbleBag {
         Bag[RandomNumber]--; //Decreases amount of tiles in the bag
         return ConvertTile(RandomNumber);
     }
+
+    /**
+     * Converts tile code to character using ascii
+     * @param Tile
+     * @return conveted Tile
+     */
     private char ConvertTile(int Tile){
         if(Tile == 26){
             return '*'; //Star = blank tile
@@ -66,10 +74,12 @@ public class ScrabbleBag {
             return (char)Tile;
         }
     }
+
+    /**
+     * checks if the bag is empty
+     * @return true/false value
+     */
     public boolean isEmpty(){
-        /**
-         * Checks if the bag is empty
-         */
         boolean isEmpty = true;
         for(int i = 0;i<27;i++){
             if(Bag[i] != 0){
@@ -79,28 +89,33 @@ public class ScrabbleBag {
         }
         return isEmpty;
     }
+
+    /**
+     * resets the bag
+     */
     public void BagReset(){
-        /**
-         * Resets the amount of tiles in the bag
-         */
         for(int i = 0;i<Bag.length;i++){
             Bag[i] = BagBase[i];
         }
     }
+
+    /**
+     * Checks number of tiles in the bag
+     * @return number of tiles
+     */
     public int NumberOfTiles(){
-        /**
-         * Calculates the amount of tiles in the bag
-         */
         int sum = 0;
         for(int i = 0;i<Bag.length;i++){
             sum = sum + Bag[i];
         }
         return sum;
     }
+
+    /**
+     * prints current tiles in bag
+     * @return String of tiles in the bag
+     */
     public String CurrentTiles(){
-        /**
-         * prints current tiles in bag
-         */
         int Number = 0;
         String out = "";
         for(int i = 0;i<Bag.length;i++){
@@ -109,6 +124,11 @@ public class ScrabbleBag {
         }
         return out;
     }
+
+    /**
+     * Takes tile from player frame and puts it in the bag
+     * @param Tile Tile received from player
+     */
     public void TileToBag(char Tile){
         /**
          * Allows players to put tiles bag in bag
