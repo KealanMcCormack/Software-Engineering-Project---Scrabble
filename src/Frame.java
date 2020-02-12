@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
+ * Gerard Colman - 18327576
+ * Lukasz Filanowski - 18414616
+ * Kealan McCormack - 18312236
  * @author Kealan
  * The frame class uses an ArrayList (playerTiles) to hold the values associated
  * with the players frame and contains methods that allow the use and manipulation of this data

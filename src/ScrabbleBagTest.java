@@ -1,5 +1,8 @@
 /**
  * Tests the scrabble bag class.
+ * Gerard Colman - 18327576
+ * Lukasz Filanowski - 18414616
+ * Kealan McCormack - 18312236
  */
 public class ScrabbleBagTest {
 
