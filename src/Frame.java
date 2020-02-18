@@ -143,6 +143,13 @@ public class Frame {
 
 	  in.close();
   }
+	
+public boolean getLetter(char check){
+        return playerTiles.contains(check);
+    }
 
+public char getLetterIndex(int index){
+        return playerTiles.get(index - 1);
+    }
 
 }
