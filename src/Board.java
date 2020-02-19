@@ -118,33 +118,81 @@ public class Board {
     }
 
     protected boolean Connecting(int x, int y){ //returns true if a tile is found in a conjoining tile
-        if(boardArray[x-1][y].getCharacterVal() != ' '){
-            return true;
+        if(x != 0) {
+            if (boardArray[x - 1][y].getCharacterVal() != ' ') {
+                return true;
+            }
         }
 
-        if(boardArray[x+1][y].getCharacterVal() != ' '){
-            return true;
+        if(x != 14) {
+            if (boardArray[x + 1][y].getCharacterVal() != ' ') {
+                return true;
+            }
         }
 
-        if(boardArray[x][y+1].getCharacterVal() != ' '){
-            return true;
+        if(y != 14) {
+            if (boardArray[x][y + 1].getCharacterVal() != ' ') {
+                return true;
+            }
         }
 
-        if(boardArray[x][y-1].getCharacterVal() != ' '){
-            return true;
+        if(y != 0) {
+            if (boardArray[x][y - 1].getCharacterVal() != ' ') {
+                return true;
+            }
         }
 
         return false;
     }
 
-    protected boolean inLine(int arr[]){//Needs input of the previous
-        int x = arr.length;
+    protected int[] ConnectingInt(int x, int y){ //returns true if a tile is found in a conjoining tile
+        int[] a = new int[2];
+        a[0] = x;
+        a[1] = y;
 
+        if(x != 0) {
+            if (boardArray[x - 1][y].getCharacterVal() != ' ') {
+                a[0] -= 1;
+                return a;
+            }
+        }
 
-        for(int count = 0;count < arr.length;count++){
+        if(x != 14) {
+            if (boardArray[x + 1][y].getCharacterVal() != ' ') {
+                a[0] += 1;
+                return a;
+            }
+        }
+
+        if(y != 14) {
+            if (boardArray[x][y + 1].getCharacterVal() != ' ') {
+                a[1] += 1;
+                return a;
+            }
+        }
+
+        if(y != 0) {
+            if (boardArray[x][y - 1].getCharacterVal() != ' ') {
+                a[1] -= 1;
+                return a;
+            }
+        }
+
+        return a;
+    }
+
+    protected boolean inLine(int arr[]){//Needs input of the previous 3 inputs
+        int a = 0, b=0;
+
+        int[] check = ConnectingInt(arr[0], arr[1]);//work to be done
+        if(check[0] == arr[2] && check[1] == arr[3]){
+
+        } else if(boardArray[check[0]][check[1]].getCharacterVal() != ' '){
 
         }
+
         return false;
+
     }
 
     protected char placeLetter(int letterIndex, int x, int y){
