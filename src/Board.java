@@ -3,12 +3,12 @@ public class Board {
     protected static Square[][] boardArray = new Square[15][15];
 
     enum tileVal{
-        Standard(" "),
-        Star("*"),
-        DoubleWord("DW"),
-        TripleWord("TW"),
-        DoubleLetter("DL"),
-        TripleLetter("TL");
+        Standard("    "),
+        Star(" () "),
+        DoubleWord(" DW "),
+        TripleWord(" TW "),
+        DoubleLetter(" DL "),
+        TripleLetter(" TL ");
 
         private final String tile;
 
@@ -34,10 +34,6 @@ public class Board {
             setTileVal(t);
         }
 
-        Square()
-        {
-        }
-
         public char getCharacterVal() {
             return characterVal;
         }
@@ -55,66 +51,91 @@ public class Board {
         }
     }
 
-    protected void createBoard()
-    {
-        for(int row_count = 0; row_count < 15; row_count++)  //For loops that initially create a new square object for each space on the board
+    protected void createBoard() {
+        for (int row_count = 0; row_count < 15; row_count++)  //For loops that initially create a new square object for each space on the board
         {
-            for(int column_count = 0; column_count < 15; column_count++)
-            {
-                boardArray[row_count][column_count] = new Square(); //Creating new square object
+            for (int column_count = 0; column_count < 15; column_count++) {
+                boardArray[row_count][column_count] = new Square(' ', tileVal.Standard); //Creating new square object
             }
         }
 
         //CREATING THE BOARD WITH TILE VALUES
 
-        for(int row_count = 0; row_count < 8; row_count++)
+        for (int rotations = 0; rotations < 4; rotations++)
         {
-            for(int column_count = 0; column_count < 8; column_count++)
+            for (int row_count = 0; row_count < 8; row_count++)
             {
-                if((row_count == 1 && column_count == 5) || (row_count == 5 && column_count == 1) || (row_count == 5 && column_count == 5))
+                for (int column_count = 0; column_count < 8; column_count++)
                 {
-                    boardArray[row_count][column_count].setTileVal(tileVal.TripleLetter);
-                }
+                    if ((row_count == 2 && column_count == 6) || (row_count == 6 && column_count == 2) || (row_count == 6 && column_count == 6))
+                    {
+                        boardArray[row_count][column_count].setTileVal(tileVal.DoubleLetter);
+                    }
 
-                else if(row_count == 7 && column_count == 7)
-                {
-                    boardArray[row_count][column_count].setTileVal(tileVal.Star);
-                }
+                    else if (((row_count == 3 || row_count == 7) && (column_count == 3 || column_count == 7) && !((row_count == 7) && (column_count == 7)) && !((row_count == 3) && (column_count == 3))))
+                    {
+                        boardArray[row_count][column_count].setTileVal(tileVal.DoubleLetter);
+                    }
 
-                else if(row_count == column_count && row_count > 0 && row_count < 5)
-                {
-                    boardArray[row_count][column_count].setTileVal(tileVal.DoubleWord);
-                }
+                    else if ((row_count == 0 && column_count == 3) || (row_count == 3 && column_count == 0))
+                    {
+                        boardArray[row_count][column_count].setTileVal(tileVal.DoubleLetter);
+                    }
 
-                else if((row_count%7 == 0) && (column_count%7 == 0) && !((row_count == 7) && (column_count == 7)))
-                {
-                    boardArray[row_count][column_count].setTileVal(tileVal.TripleWord);
-                }
+                    else if ((row_count == 1 && column_count == 5) || (row_count == 5 && column_count == 1) || (row_count == 5 && column_count == 5)) {
+                        boardArray[row_count][column_count].setTileVal(tileVal.TripleLetter);
+                    }
 
-                else
-                {
-                    boardArray[row_count][column_count].setTileVal(tileVal.Standard);
+                    else if (row_count == 7 && column_count == 7)
+                    {
+                        boardArray[row_count][column_count].setTileVal(tileVal.Star);
+                    }
+
+                    else if (row_count == column_count && row_count > 0)
+                    {
+                        boardArray[row_count][column_count].setTileVal(tileVal.DoubleWord);
+                    }
+
+                    else if (row_count % 7 == 0 && column_count % 7 == 0)
+                    {
+                        boardArray[row_count][column_count].setTileVal(tileVal.TripleWord);
+                    }
                 }
             }
         }
     }
-
     protected void boardReset(){
-
+        createBoard();
     }
 
-    public void printBoard(){
+    public String printBoard(){
+        String output = "";
 
+        for(int i = 0; i < 15; i++)
+        {
+            for(int j = 0; j < 15; j++)
+            {
+                output += "|";
+                if(boardArray[i][j].getCharacterVal() == ' ')
+                {
+                    output += boardArray[i][j].getTileVal();
+                }
+
+                else
+                {
+                    output += boardArray[i][j].getCharacterVal();
+                }
+            }
+            output += "|" + "\n";
+        }
+        return output;
     }
 
 
     public static void main(String[] args) {
-        /*Board b = new Board();
+        Board b = new Board();
         b.createBoard();
-        System.out.println(boardArray[7][0].getTileVal());
-        System.out.println(boardArray[0][7].getTileVal());
-        System.out.println(boardArray[0][0].getTileVal());
-        System.out.println(boardArray[7][7].getTileVal());*/
+        System.out.println(b.printBoard());
     }
 
     protected boolean Connecting(int x, int y){ //returns true if a tile is found in a conjoining tile
