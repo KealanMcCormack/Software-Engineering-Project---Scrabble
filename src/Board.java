@@ -117,4 +117,45 @@ public class Board {
         System.out.println(boardArray[7][7].getTileVal());*/
     }
 
+    protected boolean Connecting(int x, int y){ //returns true if a tile is found in a conjoining tile
+        if(boardArray[x-1][y].getCharacterVal() != ' '){
+            return true;
+        }
+
+        if(boardArray[x+1][y].getCharacterVal() != ' '){
+            return true;
+        }
+
+        if(boardArray[x][y+1].getCharacterVal() != ' '){
+            return true;
+        }
+
+        if(boardArray[x][y-1].getCharacterVal() != ' '){
+            return true;
+        }
+
+        return false;
+    }
+
+    protected boolean inLine(int arr[]){//Needs input of the previous
+        int x = arr.length;
+
+
+        for(int count = 0;count < arr.length;count++){
+
+        }
+        return false;
+    }
+
+    protected char placeLetter(int letterIndex, int x, int y){
+        Frame f = new Frame();
+
+        if(boardArray[x][y].getCharacterVal() == ' '){
+            throw new IllegalArgumentException("Already a tile placed on this square");
+        }
+
+        char a = f.getLetterIndex(letterIndex);
+        boardArray[x][y].setCharacterVal(f.playLetter(letterIndex));
+        return a;
+    }
 }
