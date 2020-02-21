@@ -133,8 +133,7 @@ public class Board {
 
 
     public static void main(String[] args) {
-        Board b = new Board();
-        b.createBoard();
+        BoardTwo b = new BoardTwo();
         System.out.println(b.printBoard());
     }
 

@@ -1,7 +1,10 @@
 public class BoardTwo {
-    int rotate = 0;
 
     protected static Square[][] boardArray = new Square[15][15];
+
+    public BoardTwo() {
+        createBoard();
+    }
 
 
     enum tileVal{
@@ -111,7 +114,7 @@ public class BoardTwo {
                 }
             }
         }
-    }
+    } //Fix problem here
     private void createCenter(){
         for(int i = 0;i<15;i++){
             if(i == 0 || i == 14){
@@ -127,5 +130,28 @@ public class BoardTwo {
     }
     private void flipHalf(){
 
+    }
+
+    public String printBoard(){
+        String output = "";
+
+        for(int i = 0; i < 15; i++)
+        {
+            for(int j = 0; j < 15; j++)
+            {
+                output += "|";
+                if(boardArray[i][j].getCharacterVal() == ' ')
+                {
+                    output += boardArray[i][j].getTileVal();
+                }
+
+                else
+                {
+                    output += boardArray[i][j].getCharacterVal();
+                }
+            }
+            output += "|" + "\n";
+        }
+        return output;
     }
 }
