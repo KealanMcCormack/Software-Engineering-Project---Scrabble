@@ -52,9 +52,17 @@ public class BoardTwo {
         }
     }
     public void createBoard(){
+        boardInit();
         createHalf();
         createCenter();
         flipHalf();
+    }
+    private void boardInit(){
+        for(int i = 0;i<15;i++){
+            for(int j = 0;j<15;j++){
+                boardArray[i][j] = new Square(' ', tileVal.Standard);
+            }
+        }
     }
     private void createHalf(){
         for(int v = 0;v<7;v++){
@@ -63,6 +71,9 @@ public class BoardTwo {
                     case 0:
                         if(h == 0 || h == 7 || h == 15){ //Creates triple word values
                             boardArray[v][h].setTileVal(tileVal.TripleWord);
+                        }
+                        if(h == 3 || h == 11){
+                            boardArray[v][h].setTileVal(tileVal.DoubleLetter);
                         }
                     case 1:
                     case 2:
