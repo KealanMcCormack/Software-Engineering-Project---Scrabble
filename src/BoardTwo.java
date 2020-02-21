@@ -69,16 +69,35 @@ public class BoardTwo {
             for(int h = 0;h<15;h++){
                 switch (v){
                     case 0:
-                        if(h == 0 || h == 7 || h == 15){ //Creates triple word values
+                        if(h == 0 || h == 7 || h == 14){ //Creates triple word values
                             boardArray[v][h].setTileVal(tileVal.TripleWord);
                         }
-                        if(h == 3 || h == 11){
+                        if(h == 3 || h == 11){ //Double letter
                             boardArray[v][h].setTileVal(tileVal.DoubleLetter);
                         }
                     case 1:
+                        if(h == 1 || h == 13){ //Double Word
+                            boardArray[v][h].setTileVal(tileVal.DoubleWord);
+                        }
+                        if(h == 5 || h == 9){ //Triple letter
+                            boardArray[v][h].setTileVal(tileVal.TripleLetter);
+                        }
                     case 2:
+                        if(h == 2 || h == 12){ //Double Word
+                            boardArray[v][h].setTileVal(tileVal.DoubleWord);
+                        }
+                        if(h == 6 || h == 8){
+                            boardArray[v][h].setTileVal(tileVal.DoubleLetter);
+                        }
                     case 3:
+                        if(h == 0 || h == 7 || h == 14){
+                            boardArray[v][h].setTileVal(tileVal.DoubleLetter);
+                        }
+                        if(h == 3 || h == 11){
+                            boardArray[v][h].setTileVal(tileVal.DoubleWord);
+                        }
                     case 4:
+
                     case 5:
                     case 6:
                 }
