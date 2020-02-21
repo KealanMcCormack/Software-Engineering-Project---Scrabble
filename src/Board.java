@@ -243,4 +243,28 @@ public class Board {
         boardArray[x][y].setCharacterVal(f.playLetter(letterIndex));
         return a;
     }
+
+    protected boolean inBounds(int x, int y){
+        if(x > -1 && x < 15 && y > -1 && y < 15){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    protected boolean firstPlacement(int x, int y){
+        if(x == 7 && y == 7){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    protected boolean tileOnTile(int x, int y){
+        if(boardArray[x][y].getCharacterVal() != ' '){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
