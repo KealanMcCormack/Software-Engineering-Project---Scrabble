@@ -111,6 +111,8 @@ public class BoardTwo {
                         if(h == 2 || h == 6 || h == 8 || h == 12){
                             boardArray[v][h].setTileVal(tileVal.DoubleLetter);
                         }
+                    default:
+
                 }
             }
         }
