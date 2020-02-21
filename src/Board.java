@@ -1,8 +1,8 @@
 public class Board {
-
+    //2-D array of squares holds the information for the board
     protected static Square[][] boardArray = new Square[15][15];
 
-    enum tileVal{
+    enum tileVal{//enum holds the value of the different special tiles
         Standard("    "),
         Centre(" () "),
         DoubleWord(" DW "),
@@ -12,41 +12,41 @@ public class Board {
 
         private final String tile;
 
-        tileVal(String tile)
+        tileVal(String tile)//setter for tile value
         {
             this.tile = tile;
         }
 
         @Override
-        public String toString()
+        public String toString()//Overridden toString for the enum
         {
             return this.tile;
         }
     }
 
-    private class Square{
+    private class Square{//Holds the information for the Square
 
-        private char characterVal;
-        private tileVal tile;
+        private char characterVal;    //Holds placed character
+        private tileVal tile;         //Type of tile, refers to enum
 
-        Square(char CharacterVal, tileVal t){
+        Square(char CharacterVal, tileVal t){//Constructor for Square
             setCharacterVal(CharacterVal);
             setTileVal(t);
         }
 
-        public char getCharacterVal() {
+        public char getCharacterVal() {//getter for character value
             return characterVal;
         }
 
-        public tileVal getTileVal() {
+        public tileVal getTileVal() {//getter for tile value
             return tile;
         }
 
-        public void setCharacterVal(char CharacterVal) {
+        public void setCharacterVal(char CharacterVal) {//setter for character value
             characterVal = CharacterVal;
         }
 
-        public void setTileVal(tileVal t) {
+        public void setTileVal(tileVal t) {//setter for tile value
             this.tile = t;
         }
     }
@@ -100,21 +100,21 @@ public class Board {
         }
     }
 
-    protected void boardReset(){
+    protected void boardReset(){//Resets the board
         createBoard();
     }
 
-    public String printBoard(){
+    public String printBoard(){//Prints board to console
         String output = "";
 
         for(int i = 0; i < 15; i++)
         {
-            for(int j = 0; j < 15; j++)
+            for(int j = 0; j < 15; j++)//Loops through array of Squares
             {
                 output += "|";
                 if(boardArray[i][j].getCharacterVal() == ' ')
                 {
-                    output += boardArray[i][j].getTileVal();
+                    output += boardArray[i][j].getTileVal();//Prints tile value if character not placed
                 }
 
                 else
@@ -134,8 +134,8 @@ public class Board {
         System.out.println(b.printBoard());
     }
 
-    protected boolean Connecting(int x, int y){ //returns true if a tile is found in a conjoining tile
-        if(x != 0) {
+    protected boolean Connecting(int x, int y){ //returns true if a character is found in a conjoining tile
+        if(x != 0) {//Stops any calls outside the array
             if (boardArray[x - 1][y].getCharacterVal() != ' ') {
                 return true;
             }
@@ -164,7 +164,7 @@ public class Board {
 
 
     protected boolean inLine(int arr[]){//Needs input of the previous 3 inputs
-        int x = 0, y=0;
+        int x = 0, y=0;         //Checks if tiles placed are in a line
 
         x = arr[0] - arr[2];
         y = arr[1] - arr[3];
@@ -228,8 +228,7 @@ public class Board {
         return true;
     }
 
-    protected char placeLetter(int letterIndex, int x, int y){
-        Frame f = new Frame();
+    protected char placeLetter(Frame f, int letterIndex, int x, int y){//Places a character in the provided co-ordinates
 
         if(boardArray[x][y].getCharacterVal() == ' '){
             throw new IllegalArgumentException("Already a tile placed on this square");
@@ -240,7 +239,7 @@ public class Board {
         return a;
     }
 
-    protected boolean inBounds(int x, int y){
+    protected boolean inBounds(int x, int y){//Checks any tile being placed is within bounds
         if(x > -1 && x < 15 && y > -1 && y < 15){
             return true;
         }else{
@@ -248,7 +247,7 @@ public class Board {
         }
     }
 
-    protected boolean firstPlacement(int x, int y){
+    protected boolean firstPlacement(int x, int y){//Checks the first tile is placed in the centre
         if(x == 7 && y == 7){
             return true;
         }else{
@@ -256,7 +255,7 @@ public class Board {
         }
     }
 
-    protected boolean tileOnTile(int x, int y){
+    protected boolean tileOnTile(int x, int y){//Ensures a character isn't placed on another
         if(boardArray[x][y].getCharacterVal() != ' '){
             return true;
         }else{
@@ -264,7 +263,7 @@ public class Board {
         }
     }
 
-    protected boolean hasTiles(Frame frame)
+    protected boolean hasTiles(Frame frame)//Checks if the frame is empty
     {
         return frame.empty();
     }
