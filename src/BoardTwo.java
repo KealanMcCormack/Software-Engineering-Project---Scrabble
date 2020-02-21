@@ -97,15 +97,33 @@ public class BoardTwo {
                             boardArray[v][h].setTileVal(tileVal.DoubleWord);
                         }
                     case 4:
-
+                        if(h == 4 || h == 10){
+                            boardArray[v][h].setTileVal(tileVal.DoubleWord);
+                        }
                     case 5:
+                        if(h == 1 || h == 5 || h == 9 || h == 13){
+                            boardArray[v][h].setTileVal(tileVal.TripleWord);
+                        }
                     case 6:
+                        if(h == 2 || h == 6 || h == 8 || h == 12){
+                            boardArray[v][h].setTileVal(tileVal.DoubleLetter);
+                        }
                 }
             }
         }
     }
     private void createCenter(){
-
+        for(int i = 0;i<15;i++){
+            if(i == 0 || i == 14){
+                boardArray[7][i].setTileVal(tileVal.TripleWord);
+            }
+            if(i == 3 || i == 11){
+                boardArray[7][i].setTileVal(tileVal.DoubleLetter);
+            }
+            if(i == 7){
+                boardArray[7][i].setTileVal(tileVal.Centre);
+            }
+        }
     }
     private void flipHalf(){
 
