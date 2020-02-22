@@ -56,7 +56,6 @@ public class Board {
     }
 
 
-
     protected boolean Connecting(int x, int y) { //returns true if a character is found in a conjoining tile
         if (x != 0) {//Stops any calls outside the array
             if (boardArray[x - 1][y].getCharacterVal() != ' ') {
@@ -216,7 +215,7 @@ public class Board {
         }
     }
     private void createHalf(){  //creates top half of the board
-        for(int row = 0;row<7;row++){
+        for(int row = 0;row<8;row++){
             for(int column = 0;column<15;column++){
                 switch (row){
                     case 0:
@@ -250,6 +249,7 @@ public class Board {
                         if(column == 3 || column == 11){
                             boardArray[row][column].setTileVal(tileVal.DoubleWord);
                         }
+                        break;
                     case 4:
                         if(column == 4 || column == 10){
                             boardArray[row][column].setTileVal(tileVal.DoubleWord);
@@ -257,7 +257,7 @@ public class Board {
                         break;
                     case 5:
                         if(column == 1 || column == 5 || column == 9 || column == 13){
-                            boardArray[row][column].setTileVal(tileVal.TripleWord);
+                            boardArray[row][column].setTileVal(tileVal.TripleLetter);
                         }
                         break;
                     case 6:
@@ -283,7 +283,7 @@ public class Board {
         }
     }
     private void flipHalf(){ //flipping the top half to complete board
-        for(int row = 14;row>7;row--){
+        for(int row = 15;row>7;row--){
             for(int column = 0;column<15;column++){
                 switch (row){
                     case 14:
@@ -310,21 +310,40 @@ public class Board {
                             boardArray[row][column].setTileVal(tileVal.DoubleLetter);
                         }
                         break;
-                    case 10:
-                        if(column == 0 || column == 7 || column == 14){
+                    case 11:
+                        if(column == 7 || column == 0 || column == 14)
+                        {
                             boardArray[row][column].setTileVal(tileVal.DoubleLetter);
                         }
+
                         if(column == 3 || column == 11){
                             boardArray[row][column].setTileVal(tileVal.DoubleWord);
                         }
-                    case 9:
+                        break;
+                    case 10:
                         if(column == 4 || column == 10){
                             boardArray[row][column].setTileVal(tileVal.DoubleWord);
                         }
                         break;
-                    case 8:
-                        if(column == 1 || column == 5 || column == 9 || column == 13){
+                    case 9:
+                        if(column == 1 || column == 13)
+                        {
+                            boardArray[row][column].setTileVal(tileVal.TripleLetter);
+                        }
+
+                        if(column == 5 || column == 9){
                             boardArray[row][column].setTileVal(tileVal.TripleWord);
+                        }
+                        break;
+                    case 8:
+                        if(column == 2 || column == 12)
+                        {
+                            boardArray[row][column].setTileVal(tileVal.DoubleLetter);
+                        }
+
+                        if(column == 6 || column == 8)
+                        {
+                            boardArray[row][column].setTileVal(tileVal.DoubleLetter);
                         }
                         break;
                     case 7:
