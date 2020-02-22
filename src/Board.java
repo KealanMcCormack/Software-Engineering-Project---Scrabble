@@ -2,7 +2,11 @@ public class Board {
     //2-D array of squares holds the information for the board
     protected static Square[][] boardArray = new Square[15][15];
 
-    enum tileVal {//enum holds the value of the different special tiles
+    public Board() { //constructor for board
+        createBoard();
+    }
+
+    enum tileVal {//enum holds the value of the different special tiles and how they will be displayed
         Standard("    "),
         Centre(" () "),
         DoubleWord(" DW "),
@@ -10,7 +14,7 @@ public class Board {
         DoubleLetter(" DL "),
         TripleLetter(" TL ");
 
-        private final String tile;
+        private final String tile; //initialising enum
 
         tileVal(String tile)//setter for tile value
         {
@@ -18,7 +22,7 @@ public class Board {
         }
 
         @Override
-        public String toString()//Overridden toString for the enum
+        public String toString()//Overridden toString for the enum to display the string form rather than name of enum(DW instead of DoubleWord)
         {
             return this.tile;
         }
@@ -51,30 +55,7 @@ public class Board {
         }
     }
 
-    public String printBoard() { //Prints board to console
-        String output = "";
 
-        for (int i = 0; i < 15; i++) {
-            for (int j = 0; j < 15; j++)//Loops through array of Squares
-            {
-                output += "|";
-                if (boardArray[i][j].getCharacterVal() == ' ') {
-                    output += boardArray[i][j].getTileVal();//Prints tile value if character not placed
-                } else {
-                    output += boardArray[i][j].getCharacterVal();
-                }
-            }
-            output += "|" + "\n";
-        }
-        return output;
-    }
-
-
-    public static void main(String[] args) {
-        Board b = new Board();
-        b.createBoard();
-        System.out.println(b.printBoard());
-    }
 
     protected boolean Connecting(int x, int y) { //returns true if a character is found in a conjoining tile
         if (x != 0) {//Stops any calls outside the array
@@ -172,11 +153,17 @@ public class Board {
 
     protected char placeLetter(Frame f, int letterIndex, int x, int y) {//Places a character in the provided co-ordinates
 
-        if (boardArray[x][y].getCharacterVal() == ' ') {
+        if (boardArray[x][y].getCharacterVal() != ' ') {
             throw new IllegalArgumentException("Already a tile placed on this square");
         }
 
         char a = f.getLetterIndex(letterIndex);
+
+        if(!(f.getLetter(f.getLetterIndex(letterIndex))))
+        {
+            throw new IllegalArgumentException("Tile not in frame");
+        }
+
         boardArray[x][y].setCharacterVal(f.playLetter(letterIndex));
         return a;
     }
@@ -209,141 +196,169 @@ public class Board {
     {
         return frame.empty();
     }
-    public void boardReset(){
+
+    //METHODS TO DO WITH THE BOARD
+
+    public void boardReset(){ //resets board
         createBoard();
     }
-    public void createBoard(){
+    public void createBoard(){ //calls methods to initialise and create the board
         boardInit();
         createHalf();
         createCenter();
         flipHalf();
     }
-    private void boardInit(){
-        for(int i = 0;i<15;i++){
-            for(int j = 0;j<15;j++){
-                boardArray[i][j] = new Board.Square(' ', Board.tileVal.Standard);
+    private void boardInit(){  //initialises each square of the board to be an instance of the square class
+        for(int count = 0; count <15; count++){
+            for(int count2 = 0;count2<15;count2++){
+                boardArray[count][count2] = new Board.Square(' ', Board.tileVal.Standard);
             }
         }
     }
-    private void createHalf(){
-        for(int v = 0;v<7;v++){
-            for(int h = 0;h<15;h++){
-                switch (v){
+    private void createHalf(){  //creates top half of the board
+        for(int row = 0;row<7;row++){
+            for(int column = 0;column<15;column++){
+                switch (row){
                     case 0:
-                        if(h == 0 || h == 7 || h == 14){ //Creates triple word values
-                            boardArray[v][h].setTileVal(Board.tileVal.TripleWord);
+                        if(column == 0 || column == 7 || column == 14){ //Creates triple word values
+                            boardArray[row][column].setTileVal(tileVal.TripleWord);
                         }
-                        if(h == 3 || h == 11){ //Double letter
-                            boardArray[v][h].setTileVal(Board.tileVal.DoubleLetter);
+                        if(column == 3 || column == 11){ //Double letter
+                            boardArray[row][column].setTileVal(tileVal.DoubleLetter);
                         }
                         break;
                     case 1:
-                        if(h == 1 || h == 13){ //Double Word
-                            boardArray[v][h].setTileVal(Board.tileVal.DoubleWord);
+                        if(column == 1 || column == 13){ //Double Word
+                            boardArray[row][column].setTileVal(tileVal.DoubleWord);
                         }
-                        if(h == 5 || h == 9){ //Triple letter
-                            boardArray[v][h].setTileVal(Board.tileVal.TripleLetter);
+                        if(column == 5 || column == 9){ //Triple letter
+                            boardArray[row][column].setTileVal(tileVal.TripleLetter);
                         }
                         break;
                     case 2:
-                        if(h == 2 || h == 12){ //Double Word
-                            boardArray[v][h].setTileVal(Board.tileVal.DoubleWord);
+                        if(column == 2 || column == 12){ //Double Word
+                            boardArray[row][column].setTileVal(tileVal.DoubleWord);
                         }
-                        if(h == 6 || h == 8){
-                            boardArray[v][h].setTileVal(Board.tileVal.DoubleLetter);
+                        if(column == 6 || column == 8){
+                            boardArray[row][column].setTileVal(tileVal.DoubleLetter);
                         }
                         break;
                     case 3:
-                        if(h == 0 || h == 7 || h == 14){
-                            boardArray[v][h].setTileVal(Board.tileVal.DoubleLetter);
+                        if(column == 0 || column == 7 || column == 14){
+                            boardArray[row][column].setTileVal(tileVal.DoubleLetter);
                         }
-                        if(h == 3 || h == 11){
-                            boardArray[v][h].setTileVal(Board.tileVal.DoubleWord);
+                        if(column == 3 || column == 11){
+                            boardArray[row][column].setTileVal(tileVal.DoubleWord);
                         }
                     case 4:
-                        if(h == 4 || h == 10){
-                            boardArray[v][h].setTileVal(Board.tileVal.DoubleWord);
+                        if(column == 4 || column == 10){
+                            boardArray[row][column].setTileVal(tileVal.DoubleWord);
                         }
                         break;
                     case 5:
-                        if(h == 1 || h == 5 || h == 9 || h == 13){
-                            boardArray[v][h].setTileVal(Board.tileVal.TripleWord);
+                        if(column == 1 || column == 5 || column == 9 || column == 13){
+                            boardArray[row][column].setTileVal(tileVal.TripleWord);
                         }
                         break;
                     case 6:
-                        if(h == 2 || h == 6 || h == 8 || h == 12){
-                            boardArray[v][h].setTileVal(Board.tileVal.DoubleLetter);
+                        if(column == 2 || column == 6 || column == 8 || column == 12){
+                            boardArray[row][column].setTileVal(tileVal.DoubleLetter);
                         }
                         break;
                 }
             }
         }
     }
-    private void createCenter(){
-        for(int i = 0;i<15;i++){
-            if(i == 0 || i == 14){
-                boardArray[7][i].setTileVal(Board.tileVal.TripleWord);
+    private void createCenter(){  //creating the centre row of the board
+        for(int column = 0;column<15;column++){
+            if(column == 0 || column == 14){
+                boardArray[7][column].setTileVal(tileVal.TripleWord);
             }
-            if(i == 3 || i == 11){
-                boardArray[7][i].setTileVal(Board.tileVal.DoubleLetter);
+            if(column == 3 || column == 11){
+                boardArray[7][column].setTileVal(tileVal.DoubleLetter);
             }
-            if(i == 7){
-                boardArray[7][i].setTileVal(Board.tileVal.Centre);
+            if(column == 7){
+                boardArray[7][column].setTileVal(tileVal.Centre);
             }
         }
     }
-    private void flipHalf(){
-        for(int v = 14;v>7;v--){
-            for(int h = 0;h<15;h++){
-                switch (v){
+    private void flipHalf(){ //flipping the top half to complete board
+        for(int row = 14;row>7;row--){
+            for(int column = 0;column<15;column++){
+                switch (row){
                     case 14:
-                        if(h == 0 || h == 7 || h == 14){ //Creates triple word values
-                            boardArray[v][h].setTileVal(Board.tileVal.TripleWord);
+                        if(column == 0 || column == 7 || column == 14){ //Creates triple word values
+                            boardArray[row][column].setTileVal(tileVal.TripleWord);
                         }
-                        if(h == 3 || h == 11){ //Double letter
-                            boardArray[v][h].setTileVal(Board.tileVal.DoubleLetter);
+                        if(column == 3 || column == 11){ //Double letter
+                            boardArray[row][column].setTileVal(tileVal.DoubleLetter);
                         }
                         break;
                     case 13:
-                        if(h == 1 || h == 13){ //Double Word
-                            boardArray[v][h].setTileVal(Board.tileVal.DoubleWord);
+                        if(column == 1 || column == 13){ //Double Word
+                            boardArray[row][column].setTileVal(tileVal.DoubleWord);
                         }
-                        if(h == 5 || h == 9){ //Triple letter
-                            boardArray[v][h].setTileVal(Board.tileVal.TripleLetter);
+                        if(column == 5 || column == 9){ //Triple letter
+                            boardArray[row][column].setTileVal(tileVal.TripleLetter);
                         }
                         break;
                     case 12:
-                        if(h == 2 || h == 12){ //Double Word
-                            boardArray[v][h].setTileVal(Board.tileVal.DoubleWord);
+                        if(column == 2 || column == 12){ //Double Word
+                            boardArray[row][column].setTileVal(tileVal.DoubleWord);
                         }
-                        if(h == 6 || h == 8){
-                            boardArray[v][h].setTileVal(Board.tileVal.DoubleLetter);
+                        if(column == 6 || column == 8){
+                            boardArray[row][column].setTileVal(tileVal.DoubleLetter);
                         }
                         break;
                     case 10:
-                        if(h == 0 || h == 7 || h == 14){
-                            boardArray[v][h].setTileVal(Board.tileVal.DoubleLetter);
+                        if(column == 0 || column == 7 || column == 14){
+                            boardArray[row][column].setTileVal(tileVal.DoubleLetter);
                         }
-                        if(h == 3 || h == 11){
-                            boardArray[v][h].setTileVal(Board.tileVal.DoubleWord);
+                        if(column == 3 || column == 11){
+                            boardArray[row][column].setTileVal(tileVal.DoubleWord);
                         }
                     case 9:
-                        if(h == 4 || h == 10){
-                            boardArray[v][h].setTileVal(Board.tileVal.DoubleWord);
+                        if(column == 4 || column == 10){
+                            boardArray[row][column].setTileVal(tileVal.DoubleWord);
                         }
                         break;
                     case 8:
-                        if(h == 1 || h == 5 || h == 9 || h == 13){
-                            boardArray[v][h].setTileVal(Board.tileVal.TripleWord);
+                        if(column == 1 || column == 5 || column == 9 || column == 13){
+                            boardArray[row][column].setTileVal(tileVal.TripleWord);
                         }
                         break;
                     case 7:
-                        if(h == 2 || h == 6 || h == 8 || h == 12){
-                            boardArray[v][h].setTileVal(Board.tileVal.DoubleLetter);
+                        if(column == 2 || column == 6 || column == 8 || column == 12){
+                            boardArray[row][column].setTileVal(tileVal.DoubleLetter);
                         }
                         break;
                 }
             }
         }
     }
+
+    public String printBoard() { //Prints board to console
+        String output = "";
+
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++)//Loops through array of Squares
+            {
+                output += "|";
+                if (boardArray[i][j].getCharacterVal() == ' ') {
+                    output += boardArray[i][j].getTileVal();//Prints tile value if character not placed
+                } else {
+                    output += boardArray[i][j].getCharacterVal();
+                }
+            }
+            output += "|" + "\n";  //adds new line and vertical divisor
+        }
+        return output;  //returns the formatted board
+    }
+
+    public static void main(String[] args) {
+        Board b = new Board();
+        b.createBoard();
+        System.out.println(b.printBoard());
+    }
+
 }
