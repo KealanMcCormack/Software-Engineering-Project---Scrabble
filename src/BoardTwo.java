@@ -214,15 +214,4 @@ public class BoardTwo {
     public void boardReset(){
         createBoard();
     }
-    protected char placeLetter(int letterIndex, int x, int y){
-        Frame f = new Frame();
-
-        if(boardArray[x][y].getCharacterVal() == ' '){
-            throw new IllegalArgumentException("Already a tile placed on this square");
-        }
-
-        char a = f.getLetterIndex(letterIndex);
-        boardArray[x][y].setCharacterVal(f.playLetter(letterIndex));
-        return a;
-    }
 }

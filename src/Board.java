@@ -1,9 +1,8 @@
-<<<<<<< HEAD
 public class Board {
     //2-D array of squares holds the information for the board
     protected static Square[][] boardArray = new Square[15][15];
 
-    enum tileVal{//enum holds the value of the different special tiles
+    enum tileVal {//enum holds the value of the different special tiles
         Standard("    "),
         Centre(" () "),
         DoubleWord(" DW "),
@@ -25,12 +24,12 @@ public class Board {
         }
     }
 
-    private class Square{//Holds the information for the Square
+    private class Square {//Holds the information for the Square
 
         private char characterVal;    //Holds placed character
         private tileVal tile;         //Type of tile, refers to enum
 
-        Square(char CharacterVal, tileVal t){//Constructor for Square
+        Square(char CharacterVal, tileVal t) {//Constructor for Square
             setCharacterVal(CharacterVal);
             setTileVal(t);
         }
@@ -52,74 +51,16 @@ public class Board {
         }
     }
 
-    protected void createBoard() {
-        for (int row_count = 0; row_count < 15; row_count++)  //For loops that initially create a new square object for each space on the board
-        {
-            for (int column_count = 0; column_count < 15; column_count++) {
-                boardArray[row_count][column_count] = new Square(' ', tileVal.Standard); //Creating new square object
-            }
-        }//TO BE REMOVED
-
-        //CREATING THE BOARD WITH TILE VALUES
-
-        for(int rotations = 0; rotations < 4; rotations++)
-        {
-            for(int row_count = 0; row_count < 8; row_count++)
-            {
-                for(int column_count = 0; column_count < 8; column_count++)
-                {
-                    if ((row_count == 2 && column_count == 6) || (row_count == 6 && column_count == 2) || (row_count == 6 && column_count == 6))
-                    {
-                        boardArray[row_count][column_count] = new Square(' ', tileVal.DoubleLetter);
-                    }
-
-                    else if ((row_count == 0 && column_count == 3) || (row_count == 3 && column_count == 0) || (row_count == 7 && column_count == 3))
-                    {
-                        boardArray[row_count][column_count] = new Square(' ', tileVal.DoubleLetter);
-                    }
-
-                    else if ((row_count == 1 && column_count == 5) || (row_count == 5 && column_count == 1) || (row_count == 5 && column_count == 5)) {
-                        boardArray[row_count][column_count] = new Square(' ', tileVal.TripleLetter);
-                    }
-
-                    else if (row_count == column_count && (row_count < 7) && row_count > 0)
-                    {
-                        boardArray[row_count][column_count] = new Square(' ', tileVal.DoubleWord);
-                    }
-
-                    else if ((row_count == 7 && column_count == 0) || (row_count == 0 && column_count == 0))
-                    {
-                        boardArray[row_count][column_count] = new Square(' ', tileVal.TripleWord);
-                    }
-
-                    else
-                    {
-                        boardArray[row_count][column_count] = new Square(' ', tileVal.Standard);
-                    }
-                }
-            }
-        }
-    }
-
-    protected void boardReset(){//Resets the board
-        createBoard();
-    }
-
-    public String printBoard(){//Prints board to console
+    public String printBoard() { //Prints board to console
         String output = "";
 
-        for(int i = 0; i < 15; i++)
-        {
-            for(int j = 0; j < 15; j++)//Loops through array of Squares
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++)//Loops through array of Squares
             {
                 output += "|";
-                if(boardArray[i][j].getCharacterVal() == ' ')
-                {
+                if (boardArray[i][j].getCharacterVal() == ' ') {
                     output += boardArray[i][j].getTileVal();//Prints tile value if character not placed
-                }
-
-                else
-                {
+                } else {
                     output += boardArray[i][j].getCharacterVal();
                 }
             }
@@ -135,26 +76,26 @@ public class Board {
         System.out.println(b.printBoard());
     }
 
-    protected boolean Connecting(int x, int y){ //returns true if a character is found in a conjoining tile
-        if(x != 0) {//Stops any calls outside the array
+    protected boolean Connecting(int x, int y) { //returns true if a character is found in a conjoining tile
+        if (x != 0) {//Stops any calls outside the array
             if (boardArray[x - 1][y].getCharacterVal() != ' ') {
                 return true;
             }
         }
 
-        if(x != 14) {
+        if (x != 14) {
             if (boardArray[x + 1][y].getCharacterVal() != ' ') {
                 return true;
             }
         }
 
-        if(y != 14) {
+        if (y != 14) {
             if (boardArray[x][y + 1].getCharacterVal() != ' ') {
                 return true;
             }
         }
 
-        if(y != 0) {
+        if (y != 0) {
             if (boardArray[x][y - 1].getCharacterVal() != ' ') {
                 return true;
             }
@@ -164,21 +105,21 @@ public class Board {
     }
 
 
-    protected boolean inLine(int arr[]){//Needs input of the previous 3 inputs
-        int x = 0, y=0;         //Checks if tiles placed are in a line
+    protected boolean inLine(int arr[]) {//Needs input of the previous 3 inputs
+        int x = 0, y = 0;         //Checks if tiles placed are in a line
 
         x = arr[0] - arr[2];
         y = arr[1] - arr[3];
 
-        if(x != 0 && y!= 0){
+        if (x != 0 && y != 0) {
             return false;
         }
 
-        if(x != 0) {
-            for(int i = 2;i < arr.length;i += 2) {
+        if (x != 0) {
+            for (int i = 2; i < arr.length; i += 2) {
                 x = arr[i - 2] - arr[i];
                 y = arr[i - 1] - arr[i + 1];
-                if(y != 0){
+                if (y != 0) {
                     return false;
                 }
                 if (x > 0) {
@@ -200,11 +141,11 @@ public class Board {
             }
         }
 
-        if(y != 0) {
-            for(int i = 2;i < arr.length;i += 2) {
+        if (y != 0) {
+            for (int i = 2; i < arr.length; i += 2) {
                 x = arr[i - 2] - arr[i];
                 y = arr[i - 1] - arr[i + 1];
-                if(x != 0){
+                if (x != 0) {
                     return false;
                 }
                 if (y > 0) {
@@ -229,9 +170,9 @@ public class Board {
         return true;
     }
 
-    protected char placeLetter(Frame f, int letterIndex, int x, int y){//Places a character in the provided co-ordinates
+    protected char placeLetter(Frame f, int letterIndex, int x, int y) {//Places a character in the provided co-ordinates
 
-        if(boardArray[x][y].getCharacterVal() == ' '){
+        if (boardArray[x][y].getCharacterVal() == ' ') {
             throw new IllegalArgumentException("Already a tile placed on this square");
         }
 
@@ -240,26 +181,26 @@ public class Board {
         return a;
     }
 
-    protected boolean inBounds(int x, int y){//Checks any tile being placed is within bounds
-        if(x > -1 && x < 15 && y > -1 && y < 15){
+    protected boolean inBounds(int x, int y) {//Checks any tile being placed is within bounds
+        if (x > -1 && x < 15 && y > -1 && y < 15) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    protected boolean firstPlacement(int x, int y){//Checks the first tile is placed in the centre
-        if(x == 7 && y == 7){
+    protected boolean firstPlacement(int x, int y) {//Checks the first tile is placed in the centre
+        if (x == 7 && y == 7) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    protected boolean tileOnTile(int x, int y){//Ensures a character isn't placed on another
-        if(boardArray[x][y].getCharacterVal() != ' '){
+    protected boolean tileOnTile(int x, int y) {//Ensures a character isn't placed on another
+        if (boardArray[x][y].getCharacterVal() != ' ') {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -268,234 +209,141 @@ public class Board {
     {
         return frame.empty();
     }
-=======
-public class Board {
-
-    protected static Square[][] boardArray = new Square[15][15];
-
-    enum tileVal{
-        Standard("    "),
-        Star(" () "),
-        DoubleWord(" DW "),
-        TripleWord(" TW "),
-        DoubleLetter(" DL "),
-        TripleLetter(" TL ");
-
-        private final String tile;
-
-        tileVal(String tile)
-        {
-            this.tile = tile;
-        }
-
-        @Override
-        public String toString()
-        {
-            return this.tile;
-        }
-    }
-
-    private class Square{
-
-        private char characterVal;
-        private tileVal tile;
-
-        Square(char CharacterVal, tileVal t){
-            setCharacterVal(CharacterVal);
-            setTileVal(t);
-        }
-
-        public char getCharacterVal() {
-            return characterVal;
-        }
-
-        public tileVal getTileVal() {
-            return tile;
-        }
-
-        public void setCharacterVal(char CharacterVal) {
-            characterVal = CharacterVal;
-        }
-
-        public void setTileVal(tileVal t) {
-            this.tile = t;
-        }
-    }
-
-    protected void createBoard() {
-        for (int row_count = 0; row_count < 15; row_count++)  //For loops that initially create a new square object for each space on the board
-        {
-            for (int column_count = 0; column_count < 15; column_count++) {
-                boardArray[row_count][column_count] = new Square(' ', tileVal.Standard); //Creating new square object
-            }
-        }
-
-        //CREATING THE BOARD WITH TILE VALUES
-
-        for (int rotations = 0; rotations < 4; rotations++)
-        {
-            for (int row_count = 0; row_count < 8; row_count++)
-            {
-                for (int column_count = 0; column_count < 8; column_count++)
-                {
-                    if ((row_count == 2 && column_count == 6) || (row_count == 6 && column_count == 2) || (row_count == 6 && column_count == 6))
-                    {
-                        boardArray[row_count][column_count].setTileVal(tileVal.DoubleLetter);
-                    }
-
-                    else if (((row_count == 3 || row_count == 7) && (column_count == 3 || column_count == 7) && !((row_count == 7) && (column_count == 7)) && !((row_count == 3) && (column_count == 3))))
-                    {
-                        boardArray[row_count][column_count].setTileVal(tileVal.DoubleLetter);
-                    }
-
-                    else if ((row_count == 0 && column_count == 3) || (row_count == 3 && column_count == 0))
-                    {
-                        boardArray[row_count][column_count].setTileVal(tileVal.DoubleLetter);
-                    }
-
-                    else if ((row_count == 1 && column_count == 5) || (row_count == 5 && column_count == 1) || (row_count == 5 && column_count == 5)) {
-                        boardArray[row_count][column_count].setTileVal(tileVal.TripleLetter);
-                    }
-
-                    else if (row_count == 7 && column_count == 7)
-                    {
-                        boardArray[row_count][column_count].setTileVal(tileVal.Star);
-                    }
-
-                    else if (row_count == column_count && row_count > 0)
-                    {
-                        boardArray[row_count][column_count].setTileVal(tileVal.DoubleWord);
-                    }
-
-                    else if (row_count % 7 == 0 && column_count % 7 == 0)
-                    {
-                        boardArray[row_count][column_count].setTileVal(tileVal.TripleWord);
-                    }
-                }
-            }
-        }
-    }
-    protected void boardReset(){
+    public void boardReset(){
         createBoard();
     }
-
-    public String printBoard(){
-        String output = "";
-
-        for(int i = 0; i < 15; i++)
-        {
-            for(int j = 0; j < 15; j++)
-            {
-                output += "|";
-                if(boardArray[i][j].getCharacterVal() == ' ')
-                {
-                    output += boardArray[i][j].getTileVal();
+    public void createBoard(){
+        boardInit();
+        createHalf();
+        createCenter();
+        flipHalf();
+    }
+    private void boardInit(){
+        for(int i = 0;i<15;i++){
+            for(int j = 0;j<15;j++){
+                boardArray[i][j] = new Board.Square(' ', Board.tileVal.Standard);
+            }
+        }
+    }
+    private void createHalf(){
+        for(int v = 0;v<7;v++){
+            for(int h = 0;h<15;h++){
+                switch (v){
+                    case 0:
+                        if(h == 0 || h == 7 || h == 14){ //Creates triple word values
+                            boardArray[v][h].setTileVal(Board.tileVal.TripleWord);
+                        }
+                        if(h == 3 || h == 11){ //Double letter
+                            boardArray[v][h].setTileVal(Board.tileVal.DoubleLetter);
+                        }
+                        break;
+                    case 1:
+                        if(h == 1 || h == 13){ //Double Word
+                            boardArray[v][h].setTileVal(Board.tileVal.DoubleWord);
+                        }
+                        if(h == 5 || h == 9){ //Triple letter
+                            boardArray[v][h].setTileVal(Board.tileVal.TripleLetter);
+                        }
+                        break;
+                    case 2:
+                        if(h == 2 || h == 12){ //Double Word
+                            boardArray[v][h].setTileVal(Board.tileVal.DoubleWord);
+                        }
+                        if(h == 6 || h == 8){
+                            boardArray[v][h].setTileVal(Board.tileVal.DoubleLetter);
+                        }
+                        break;
+                    case 3:
+                        if(h == 0 || h == 7 || h == 14){
+                            boardArray[v][h].setTileVal(Board.tileVal.DoubleLetter);
+                        }
+                        if(h == 3 || h == 11){
+                            boardArray[v][h].setTileVal(Board.tileVal.DoubleWord);
+                        }
+                    case 4:
+                        if(h == 4 || h == 10){
+                            boardArray[v][h].setTileVal(Board.tileVal.DoubleWord);
+                        }
+                        break;
+                    case 5:
+                        if(h == 1 || h == 5 || h == 9 || h == 13){
+                            boardArray[v][h].setTileVal(Board.tileVal.TripleWord);
+                        }
+                        break;
+                    case 6:
+                        if(h == 2 || h == 6 || h == 8 || h == 12){
+                            boardArray[v][h].setTileVal(Board.tileVal.DoubleLetter);
+                        }
+                        break;
                 }
-
-                else
-                {
-                    output += boardArray[i][j].getCharacterVal();
+            }
+        }
+    }
+    private void createCenter(){
+        for(int i = 0;i<15;i++){
+            if(i == 0 || i == 14){
+                boardArray[7][i].setTileVal(Board.tileVal.TripleWord);
+            }
+            if(i == 3 || i == 11){
+                boardArray[7][i].setTileVal(Board.tileVal.DoubleLetter);
+            }
+            if(i == 7){
+                boardArray[7][i].setTileVal(Board.tileVal.Centre);
+            }
+        }
+    }
+    private void flipHalf(){
+        for(int v = 14;v>7;v--){
+            for(int h = 0;h<15;h++){
+                switch (v){
+                    case 14:
+                        if(h == 0 || h == 7 || h == 14){ //Creates triple word values
+                            boardArray[v][h].setTileVal(Board.tileVal.TripleWord);
+                        }
+                        if(h == 3 || h == 11){ //Double letter
+                            boardArray[v][h].setTileVal(Board.tileVal.DoubleLetter);
+                        }
+                        break;
+                    case 13:
+                        if(h == 1 || h == 13){ //Double Word
+                            boardArray[v][h].setTileVal(Board.tileVal.DoubleWord);
+                        }
+                        if(h == 5 || h == 9){ //Triple letter
+                            boardArray[v][h].setTileVal(Board.tileVal.TripleLetter);
+                        }
+                        break;
+                    case 12:
+                        if(h == 2 || h == 12){ //Double Word
+                            boardArray[v][h].setTileVal(Board.tileVal.DoubleWord);
+                        }
+                        if(h == 6 || h == 8){
+                            boardArray[v][h].setTileVal(Board.tileVal.DoubleLetter);
+                        }
+                        break;
+                    case 10:
+                        if(h == 0 || h == 7 || h == 14){
+                            boardArray[v][h].setTileVal(Board.tileVal.DoubleLetter);
+                        }
+                        if(h == 3 || h == 11){
+                            boardArray[v][h].setTileVal(Board.tileVal.DoubleWord);
+                        }
+                    case 9:
+                        if(h == 4 || h == 10){
+                            boardArray[v][h].setTileVal(Board.tileVal.DoubleWord);
+                        }
+                        break;
+                    case 8:
+                        if(h == 1 || h == 5 || h == 9 || h == 13){
+                            boardArray[v][h].setTileVal(Board.tileVal.TripleWord);
+                        }
+                        break;
+                    case 7:
+                        if(h == 2 || h == 6 || h == 8 || h == 12){
+                            boardArray[v][h].setTileVal(Board.tileVal.DoubleLetter);
+                        }
+                        break;
                 }
             }
-            output += "|" + "\n";
         }
-        return output;
     }
-
-
-    public static void main(String[] args) {
-        BoardTwo b = new BoardTwo();
-        System.out.println(b.printBoard());
-    }
-
-    protected boolean Connecting(int x, int y){ //returns true if a tile is found in a conjoining tile
-        if(x != 0) {
-            if (boardArray[x - 1][y].getCharacterVal() != ' ') {
-                return true;
-            }
-        }
-
-        if(x != 14) {
-            if (boardArray[x + 1][y].getCharacterVal() != ' ') {
-                return true;
-            }
-        }
-
-        if(y != 14) {
-            if (boardArray[x][y + 1].getCharacterVal() != ' ') {
-                return true;
-            }
-        }
-
-        if(y != 0) {
-            if (boardArray[x][y - 1].getCharacterVal() != ' ') {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    protected int[] ConnectingInt(int x, int y){ //returns true if a tile is found in a conjoining tile
-        int[] a = new int[2];
-        a[0] = x;
-        a[1] = y;
-
-        if(x != 0) {
-            if (boardArray[x - 1][y].getCharacterVal() != ' ') {
-                a[0] -= 1;
-                return a;
-            }
-        }
-
-        if(x != 14) {
-            if (boardArray[x + 1][y].getCharacterVal() != ' ') {
-                a[0] += 1;
-                return a;
-            }
-        }
-
-        if(y != 14) {
-            if (boardArray[x][y + 1].getCharacterVal() != ' ') {
-                a[1] += 1;
-                return a;
-            }
-        }
-
-        if(y != 0) {
-            if (boardArray[x][y - 1].getCharacterVal() != ' ') {
-                a[1] -= 1;
-                return a;
-            }
-        }
-
-        return a;
-    }
-
-    protected boolean inLine(int arr[]){//Needs input of the previous 3 inputs
-        int a = 0, b=0;
-
-        int[] check = ConnectingInt(arr[0], arr[1]);//work to be done
-        if(check[0] == arr[2] && check[1] == arr[3]){
-
-        } else if(boardArray[check[0]][check[1]].getCharacterVal() != ' '){
-
-        }
-
-        return false;
-
-    }
-
-    protected char placeLetter(int letterIndex, int x, int y){
-        Frame f = new Frame();
-
-        if(boardArray[x][y].getCharacterVal() == ' '){
-            throw new IllegalArgumentException("Already a tile placed on this square");
-        }
-
-        char a = f.getLetterIndex(letterIndex);
-        boardArray[x][y].setCharacterVal(f.playLetter(letterIndex));
-        return a;
-    }
->>>>>>> GerardBoard
 }
