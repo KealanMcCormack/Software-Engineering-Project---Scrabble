@@ -2,6 +2,11 @@ public class BoardTwo {
 
     protected static Square[][] boardArray = new Square[15][15];
 
+    public BoardTwo() {
+        createBoard();
+    }
+
+
     enum tileVal{
         Standard("    "),
         Centre(" () "),
@@ -23,7 +28,6 @@ public class BoardTwo {
             return this.tile;
         }
     }
-
     private class Square{
 
         private char characterVal;
@@ -50,74 +54,139 @@ public class BoardTwo {
             this.tile = t;
         }
     }
-
-    protected void createBoard() {
-        for (int row_count = 0; row_count < 15; row_count++)  //For loops that initially create a new square object for each space on the board
-        {
-            for (int column_count = 0; column_count < 15; column_count++) {
-                boardArray[row_count][column_count] = new Square(' ', tileVal.Standard); //Creating new square object
+    public void createBoard(){
+        boardInit();
+        createHalf();
+        createCenter();
+        flipHalf();
+    }
+    private void boardInit(){
+        for(int i = 0;i<15;i++){
+            for(int j = 0;j<15;j++){
+                boardArray[i][j] = new Square(' ', tileVal.Standard);
             }
-        }//TO BE REMOVED
-
-        //CREATING THE BOARD WITH TILE VALUES
-        /*int row_small = 0;
-        int rs = row_small;
-
-        int row_big = 8;
-        int rb = row_big;
-
-        int column_small = 0;
-        int cs = column_small;
-
-        int column_big = 8;
-        int cb = column_big;*/
-
-        for(int rotations = 0; rotations < 4; rotations++)
-        {
-            for(int row_count = 0; row_count < 8; row_count++)
-            {
-                for(int column_count = 0; column_count < 8; column_count++)
-                {
-                    if ((row_count == 2 && column_count == 6) || (row_count == 6 && column_count == 2) || (row_count == 6 && column_count == 6))
-                    {
-                        boardArray[row_count][column_count] = new Square(' ', tileVal.DoubleLetter);
-                    }
-
-                    else if (row_count == 7 && column_count == 3)
-                    {
-                        boardArray[row_count][column_count] = new Square(' ', tileVal.DoubleLetter);
-                    }
-
-                    else if ((row_count == 0 && column_count == 3) || (row_count == 3 && column_count == 0))
-                    {
-                        boardArray[row_count][column_count] = new Square(' ', tileVal.DoubleLetter);
-                    }
-
-                    else if ((row_count == 1 && column_count == 5) || (row_count == 5 && column_count == 1) || (row_count == 5 && column_count == 5)) {
-                        boardArray[row_count][column_count] = new Square(' ', tileVal.TripleLetter);
-                    }
-
-                    else if (row_count == column_count && row_count > 0 && !(row_count == 7))
-                    {
-                        boardArray[row_count][column_count] = new Square(' ', tileVal.DoubleWord);
-                    }
-
-                    else if ((row_count == 7 && column_count == 0) || (row_count == 0 && column_count == 0))
-                    {
-                        boardArray[row_count][column_count] = new Square(' ', tileVal.TripleWord);
-                    }
-
-                    else
-                    {
-                        boardArray[row_count][column_count] = new Square(' ', tileVal.Standard);
-                    }
+        }
+    }
+    private void createHalf(){
+        for(int v = 0;v<7;v++){
+            for(int h = 0;h<15;h++){
+                switch (v){
+                    case 0:
+                        if(h == 0 || h == 7 || h == 14){ //Creates triple word values
+                            boardArray[v][h].setTileVal(tileVal.TripleWord);
+                        }
+                        if(h == 3 || h == 11){ //Double letter
+                            boardArray[v][h].setTileVal(tileVal.DoubleLetter);
+                        }
+                        break;
+                    case 1:
+                        if(h == 1 || h == 13){ //Double Word
+                            boardArray[v][h].setTileVal(tileVal.DoubleWord);
+                        }
+                        if(h == 5 || h == 9){ //Triple letter
+                            boardArray[v][h].setTileVal(tileVal.TripleLetter);
+                        }
+                        break;
+                    case 2:
+                        if(h == 2 || h == 12){ //Double Word
+                            boardArray[v][h].setTileVal(tileVal.DoubleWord);
+                        }
+                        if(h == 6 || h == 8){
+                            boardArray[v][h].setTileVal(tileVal.DoubleLetter);
+                        }
+                        break;
+                    case 3:
+                        if(h == 0 || h == 7 || h == 14){
+                            boardArray[v][h].setTileVal(tileVal.DoubleLetter);
+                        }
+                        if(h == 3 || h == 11){
+                            boardArray[v][h].setTileVal(tileVal.DoubleWord);
+                        }
+                    case 4:
+                        if(h == 4 || h == 10){
+                            boardArray[v][h].setTileVal(tileVal.DoubleWord);
+                        }
+                        break;
+                    case 5:
+                        if(h == 1 || h == 5 || h == 9 || h == 13){
+                            boardArray[v][h].setTileVal(tileVal.TripleWord);
+                        }
+                        break;
+                    case 6:
+                        if(h == 2 || h == 6 || h == 8 || h == 12){
+                            boardArray[v][h].setTileVal(tileVal.DoubleLetter);
+                        }
+                        break;
                 }
             }
         }
     }
-
-    protected void boardReset(){
-        createBoard();
+    private void createCenter(){
+        for(int i = 0;i<15;i++){
+            if(i == 0 || i == 14){
+                boardArray[7][i].setTileVal(tileVal.TripleWord);
+            }
+            if(i == 3 || i == 11){
+                boardArray[7][i].setTileVal(tileVal.DoubleLetter);
+            }
+            if(i == 7){
+                boardArray[7][i].setTileVal(tileVal.Centre);
+            }
+        }
+    }
+    private void flipHalf(){
+        for(int v = 14;v>7;v--){
+            for(int h = 0;h<15;h++){
+                switch (v){
+                    case 14:
+                        if(h == 0 || h == 7 || h == 14){ //Creates triple word values
+                            boardArray[v][h].setTileVal(tileVal.TripleWord);
+                        }
+                        if(h == 3 || h == 11){ //Double letter
+                            boardArray[v][h].setTileVal(tileVal.DoubleLetter);
+                        }
+                        break;
+                    case 13:
+                        if(h == 1 || h == 13){ //Double Word
+                            boardArray[v][h].setTileVal(tileVal.DoubleWord);
+                        }
+                        if(h == 5 || h == 9){ //Triple letter
+                            boardArray[v][h].setTileVal(tileVal.TripleLetter);
+                        }
+                        break;
+                    case 12:
+                        if(h == 2 || h == 12){ //Double Word
+                            boardArray[v][h].setTileVal(tileVal.DoubleWord);
+                        }
+                        if(h == 6 || h == 8){
+                            boardArray[v][h].setTileVal(tileVal.DoubleLetter);
+                        }
+                        break;
+                    case 10:
+                        if(h == 0 || h == 7 || h == 14){
+                            boardArray[v][h].setTileVal(tileVal.DoubleLetter);
+                        }
+                        if(h == 3 || h == 11){
+                            boardArray[v][h].setTileVal(tileVal.DoubleWord);
+                        }
+                    case 9:
+                        if(h == 4 || h == 10){
+                            boardArray[v][h].setTileVal(tileVal.DoubleWord);
+                        }
+                        break;
+                    case 8:
+                        if(h == 1 || h == 5 || h == 9 || h == 13){
+                            boardArray[v][h].setTileVal(tileVal.TripleWord);
+                        }
+                        break;
+                    case 7:
+                        if(h == 2 || h == 6 || h == 8 || h == 12){
+                            boardArray[v][h].setTileVal(tileVal.DoubleLetter);
+                        }
+                        break;
+                }
+            }
+        }
     }
 
     public String printBoard(){
@@ -142,11 +211,18 @@ public class BoardTwo {
         }
         return output;
     }
+    public void boardReset(){
+        createBoard();
+    }
+    protected char placeLetter(int letterIndex, int x, int y){
+        Frame f = new Frame();
 
+        if(boardArray[x][y].getCharacterVal() == ' '){
+            throw new IllegalArgumentException("Already a tile placed on this square");
+        }
 
-    public static void main(String[] args) {
-        BoardTwo b = new BoardTwo();
-        b.createBoard();
-        System.out.println(b.printBoard());
+        char a = f.getLetterIndex(letterIndex);
+        boardArray[x][y].setCharacterVal(f.playLetter(letterIndex));
+        return a;
     }
 }

@@ -6,10 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed1df3f4-0d97-4b4b-baa4-0885f7f9e9fd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="ed1df3f4-0d97-4b4b-baa4-0885f7f9e9fd" name="Default Changelist" comment="fixed issue">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BoardTwo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BoardTwo.java" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +42,26 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
-  <component name="RunManager" selected="Application.ScrabbleBagTest">
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Board">
+    <configuration name="Board" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Board" />
+      <module name="Scrabble" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="GameBoard" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="GameBoard" />
       <module name="Scrabble" />
@@ -58,6 +78,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Board" />
         <item itemvalue="Application.ScrabbleBagTest" />
         <item itemvalue="Application.GameBoard" />
       </list>
@@ -76,6 +97,28 @@
       <workItem from="1582040208809" duration="506000" />
       <workItem from="1582041586933" duration="515000" />
     </task>
+    <task id="LOCAL-00001" summary="Update">
+      <created>1582284365475</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1582284365475</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Update">
+      <created>1582285110571</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1582285110571</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Update">
+      <created>1582285794686</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1582285794686</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -93,6 +136,11 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Update" />
+    <MESSAGE value="fixed issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed issue" />
   </component>
   <component name="WindowStateProjectService">
     <state x="490" y="231" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1582040429851">
