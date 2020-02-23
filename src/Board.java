@@ -1,19 +1,29 @@
 /**
-        * Gerard Colman - 18327576
-        * Lukasz Filanowski - 18414616
-        * Kealan McCormack - 18312236
-        * Board hold data structures and methods for use of the board
+ *
+ * @author Gerard Colman - 18327576
+ * @author Lukasz Filanowski - 18414616
+ * @author Kealan McCormack - 18312236
+ *
+ * Board hold data structures and methods for use of the board
  */
 
 
 public class Board{
     //2-D array of squares holds the information for the board
+
+    /**
+     * @param boardArray holds information for the board
+     */
+
     protected static Square[][] boardArray = new Square[15][15];
 
     public Board() { //constructor for board
         createBoard();
     }
 
+    /**
+     * enum to hold information on tile values
+     */
     enum tileVal {//enum holds the value of the different special tiles and how they will be displayed
         Standard("    "),
         Centre(" () "),
@@ -21,6 +31,10 @@ public class Board{
         TripleWord(" TW "),
         DoubleLetter(" DL "),
         TripleLetter(" TL ");
+
+        /**
+         * @param tile enum to hold tile values
+         */
 
         private final String tile; //initialising enum
 
@@ -36,34 +50,71 @@ public class Board{
         }
     }
 
+    /**
+     * Square class that holds information on each square (its value and the tile placed there)
+     */
     private class Square {//Holds the information for the Square
 
         private char characterVal;    //Holds placed character
         private tileVal tile;         //Type of tile, refers to enum
 
+        /**
+         *
+         * @param CharacterVal stores the value of tile placed
+         * @param t stores value of tile on board
+         */
         Square(char CharacterVal, tileVal t) {//Constructor for Square
             setCharacterVal(CharacterVal);
             setTileVal(t);
         }
 
+        /**
+         *
+         * @return
+         * getCharacterVal returns the character value
+         */
         public char getCharacterVal() {//getter for character value
             return characterVal;
         }
+
+        /**
+         *
+         * @return
+         * getTileVal returns the tile value
+         */
 
         public tileVal getTileVal() {//getter for tile value
             return tile;
         }
 
+        /**
+         *
+         * @param CharacterVal
+         * setCharacterVal sets the character value
+         */
+
         public void setCharacterVal(char CharacterVal) {//setter for character value
             characterVal = CharacterVal;
         }
+
+        /**
+         *
+         * @param t
+         * setTileVal sets the tile value
+         */
 
         public void setTileVal(tileVal t) {//setter for tile value
             this.tile = t;
         }
     }
 
-
+    /**
+     *
+     * @param x row coordinate
+     * @param y column coordinate
+     * @return
+     * Connecting returns true if a character is found in a conjoining tile
+     */
     protected boolean Connecting(int x, int y) { //returns true if a character is found in a conjoining tile
         if (x != 0) {//Stops any calls outside the array
             if (boardArray[x - 1][y].getCharacterVal() != ' ') {//checks each possible tile around the co-ordinates
@@ -92,6 +143,12 @@ public class Board{
         return false;
     }
 
+    /**
+     *
+     * @param arr input from previous 3 placements
+     * @return
+     * inLine checks if tiles placed are a horizontal or vertical vector
+     */
 
     protected boolean inLine(int arr[]) {//Needs input of the previous 3 inputs
         int x = 0, y = 0;         //Checks if tiles placed are in a line
@@ -107,23 +164,23 @@ public class Board{
             for(int count = 0;count < arr.length - 2;count += 2){//increments across x values in array
                 x = arr[count] - arr[count + 2];
                 y = arr[count + 1] - arr[count + 3];
-            if(x > 0){
+                if(x > 0){
                     for(int i = arr[count];i > arr[count + 2];i--){
                         if(boardArray[i][arr[1]].getCharacterVal() == ' '){
                             return false;
                         }
                     }
                 }
-            if(x < 0){
-                for(int i = arr[count];i < arr[count + 2];i++){
-                    if(boardArray[i][arr[1]].getCharacterVal() == ' '){
-                        return false;
+                if(x < 0){
+                    for(int i = arr[count];i < arr[count + 2];i++){
+                        if(boardArray[i][arr[1]].getCharacterVal() == ' '){
+                            return false;
+                        }
                     }
                 }
-            }
-            if(y != 0){
-                return false;
-            }
+                if(y != 0){
+                    return false;
+                }
             }
             return true;
         }
@@ -154,6 +211,15 @@ public class Board{
         return false;
     }
 
+    /**
+     *
+     * @param f instance of frame
+     * @param letterIndex index of letter to be placed
+     * @param x row coordinate
+     * @param y column coordinate
+     * @return
+     * placeLetter is used to place a letter on the board in the coordinates specified
+     */
     protected char placeLetter(Frame f, int letterIndex, int x, int y) {//Places a character in the provided co-ordinates
 
         if (boardArray[x][y].getCharacterVal() != ' ') {//Checks whether there is already a letter placed
@@ -171,6 +237,13 @@ public class Board{
         return a;
     }
 
+    /**
+     *
+     * @param x row coordinate
+     * @param y column coordinate
+     * @return
+     * inBounds returns true if tile to be placed is in bounds of array
+     */
     protected boolean inBounds(int x, int y) {//Checks any tile being placed is within bounds
         if (x > -1 && x < 15 && y > -1 && y < 15) {//Checks bounds
             return true;
@@ -179,10 +252,23 @@ public class Board{
         }
     }
 
+    /**
+     *
+     * @param f instance of frame
+     * @param letterIndex index of letter to be placed
+     * firstPlacement places first tile in centre of board
+     */
     protected void firstPlacement(Frame f, int letterIndex) {//Places the first tile in the centre
         placeLetter(f, letterIndex, 7,7);
     }
 
+    /**
+     *
+     * @param x row coordinate
+     * @param y column coordinate
+     * @return
+     * tileOnTile returns true if t a tile is being laced on a space with a tile already there
+     */
     protected boolean tileOnTile(int x, int y) {//Ensures a character isn't placed on another
         if (boardArray[x][y].getCharacterVal() != ' ') {//Checks if no character has been placed
             return true;
@@ -191,33 +277,61 @@ public class Board{
         }
     }
 
+    /**
+     *
+     * @param frame instance of frame
+     * @return
+     * hasTiles returns true if frame has tiles
+     */
     protected boolean hasTiles(Frame frame)//Checks if the frame is empty
     {
-        return !frame.empty();
+        return !(frame.empty());
     }
 
-    protected char getCharVal(int x, int y){//Used for testing to know the value in a given Sqaure of the array
+    /**
+     *
+     * @param x row coordinate
+     * @param y column coordinate
+     * @return
+     * getCharVal used for testing to know the value in a given Square of the array
+     */
+    protected char getCharVal(int x, int y){//Used for testing to know the value in a given Square of the array
         return boardArray[x][y].getCharacterVal();
     }
 
     //METHODS TO DO WITH THE BOARD
 
+    /**
+     * boardReset resets the board
+     */
     public void boardReset(){ //resets board
         createBoard();
     }
+
+    /**
+     * createBoard creates the board
+     */
     public void createBoard(){ //calls methods to initialise and create the board
         boardInit();
         createHalf();
         createCenter();
         flipHalf();
     }
-    private void boardInit(){  //initialises each square of the board to be an instance of the square class
+
+    /**
+     * boardInit initialises each square of the board to be an instance of the Square class
+     */
+    private void boardInit(){  //initialises each square of the board to be an instance of the Square class
         for(int count = 0; count <15; count++){
             for(int count2 = 0;count2<15;count2++){
                 boardArray[count][count2] = new Board.Square(' ', Board.tileVal.Standard);
             }
         }
     }
+
+    /**
+     * createHalf creates top half of the board
+     */
     private void createHalf(){  //creates top half of the board
         for(int row = 0;row<8;row++){
             for(int column = 0;column<15;column++){
@@ -273,6 +387,10 @@ public class Board{
             }
         }
     }
+
+    /**
+     * createCenter creates the centre row of the board
+     */
     private void createCenter(){  //creating the centre row of the board
         for(int column = 0;column<15;column++){
             if(column == 0 || column == 14){
@@ -286,7 +404,11 @@ public class Board{
             }
         }
     }
-    private void flipHalf(){ //flipping the top half to complete board
+
+    /**
+     * flipHalf flips the top half of the board and copies it in the bottom half
+     */
+    private void flipHalf(){ //flipping the top half to complete board and copies it in the bottom half
         for(int row = 15;row>7;row--){
             for(int column = 0;column<15;column++){
                 switch (row){
@@ -360,7 +482,12 @@ public class Board{
         }
     }
 
-    public String printBoard() { //Prints board to console
+    /**
+     *
+     * @return
+     * printBoard prints completed board to console
+     */
+    public String printBoard() { //prints board to console
         String output = "";
 
         for (int i = 0; i < 15; i++) {

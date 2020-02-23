@@ -3,30 +3,41 @@ import static org.junit.jupiter.api.Assertions.*;
  * Gerard Colman - 18327576
  * Lukasz Filanowski - 18414616
  * Kealan McCormack - 18312236
- * @author Kealan
+ * @author Kealan McCormack
+ *
+ * BoardTests is a test class for Board
  */
 class BoardTests {
 
+    /**
+     * createBoard tests createBoard method
+     */
     @org.junit.jupiter.api.Test
     void createBoard() {//Tests createBoard
-        Board Tester = new Board();//makes a new instance of the board
+        Board Tester = new Board(); //New instance of Board
         Tester.createBoard();
         assertEquals(' ', Tester.getCharVal(0, 1));//Checks that the board exists
         assertEquals(' ',  Tester.getCharVal(8, 8));
     }
 
+    /**
+     * printBoard tests printBoard method
+     */
     @org.junit.jupiter.api.Test
-    void printBoard() {
-        Board Tester = new Board();
+    void printBoard() { //Tests printBoard
+        Board Tester = new Board(); //New instance of Board
         Tester.createBoard();
         if(Tester.printBoard() != " "){//Checks that More than an empty String is returned
             assert(true);
         }
     }
 
+    /**
+     * placeLetter tests placeLetter method
+     */
     @org.junit.jupiter.api.Test
-    void placeLetter() {
-        Board Tester = new Board();
+    void placeLetter() { //Tests placeLetter
+        Board Tester = new Board(); //New instance of Board
         Frame Letters = new Frame();
         Tester.createBoard();
 
@@ -36,9 +47,12 @@ class BoardTests {
         assertEquals(Tester.getCharVal(2,2), 'A');//Checks if letter has been placed correctly
     }
 
+    /**
+     * connecting tests Connecting method
+     */
     @org.junit.jupiter.api.Test
-    void connecting() {
-        Board Tester = new Board();
+    void connecting() { //Tests Connect
+        Board Tester = new Board(); //New instance of Board
         Tester.createBoard();
         Frame Letters = new Frame();
 
@@ -57,9 +71,12 @@ class BoardTests {
 
     }
 
+    /**
+     * inLine tests inLine method
+     */
     @org.junit.jupiter.api.Test
-    void inLine() {
-        Board Tester = new Board();
+    void inLine() { //Tests inLine
+        Board Tester = new Board(); //New instance of Board
         Tester.createBoard();
         Frame Letters = new Frame();
 
@@ -117,8 +134,11 @@ class BoardTests {
         assertEquals(false, Tester.inLine(arr));//Ensures random placements aren't allowed
     }
 
+    /**
+     * inBounds tests inBounds method
+     */
     @org.junit.jupiter.api.Test
-    void inBounds() {
+    void inBounds() {//Tests inBounds
         Board Tester = new Board();
         Tester.createBoard();
         assertEquals(false, Tester.inBounds(-1, 0));//Tests if placements are inBounds
@@ -128,9 +148,12 @@ class BoardTests {
         assertEquals(true, Tester.inBounds(6, 0));
     }
 
+    /**
+     * firstPlacement tests firstPlacement
+     */
     @org.junit.jupiter.api.Test
-    void firstPlacement() {
-        Board Tester = new Board();
+    void firstPlacement() {//Tests firstPlacement
+        Board Tester = new Board(); //New instance of Board
         Tester.createBoard();
         Frame Letters = new Frame();
 
@@ -139,9 +162,12 @@ class BoardTests {
         assertEquals(Tester.getCharVal(7,7), 'A');//Checks character has been placed int the middle of the board
     }
 
+    /**
+     * tileOnTile tests tileOnTile
+     */
     @org.junit.jupiter.api.Test
-    void tileOnTile() {
-        Board Tester = new Board();
+    void tileOnTile() {//Tests tileOnTile
+        Board Tester = new Board(); //New instance of Board
         Tester.createBoard();
         Frame Letters = new Frame();
 
@@ -151,10 +177,13 @@ class BoardTests {
         assertEquals(false, Tester.tileOnTile(4,4 ));//Checks known empty tile
     }
 
+    /**
+     * hasTiles tests hasTiles
+     */
     @org.junit.jupiter.api.Test
-    void hasTiles() {
-        Frame Letters = new Frame();
-        Board Tester = new Board();
+    void hasTiles() { //Tests hasTiles
+        Frame Letters = new Frame(); //New instance of Frame
+        Board Tester = new Board(); //New instance of Board
         assertEquals(true, Tester.hasTiles(Letters));//Frame starts with tiles so should be true
         Letters.playLetter(1);
         Letters.playLetter(1);
@@ -166,11 +195,14 @@ class BoardTests {
         assertEquals(false, Tester.hasTiles(Letters));//Played all tiles so frame should be empty
     }
 
+    /**
+     * boardReset tests boardReset
+     */
     @org.junit.jupiter.api.Test
     void boardReset() {
-        Board Tester = new Board();
+        Board Tester = new Board(); //New instance of Board
         Tester.createBoard();
-        Frame Letters = new Frame();
+        Frame Letters = new Frame(); //New instance of Frame
         Letters.setPlayerTiles('A');
 
         Tester.placeLetter(Letters, 8, 6, 6);//Plays a letter on the board
