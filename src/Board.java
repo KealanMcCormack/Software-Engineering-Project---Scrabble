@@ -1,3 +1,11 @@
+/**
+        * Gerard Colman - 18327576
+        * Lukasz Filanowski - 18414616
+        * Kealan McCormack - 18312236
+        * Board hold data structures and methods for use of the board
+ */
+
+
 public class Board{
     //2-D array of squares holds the information for the board
     protected static Square[][] boardArray = new Square[15][15];
@@ -378,6 +386,7 @@ public class Board{
         b.placeLetter(Letters, 1, 6, 6);
         b.placeLetter(Letters, 1, 6, 7);
         b.placeLetter(Letters, 1, 6, 8);
+        b.firstPlacement(Letters, 1);
         int[] arr = new int[6];
         arr[0] = 6;
         arr[1] = 6;
@@ -385,6 +394,7 @@ public class Board{
         arr[3] = 5;
         arr[4] = 6;
         arr[5] = 4;
+        System.out.println(b.printBoard());
         System.out.println(b.inLine(arr));
     }
 
