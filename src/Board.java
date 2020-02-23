@@ -1,4 +1,4 @@
-public class Board {
+public class Board{
     //2-D array of squares holds the information for the board
     protected static Square[][] boardArray = new Square[15][15];
 
@@ -58,7 +58,7 @@ public class Board {
 
     protected boolean Connecting(int x, int y) { //returns true if a character is found in a conjoining tile
         if (x != 0) {//Stops any calls outside the array
-            if (boardArray[x - 1][y].getCharacterVal() != ' ') {
+            if (boardArray[x - 1][y].getCharacterVal() != ' ') {//checks each possible tile around the co-ordinates
                 return true;
             }
         }
@@ -88,103 +88,95 @@ public class Board {
     protected boolean inLine(int arr[]) {//Needs input of the previous 3 inputs
         int x = 0, y = 0;         //Checks if tiles placed are in a line
 
+        if(arr.length == 2){//base case
+            return Connecting(arr[0], arr[1]);
+        }
+
         x = arr[0] - arr[2];
         y = arr[1] - arr[3];
 
-        if (x != 0 && y != 0) {
-            return false;
+        if(x != 0 && y == 0){//Makes sure the tiles are placed on same axis
+            for(int count = 0;count < arr.length - 2;count += 2){//increments across x values in array
+                x = arr[count] - arr[count + 2];
+                y = arr[count + 1] - arr[count + 3];
+            if(x > 0){
+                    for(int i = arr[count];i > arr[count + 2];i--){
+                        if(boardArray[i][arr[1]].getCharacterVal() == ' '){
+                            return false;
+                        }
+                    }
+                }
+            if(x < 0){
+                for(int i = arr[count];i < arr[count + 2];i++){
+                    if(boardArray[i][arr[1]].getCharacterVal() == ' '){
+                        return false;
+                    }
+                }
+            }
+            if(y != 0){
+                return false;
+            }
+            }
+            return true;
         }
-
-        if (x != 0) {
-            for (int i = 2; i < arr.length; i += 2) {
-                x = arr[i - 2] - arr[i];
-                y = arr[i - 1] - arr[i + 1];
-                if (y != 0) {
+        if(y != 0 && x == 0){
+            for(int count = 1;count < arr.length - 2;count += 2){
+                x = arr[count - 1] - arr[count + 1];
+                y = arr[count] - arr[count + 2];
+                if(y > 0){
+                    for(int i = arr[count];i > arr[count + 2];i--){
+                        if(boardArray[arr[0]][i].getCharacterVal() == ' '){
+                            return false;
+                        }
+                    }
+                }
+                if(y < 0){
+                    for(int i = arr[count];i < arr[count + 2];i++){
+                        if(boardArray[arr[0]][i].getCharacterVal() == ' '){
+                            return false;
+                        }
+                    }
+                }
+                if(x != 0){
                     return false;
                 }
-                if (x > 0) {
-                    for (int count = 1; count < x; count++) {
-                        if (boardArray[(arr[i] + count)][arr[1]].getCharacterVal() == ' ') {
-                            return false;
-                        }
-                    }
-                }
-
-                if (x < 0) {
-                    for (int count = x; count < 0; count++) {
-                        if (boardArray[(arr[i] + count)][arr[1]].getCharacterVal() == ' ') {
-                            return false;
-                        }
-                    }
-                }
-
             }
+            return true;
         }
-
-        if (y != 0) {
-            for (int i = 2; i < arr.length; i += 2) {
-                x = arr[i - 2] - arr[i];
-                y = arr[i - 1] - arr[i + 1];
-                if (x != 0) {
-                    return false;
-                }
-                if (y > 0) {
-                    for (int count = 1; count < y; count++) {
-                        if (boardArray[(arr[0])][arr[i] + count].getCharacterVal() == ' ') {
-                            return false;
-                        }
-                    }
-                }
-
-                if (y < 0) {
-                    for (int count = y; count < 0; count++) {
-                        if (boardArray[(arr[0])][arr[i] + count].getCharacterVal() == ' ') {
-                            return false;
-                        }
-                    }
-                }
-
-            }
-        }
-
-        return true;
+        return false;
     }
 
     protected char placeLetter(Frame f, int letterIndex, int x, int y) {//Places a character in the provided co-ordinates
 
-        if (boardArray[x][y].getCharacterVal() != ' ') {
+        if (boardArray[x][y].getCharacterVal() != ' ') {//Checks whether there is already a letter placed
             throw new IllegalArgumentException("Already a tile placed on this square");
         }
 
         char a = f.getLetterIndex(letterIndex);
 
-        if(!(f.getLetter(f.getLetterIndex(letterIndex))))
+        if(!(f.getLetter(f.getLetterIndex(letterIndex))))//Checks the character is in the frame
         {
             throw new IllegalArgumentException("Tile not in frame");
         }
 
-        boardArray[x][y].setCharacterVal(f.playLetter(letterIndex));
+        boardArray[x][y].setCharacterVal(f.playLetter(letterIndex));//Places character on the board
         return a;
     }
 
     protected boolean inBounds(int x, int y) {//Checks any tile being placed is within bounds
-        if (x > -1 && x < 15 && y > -1 && y < 15) {
+        if (x > -1 && x < 15 && y > -1 && y < 15) {//Checks bounds
             return true;
         } else {
             return false;
         }
     }
 
-    protected boolean firstPlacement(int x, int y) {//Checks the first tile is placed in the centre
-        if (x == 7 && y == 7) {
-            return true;
-        } else {
-            return false;
-        }
+    protected void firstPlacement(Frame f, int letterIndex) {//Places the first tile in the centre
+        placeLetter(f, letterIndex, 7,7);
     }
 
     protected boolean tileOnTile(int x, int y) {//Ensures a character isn't placed on another
-        if (boardArray[x][y].getCharacterVal() != ' ') {
+        if (boardArray[x][y].getCharacterVal() != ' ') {//Checks if no character has been placed
             return true;
         } else {
             return false;
@@ -193,7 +185,11 @@ public class Board {
 
     protected boolean hasTiles(Frame frame)//Checks if the frame is empty
     {
-        return frame.empty();
+        return !frame.empty();
+    }
+
+    protected char getCharVal(int x, int y){//Used for testing to know the value in a given Sqaure of the array
+        return boardArray[x][y].getCharacterVal();
     }
 
     //METHODS TO DO WITH THE BOARD
@@ -366,7 +362,7 @@ public class Board {
                 if (boardArray[i][j].getCharacterVal() == ' ') {
                     output += boardArray[i][j].getTileVal();//Prints tile value if character not placed
                 } else {
-                    output += boardArray[i][j].getCharacterVal();
+                    output += " " + boardArray[i][j].getCharacterVal() + "  ";
                 }
             }
             output += "|" + "\n";  //adds new line and vertical divisor
@@ -378,6 +374,18 @@ public class Board {
         Board b = new Board();
         b.createBoard();
         System.out.println(b.printBoard());
+        Frame Letters = new Frame();
+        b.placeLetter(Letters, 1, 6, 6);
+        b.placeLetter(Letters, 1, 6, 7);
+        b.placeLetter(Letters, 1, 6, 8);
+        int[] arr = new int[6];
+        arr[0] = 6;
+        arr[1] = 6;
+        arr[2] = 6;
+        arr[3] = 5;
+        arr[4] = 6;
+        arr[5] = 4;
+        System.out.println(b.inLine(arr));
     }
 
 }
