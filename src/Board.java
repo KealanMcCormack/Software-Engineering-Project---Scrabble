@@ -12,7 +12,7 @@ public class Board{
     //2-D array of squares holds the information for the board
 
     /**
-     * @param boardArray holds information for the board
+     *  boardArray holds information for the board
      */
 
     protected static Square[][] boardArray = new Square[15][15];
