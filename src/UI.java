@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 public class UI extends Application {
 
     public static void main(String[] args) {
+
         launch(args);
     }
 
@@ -17,6 +18,5 @@ public class UI extends Application {
         Scene scene = new Scene(lab);
         primaryStage.setScene(scene);
         primaryStage.show();
-        //ADD VM OPTIONS
     }
 }
