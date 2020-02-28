@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.image.*;
@@ -13,7 +14,6 @@ import java.io.FileNotFoundException;
 public class UI extends Application {
 
     public static void main(String[] args) {
-
         launch(args);
     }
 
@@ -26,7 +26,7 @@ public class UI extends Application {
     }
 
     public void board(Stage boardStage) throws FileNotFoundException {
-        FileInputStream inputStream = new FileInputStream("assests\board.png");
+        FileInputStream inputStream = new FileInputStream("assets\\board.png");
         Image board = new Image(inputStream);
     }
 }
