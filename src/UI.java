@@ -16,6 +16,7 @@ import java.awt.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.Stack;
 
 public class UI extends Application {
 
@@ -30,16 +31,24 @@ public class UI extends Application {
     }
 
     public void board(Stage boardStage) throws FileNotFoundException {
-        boardStage.setHeight(1039);
-        boardStage.setWidth(1017);
+        /*Stage Setup*/
+        boardStage.setHeight(700);
+        boardStage.setWidth(700);
         boardStage.setTitle("Scrabble");
+        StackPane layout = new StackPane();
+        /*Getting Image*/
         FileInputStream inputStream = new FileInputStream("assets\\board.png");
         Image board = new Image(inputStream);
         ImageView boardPNG = new ImageView(board);
+        /*Image Processing*/
+        boardPNG.setFitHeight(500);
+        boardPNG.setFitWidth(500);
         boardPNG.setX(0);
         boardPNG.setY(0);
+
         Group root = new Group(boardPNG);
-        Scene boardLayout = new Scene(root, 500, 500);
+        layout.getChildren().add(root);
+        Scene boardLayout = new Scene(layout, 500, 500);
         boardStage.setScene(boardLayout);
         boardStage.show();
     }
