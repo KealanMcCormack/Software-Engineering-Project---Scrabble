@@ -1,9 +1,12 @@
 import javafx.application.Application;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.image.*;
 import java.awt.Desktop;
@@ -21,21 +24,27 @@ public class UI extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
-        Label lab = new Label("Hello");
-        Scene scene = new Scene(lab);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        smoothJazz();
+    public void start(Stage primaryStage) throws FileNotFoundException {
+        Stage boardStage = new Stage();
+        board(boardStage);
     }
 
     public void board(Stage boardStage) throws FileNotFoundException {
+        boardStage.setHeight(1039);
+        boardStage.setWidth(1017);
+        boardStage.setTitle("Scrabble");
         FileInputStream inputStream = new FileInputStream("assets\\board.png");
         Image board = new Image(inputStream);
+        ImageView boardPNG = new ImageView(board);
+        boardPNG.setX(0);
+        boardPNG.setY(0);
+        Group root = new Group(boardPNG);
+        Scene boardLayout = new Scene(root, 500, 500);
+        boardStage.setScene(boardLayout);
+        boardStage.show();
     }
 
-    public void smoothJazz()
-    {
+    public void smoothJazz() {
         try {
             Desktop desktop = java.awt.Desktop.getDesktop();
             URI oURL = new URI("https://www.youtube.com/watch?v=Tv5QRmG9ST0&list=PL7nML7u-x2dyqPDhm0g8eMlCfsrEvk89H");
