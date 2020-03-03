@@ -45,7 +45,7 @@ public class UI extends Application {
         boardPNG.setFitWidth(500);
         boardPNG.setX(0);
         boardPNG.setY(0);
-
+        /*Adding image to board and displaying*/
         Group root = new Group(boardPNG);
         layout.getChildren().add(root);
         Scene boardLayout = new Scene(layout, 500, 500);
