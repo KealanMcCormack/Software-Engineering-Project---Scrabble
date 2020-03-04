@@ -1,11 +1,14 @@
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.image.*;
 import java.awt.Desktop;
+import java.io.IOException;
 import java.net.URI;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -17,9 +20,14 @@ public class UI extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws FileNotFoundException {
+    public void start(Stage primaryStage) throws IOException {
         Stage boardStage = new Stage();
-        board(boardStage);
+        Parent root = FXMLLoader.load(getClass().getResource("Board.fxml"));
+        Scene tempBoard = new Scene(root, 1000, 1000);
+        primaryStage.setTitle("Test");
+        primaryStage.setScene(tempBoard);
+        primaryStage.show();
+        //board(boardStage);
     }
 
     public void board(Stage boardStage) throws FileNotFoundException {
