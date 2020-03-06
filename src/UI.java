@@ -8,6 +8,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.image.*;
 import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.io.FileInputStream;
@@ -48,7 +49,41 @@ public class UI extends Application {
             URI oURL = new URI("https://www.youtube.com/watch?v=Tv5QRmG9ST0&list=PL7nML7u-x2dyqPDhm0g8eMlCfsrEvk89H");
             desktop.browse(oURL);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new IllegalStateException("Unable to jazz");
         }
     }
+
+    public void helpMethod() throws IOException {
+        File helpFile = new File("assets\\Help.txt");
+
+        if(!helpFile.exists())
+        {
+            throw new FileNotFoundException("ERROR: File not found");
+        }
+
+        else
+        {
+            Desktop desktop = java.awt.Desktop.getDesktop();
+            desktop.open(helpFile);
+        }
+    }
+
+    public void quitMethod()
+    {
+        System.exit(0);
+    }
+
+    public void exchangeMethod(Frame frame)
+    {
+        if(frame.empty())
+        {
+            throw new IllegalStateException("ERROR: Frame is empty");
+        }
+
+        else
+        {
+            frame.swap();
+        }
+    }
+
 }
