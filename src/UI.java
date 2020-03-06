@@ -22,35 +22,24 @@ public class UI extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         Stage boardStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("Board.fxml"));
-        Scene tempBoard = new Scene(root, 1000, 1000);
-        primaryStage.setTitle("Test");
-        primaryStage.setScene(tempBoard);
-        primaryStage.show();
-        //board(boardStage);
+        Stage playerStage = new Stage();
+        board(boardStage);
+        playerSelect(playerStage);
     }
 
-    public void board(Stage boardStage) throws FileNotFoundException {
-        /*Stage Setup*/
-        boardStage.setHeight(700);
-        boardStage.setWidth(700);
-        boardStage.setTitle("Scrabble");
-        StackPane layout = new StackPane();
-        /*Getting Image*/
-        FileInputStream inputStream = new FileInputStream("assets\\board.png");
-        Image board = new Image(inputStream);
-        ImageView boardPNG = new ImageView(board);
-        /*Image Processing*/
-        boardPNG.setFitHeight(500);
-        boardPNG.setFitWidth(500);
-        boardPNG.setX(0);
-        boardPNG.setY(0);
-        /*Adding image to board and displaying*/
-        Group root = new Group(boardPNG);
-        layout.getChildren().add(root);
-        Scene boardLayout = new Scene(layout, 500, 500);
-        boardStage.setScene(boardLayout);
+    public void board(Stage boardStage) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Board.fxml"));
+        Scene boardScene = new Scene(root);
+        boardStage.setTitle("board");
+        boardStage.setScene(boardScene);
         boardStage.show();
+    }
+    public void playerSelect(Stage selectStage) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        Scene playerScene = new Scene(root);
+        selectStage.setTitle("Player Selection!");
+        selectStage.setScene(playerScene);
+        selectStage.show();
     }
 
     public void smoothJazz() {
