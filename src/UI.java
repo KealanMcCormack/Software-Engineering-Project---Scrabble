@@ -24,7 +24,7 @@ public class UI extends Application {
         Stage boardStage = new Stage();
         Stage playerStage = new Stage();
         board(boardStage);
-        playerSelect(playerStage);
+        //playerSelect(playerStage);
     }
 
     public void board(Stage boardStage) throws IOException {
