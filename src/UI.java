@@ -30,7 +30,7 @@ public class UI extends Application {
     public void board(Stage boardStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Board.fxml"));
         Scene boardScene = new Scene(root);
-        boardStage.setTitle("board");
+        boardStage.setTitle("Scrabble!");
         boardStage.setScene(boardScene);
         boardStage.show();
     }
