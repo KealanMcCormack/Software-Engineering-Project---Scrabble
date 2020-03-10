@@ -299,6 +299,15 @@ public class Board{
         return boardArray[x][y].getCharacterVal();
     }
 
+    /**
+     *
+     * @param x
+     * @param y
+     * @return
+     * returns tileVal
+     */
+    protected tileVal getTileVal(int x, int y){ return boardArray[x][y].getTileVal();}
+
     //METHODS TO DO WITH THE BOARD
 
     /**
