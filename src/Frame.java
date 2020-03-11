@@ -15,13 +15,13 @@ import java.util.Scanner;
  */
 public class Frame {
 
-    ScrabbleBag pool = new ScrabbleBag();
+
 
     //Data structure storing player tiles
     private ArrayList<Character> playerTiles = new ArrayList<>();
 
-    public Frame(){
-        refill();
+    public Frame(ScrabbleBag pool){
+        refill(pool);
     }
 
     /**
@@ -99,7 +99,7 @@ public class Frame {
      * and refills the ArrayList using the TileToPLayer method in the
      * class scrabbleBag
      */
-    public void refill() {//Adds tiles back into the frame from the pool
+    public void refill(ScrabbleBag pool) {//Adds tiles back into the frame from the pool
 
         for(int count = (7 - playerTiles.size());count > 0;count--) {
             playerTiles.add(pool.TileToPlayer());
@@ -115,33 +115,12 @@ public class Frame {
         this.playerTiles.add(a);
     }//Allows addition of letters into frame
 
-//Not needed for assignment 1
- public void swap() {        //Allows the player to exchange tiles one at a time, will require more work
 
-      int temp;              //Needs protection against exploitation
-	  ArrayList<Integer> a = new ArrayList<Integer>();
-	  Scanner in = new Scanner(System.in);
-	  System.out.println("How many tiles would you like to exchange?");
-	  temp = in.nextInt();
-
-	  for(int count = 0;count < temp;count++) {
-        System.out.println("Please write the index of the tile you wish to swap");
-		  if(in.hasNext()) {
-		    int intake = in.nextInt();
-		    if(playerTiles.size() < intake) {
-
-                pool.TileToBag(playerTiles.get(intake));
-                playerTiles.remove(intake);
-
-            }
-		  }
-	  }
-
-     for(int count = 0;count < temp;count++){
-         playerTiles.add(pool.TileToPlayer());
-     }
-
-	  in.close();
+ public void swap(char[] swapping, ScrabbleBag pool) {  //Allows the player to exchange tiles,  will require more work
+    for(int count = 0;count < swapping.length;count++){
+        playerTiles.remove(swapping[count]);
+        pool.TileToBag(swapping[count]);
+    }
   }
 	
 public boolean getLetter(char check){

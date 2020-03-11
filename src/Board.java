@@ -516,9 +516,10 @@ public class Board{
 
     public static void main(String[] args) {
         Board b = new Board();
+        ScrabbleBag pool = new ScrabbleBag();
         b.createBoard();
         System.out.println(b.printBoard());
-        Frame Letters = new Frame();
+        Frame Letters = new Frame(pool);
         b.placeLetter(Letters, 1, 6, 6);
         b.placeLetter(Letters, 1, 6, 7);
         b.placeLetter(Letters, 1, 6, 8);

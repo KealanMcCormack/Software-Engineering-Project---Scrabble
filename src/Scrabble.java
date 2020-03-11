@@ -18,9 +18,9 @@ public class Scrabble {
 
     public static void main(String[] args){
         Board gameBoard = new Board();
-        Frame playerOneFrame = new Frame();
-        Frame playerTwoFrame = new Frame();
         ScrabbleBag gameBag = new ScrabbleBag();
+        Frame playerOneFrame = new Frame(gameBag);
+        Frame playerTwoFrame = new Frame(gameBag);
         Scrabble game = new Scrabble();
         boolean quit = false;
         String input;
@@ -38,7 +38,11 @@ public class Scrabble {
                     break;
                 case "HELP": game.help();
                     break;
-                case "EXCHANGE": game.exchange();
+                case "EXCHANGE": if((turns % 2) == 1){
+                    game.exchange(gameBag, playerOneFrame);
+                }else{
+                    game.exchange(gameBag, playerTwoFrame);
+                }
                     break;
                 case "CHALLENGE": game.challenge();
                     break;
@@ -71,7 +75,7 @@ public class Scrabble {
         return true;
     }
 
-    public char[] exchange(){
+    public char[] exchange(ScrabbleBag pool, Frame playerFrame){
         char[] swap = new char[7];
         int count = 0;
         String input;
@@ -87,6 +91,7 @@ public class Scrabble {
         }
 
         //Check if the characters in swap are in the players frame
+        playerFrame.swap(swap, pool);
 
         return swap;
     }
