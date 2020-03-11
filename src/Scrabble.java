@@ -28,46 +28,71 @@ public class Scrabble {
 
         while(!quit){
             Scanner in = new Scanner(System.in);
+            System.out.println("Player " + (turns % 2) + " your turn, what do you want to do");
             input = in.nextLine();
 
             switch (input){
                 case "QUIT":  quit = true;
                     break;
-                case "PASS":
+                case "PASS":  System.out.println("Turn passed");
                     break;
-                case "HELP":
+                case "HELP": game.help();
                     break;
-                case "Exchange":
+                case "EXCHANGE": game.exchange();
+                    break;
+                case "CHALLENGE": game.challenge();
                     break;
                 default: if(input.contains("across") || input.contains("down")){
 
                 }else{
-                    //invalid input
+                    turns--;
+                    System.out.println("Invalid input, please retake your turn and use the command HELP to see instructions");
                 }
             }
-
-
-
+            System.out.println(game.getScore());
+            turns++;
         }
-
-
     }
 
-    public int getScore(int x, int y, Board Game, String direction){
+    public int getScore(){
         int score = 0, add = 0, multiplier = 1;
 
-        if(direction == "Across"){
+        /*if(direction == "Across"){
             while(Game.getCharVal(x, y) != ' '){
                 score = score + pointsConversion(Game.getCharVal(x, y));
                 y++;
                 Game.getTileVal(x, y);//add switch statement
             }
-        }
+        }*/
         return score;
     }
 
     public boolean challenge(){
         return true;
+    }
+
+    public char[] exchange(){
+        char[] swap = new char[7];
+        int count = 0;
+        String input;
+        System.out.println("Which letters would you like to exchange?");
+        Scanner in = new Scanner(System.in);
+        input = in.nextLine();
+
+        for(int i = 0;i < input.length();i++){
+            if(input.indexOf(i) != ' '){
+                swap[count] = (char) input.indexOf(i);
+                count++;
+            }
+        }
+
+        //Check if the characters in swap are in the players frame
+
+        return swap;
+    }
+
+    public void help(){//print from a file or something
+        System.out.println("");
     }
 
 }
