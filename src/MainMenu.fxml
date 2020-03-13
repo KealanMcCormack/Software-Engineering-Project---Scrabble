@@ -12,7 +12,7 @@
             <TextField layoutX="75.0" layoutY="200.0" />
             <Text layoutX="102.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player One!">
                <font>
-                  <Font name="Arial" size="18.0" />
+                  <Font name="Comic Sans MS" size="18.0" />
                </font>
             </Text>
          </children></AnchorPane>
@@ -21,7 +21,7 @@
             <TextField layoutX="76.0" layoutY="200.0" />
             <Text layoutX="103.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player Two!">
                <font>
-                  <Font name="Arial Nova" size="18.0" />
+                  <Font name="Comic Sans MS" size="18.0" />
                </font>
             </Text>
          </children></AnchorPane>

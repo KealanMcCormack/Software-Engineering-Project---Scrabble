@@ -5,7 +5,6 @@ public class Scrabble {
     // starts with blank letter then follows alphabet
 
     public Scrabble(){
-
     }
 
     public int pointsConversion(char letter){

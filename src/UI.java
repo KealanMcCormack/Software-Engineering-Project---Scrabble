@@ -72,18 +72,4 @@ public class UI extends Application {
     {
         System.exit(0);
     }
-
-    public void exchangeMethod(Frame frame)
-    {
-        if(frame.empty())
-        {
-            throw new IllegalStateException("ERROR: Frame is empty");
-        }
-
-        else
-        {
-            frame.swap();
-        }
-    }
-
 }
