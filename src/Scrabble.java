@@ -30,7 +30,7 @@ public class Scrabble {
             Scanner in = new Scanner(System.in);
             System.out.println("Player " + (turns % 2) + " your turn, what do you want to do");
             input = in.nextLine();
-
+            //toUpperCase?
             switch (input){
                 case "QUIT":  quit = true;
                     break;
@@ -46,7 +46,7 @@ public class Scrabble {
                     break;
                 case "CHALLENGE": game.challenge();
                     break;
-                default: if(input.contains("across") || input.contains("down")){
+                default: if(input.contains("across") || input.contains("down") || input.contains("ACROSS") || input.contains("DOWN")){ //X Y across/down WORD
 
                 }else{
                     turns--;
@@ -56,6 +56,19 @@ public class Scrabble {
             System.out.println(game.getScore());
             turns++;
         }
+    }
+
+    public boolean placement(String input){
+        int X, Y;
+        String direction, word;
+
+        X = (int) input.charAt(0);
+        Y = (int) input.charAt(2);
+
+        direction = input.substring(4, 8);
+        word = input.substring(10, input.length());
+
+        return true;
     }
 
     public int getScore(){
