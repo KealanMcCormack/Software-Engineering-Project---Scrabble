@@ -76,24 +76,34 @@ public class Scrabble {
     }
 
     public char[] exchange(ScrabbleBag pool, Frame playerFrame){
-        char[] swap = new char[7];
-        int count = 0;
-        String input;
-        System.out.println("Which letters would you like to exchange?");
-        Scanner in = new Scanner(System.in);
-        input = in.nextLine();
+        try {
+            char[] swap = new char[7];
+            int count = 0;
+            String input;
+            System.out.println("Which letters would you like to exchange?");
+            //possibly need an escape clause
+            Scanner in = new Scanner(System.in);
+            input = in.nextLine();
 
-        for(int i = 0;i < input.length();i++){
-            if(input.indexOf(i) != ' '){
-                swap[count] = (char) input.indexOf(i);
-                count++;
+            for (int i = 0; i < input.length(); i++) {
+                if (input.indexOf(i) != ' ') {
+                    swap[count] = (char) input.indexOf(i);
+                    count++;
+                }
             }
-        }
+            while (count >= 0) {
+                if (!playerFrame.getLetter(swap[count])) {
+                    System.out.println("Sorry one of letters input is not in the frame");
+                    throw new IllegalArgumentException("Inavlid argument");
+                }
+                count--;
+            }
 
-        //Check if the characters in swap are in the players frame
         playerFrame.swap(swap, pool);
-
         return swap;
+        } catch (IllegalArgumentException e) {
+            return exchange(pool, playerFrame);//Runs the method again
+        }
     }
 
     public void help(){//print from a file or something
