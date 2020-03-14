@@ -75,6 +75,23 @@ public class Frame {
     }
 
     /**
+     * The method playLetter takes a Character value for the of the tile being played
+     * and removes it from the ArrayList. It then returns true if the operation was successful
+     * @param character to be removed
+     * @return boolean true if operation successful
+     */
+    public boolean playLetter(char character) {//removes characters from the frame
+
+        if(playerTiles.contains(character)) {//checks if input is valid
+             playerTiles.remove(character);
+             return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    /**
      * The method playLetter takes an integer value for the index (will remove 1 from the value) of the tile being played
      * and removes it from the ArrayList. It then returns the char value that has been removed
      * @param index amount of characters you want removed

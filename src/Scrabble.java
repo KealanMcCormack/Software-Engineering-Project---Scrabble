@@ -5,6 +5,7 @@ public class Scrabble {
     // starts with blank letter then follows alphabet
 
     public Scrabble(){
+
     }
 
     public int pointsConversion(char letter){
@@ -46,7 +47,11 @@ public class Scrabble {
                 case "CHALLENGE": game.challenge();
                     break;
                 default: if(input.contains("across") || input.contains("down") || input.contains("ACROSS") || input.contains("DOWN")){ //X Y across/down WORD
-
+                    if(turns % 2 == 1){
+                        game.placement(input, playerOneFrame, gameBoard);
+                    }else{
+                        game.placement(input, playerTwoFrame, gameBoard);
+                    }
                 }else{
                     turns--;
                     System.out.println("Invalid input, please retake your turn and use the command HELP to see instructions");
@@ -57,15 +62,41 @@ public class Scrabble {
         }
     }
 
-    public boolean placement(String input){
+    //maybe change the return type to string to act as simple logs
+    public boolean placement(String input, Frame frame, Board board){
         int X, Y;
         String direction, word;
 
-        X = (int) input.charAt(0);
-        Y = (int) input.charAt(2);
+        X = input.charAt(0);
+        Y = input.charAt(2);
 
-        direction = input.substring(4, 8);
-        word = input.substring(10, input.length());
+        direction = input.substring(4, 8).trim();
+        word = input.substring(10).trim();
+
+        if(!board.inBounds(X, Y)){
+            return false;
+        }
+
+        if(direction == "ACROSS"){
+            for(int count = 0;count < word.length();count++){
+                if(board.getCharVal(X, Y + count) != word.charAt(count) || !frame.getLetter(word.charAt(count))){
+                    return false;
+                }
+            }
+
+
+        }else if(direction == "DOWN"){
+            for(int count = 0;count < word.length();count++){
+                if(board.getCharVal(X + count, Y) != word.charAt(count) || !frame.getLetter(word.charAt(count))){
+                    return false;
+                }
+            }
+        }else{
+            return false;
+        }
+
+
+
 
         return true;
     }
@@ -84,6 +115,7 @@ public class Scrabble {
     }
 
     public boolean challenge(){
+
         return true;
     }
 
@@ -111,15 +143,15 @@ public class Scrabble {
                 count--;
             }
 
-        playerFrame.swap(swap, pool);
-        return swap;
+            playerFrame.swap(swap, pool);
+            return swap;
         } catch (IllegalArgumentException e) {
             return exchange(pool, playerFrame);//Runs the method again
         }
     }
 
     public void help(){//print from a file or something
-        System.out.println("");
+        System.out.println();
     }
-
 }
+
