@@ -83,7 +83,14 @@ public class Scrabble {
                     return false;
                 }
             }
-
+                //need to grab the tiles being played
+            for(int count = 0;count < word.length();count++){
+                if(board.getCharVal(X, Y) == ' '){
+                    frame.playLetter(word.charAt(count));
+                    board.placeLetter(word.charAt(count), X, Y);
+                }
+                Y++;
+            }
 
         }else if(direction == "DOWN"){
             for(int count = 0;count < word.length();count++){
@@ -91,12 +98,17 @@ public class Scrabble {
                     return false;
                 }
             }
+
+            for(int count = 0;count < word.length();count++){
+                if(board.getCharVal(X, Y) == ' '){
+                    frame.playLetter(word.charAt(count));
+                    board.placeLetter(word.charAt(count), X, Y);
+                }
+                X++;
+            }
         }else{
             return false;
         }
-
-
-
 
         return true;
     }

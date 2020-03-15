@@ -237,6 +237,11 @@ public class Board{
         return a;
     }
 
+    protected char placeLetter(char letter, int x, int y) {//Places a character in the provided co-ordinates
+        boardArray[x][y].setCharacterVal(letter);//Places character on the board
+        return letter;
+    }
+
     /**
      *
      * @param x row coordinate
