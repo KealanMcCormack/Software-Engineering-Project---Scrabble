@@ -27,6 +27,9 @@ public class Scrabble {
         Frame playerOneFrame = new Frame(gameBag);
         Frame playerTwoFrame = new Frame(gameBag);
         Scrabble game = new Scrabble();
+        Player one = new Player;
+        Player two = new Player;
+        Player playerArray[] = {one, two};
         boolean quit = false;
         String input;
         int turns = 1;
@@ -37,7 +40,7 @@ public class Scrabble {
             input = in.nextLine();
             input.toUpperCase();
             switch (input){
-                case "QUIT":  quit = true;
+                case "QUIT":  game.quit();
                     break;
                 case "PASS":  System.out.println("Turn passed");
                     break;
@@ -194,7 +197,7 @@ public class Scrabble {
         }
     }
 
-    public void quitMethod()
+    public void quit()
     {
         System.exit(0);
     }
