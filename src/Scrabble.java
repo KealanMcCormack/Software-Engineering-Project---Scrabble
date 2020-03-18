@@ -13,6 +13,22 @@ public class Scrabble {
 
     }
 
+    public int multiplier(int score, int x, int y, Board board){
+        switch (board.getTileVal(x, y)){
+            case DoubleLetter: score += pointsConversion(board.getCharVal(x, y));
+                break;
+            case TripleLetter: score += pointsConversion(board.getCharVal(x, y)) * 2;
+                break;
+            case DoubleWord: score += score;
+                break;
+            case TripleWord: score += (score * 2);
+                break;
+            default:
+
+        }
+        return score;
+    }
+
     public int pointsConversion(char letter){
         if(letter == '*'){
             return 0;
@@ -30,13 +46,18 @@ public class Scrabble {
         Player one = new Player();
         Player two = new Player();
         Player playerArray[] = {one, two};
-        boolean quit = false;
+        boolean win = false;
         String input;
         int turns = 1;
+        int score = 0;
 
-        while(!quit){
+        game.setup(playerArray);
+
+        while(!win){
             Scanner in = new Scanner(System.in);
+            gameBoard.printBoard();
             System.out.println("Player " + (turns % 2) + " your turn, what do you want to do");
+
             input = in.nextLine();
             input.toUpperCase();
             switch (input){
@@ -52,7 +73,11 @@ public class Scrabble {
                     game.exchange(gameBag, playerTwoFrame);
                 }
                     break;
-                case "CHALLENGE": game.challenge();
+                case "CHALLENGE": if((turns % 2) == 0){//presuming the challenger will be the opposing player
+                    game.challenge(score, one);
+                } else{
+                    game.challenge(score, two);
+                }
                     break;
                 case "JAZZ": game.smoothJazz();
                         break;
@@ -67,9 +92,28 @@ public class Scrabble {
                     System.out.println("Invalid input, please retake your turn and use the command HELP to see instructions");
                 }
             }
-            System.out.println(game.getScore());
+            System.out.println("Score from that word: " + score);
+            if(turns % 2 == 1){
+                System.out.println("Total score: " + one.getScore());
+            }else{
+                System.out.println("Total score: " + two.getScore());
+            }
+
             turns++;
         }
+    }
+
+    public void setup(Player[] players){
+        Scanner in = new Scanner(System.in);
+        System.out.println("Time to set up some names, player 1 your up first");
+        System.out.println("Please type in the name you would like to use then hit enter");
+        players[0].setName(in.nextLine());
+        players[0].setScore(0);
+        System.out.println("Perfect, now player 2 please input your name and press enter once correct");
+        players[1].setName(in.nextLine());
+        players[1].setScore(0);
+        System.out.println("Both names are now set so lets start the game");
+        in.close();
     }
 
     //maybe change the return type to string to act as simple logs
@@ -122,22 +166,23 @@ public class Scrabble {
 
         return true;
     }
-
-    public int getScore(){
+//will need placement info from placement method
+    public int getScore(int x, int y, int[] placed, String direction, Board gameBoard){
         int score = 0, add = 0, multiplier = 1;
 
-        /*if(direction == "Across"){
-            while(Game.getCharVal(x, y) != ' '){
-                score = score + pointsConversion(Game.getCharVal(x, y));
+        if(direction == "Across"){
+            while(gameBoard.getCharVal(x, y) != ' '){
+
+                score = score + pointsConversion(gameBoard.getCharVal(x, y));
                 y++;
-                Game.getTileVal(x, y);//add switch statement
+                ;//add switch statement
             }
-        }*/
+        }
         return score;
     }
 
-    public boolean challenge(){
-
+    public boolean challenge(int wordScore, Player player){
+        player.increaseScore(-wordScore);
         return true;
     }
 
