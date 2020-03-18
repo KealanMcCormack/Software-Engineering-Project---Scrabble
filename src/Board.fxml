@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="736.0" prefWidth="620.0" style="-fx-background-color: #e498ea;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Scrabble">
    <children>
-      <AnchorPane layoutX="86.0" layoutY="93.0" prefHeight="444.0" prefWidth="444.0">
+      <AnchorPane layoutX="83.0" layoutY="92.0" prefHeight="491.0" prefWidth="493.0">
          <children>
             <ImageView fitHeight="490.0" fitWidth="490.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" style="-fx-blend-mode: #0fac03;" translateX="-15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <image>
@@ -99,5 +99,10 @@
          </font>
       </Text>
       <TextArea layoutX="9.0" layoutY="4.0" prefHeight="78.0" prefWidth="154.0" style="-fx-background-color: #d76ddb;" text="Commands:&#10;Help, Exchange, Pass&#10;Quit, Challenge" />
+      <Text layoutX="259.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SCRABBLE">
+         <font>
+            <Font name="Franklin Gothic Medium Cond" size="30.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
