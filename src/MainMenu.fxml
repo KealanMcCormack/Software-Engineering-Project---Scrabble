@@ -9,7 +9,7 @@
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f53b57" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField layoutX="75.0" layoutY="200.0" />
+            <TextField layoutX="75.0" layoutY="200.0" promptText="Enter your name!" />
             <Text layoutX="102.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player One!">
                <font>
                   <Font name="Comic Sans MS" size="18.0" />
@@ -18,7 +18,7 @@
          </children></AnchorPane>
       <AnchorPane layoutX="300.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #575fcf" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField layoutX="76.0" layoutY="200.0" />
+            <TextField layoutX="76.0" layoutY="200.0" promptText="Enter your name!" />
             <Text layoutX="103.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player Two!">
                <font>
                   <Font name="Comic Sans MS" size="18.0" />

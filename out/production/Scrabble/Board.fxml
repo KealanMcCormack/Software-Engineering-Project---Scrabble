@@ -74,6 +74,6 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Text>
-      <TextArea layoutX="9.0" layoutY="4.0" prefHeight="78.0" prefWidth="154.0" text="Commands:&#10;Help, Exchange, Pass&#10;Quit, Challenge" />
+      <TextArea layoutX="9.0" layoutY="4.0" prefHeight="78.0" prefWidth="154.0" text="Commands:&#10;Help, Exchange, Pass&#10;Quit, Challenge, Jazz" />
    </children>
 </AnchorPane>

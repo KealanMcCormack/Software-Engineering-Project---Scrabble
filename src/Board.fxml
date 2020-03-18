@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Point3D?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -62,18 +61,22 @@
             </GridPane>
          </children>
       </AnchorPane>
-      <TextField layoutX="168.0" layoutY="55.0" prefHeight="26.0" prefWidth="314.0" />
+      <TextField layoutX="168.0" layoutY="55.0" prefHeight="26.0" prefWidth="314.0" promptText="Input Command" />
       <Text layoutX="255.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Command Input">
          <font>
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Text>
-      <TextField layoutX="168.0" layoutY="594.0" prefHeight="26.0" prefWidth="314.0" />
+      <TextField layoutX="168.0" layoutY="594.0" prefHeight="26.0" prefWidth="314.0" promptText="Word Input" />
       <Text layoutX="275.0" layoutY="589.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Word Input">
          <font>
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Text>
-      <TextArea layoutX="9.0" layoutY="4.0" prefHeight="78.0" prefWidth="154.0" text="Commands:&#10;Help, Exchange, Pass&#10;Quit, Challenge" />
+      <Text layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commands: Help Exchange PassQuit Challenge Jazz" wrappingWidth="74.38592529296875">
+         <font>
+            <Font name="Comic Sans MS" size="12.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
