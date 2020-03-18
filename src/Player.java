@@ -13,6 +13,10 @@ public class Player {
     private String name;    //Instance variables for player data
     private int score;
 
+    public Player (){
+
+    }
+
     /**
      * @param name Name of player
      * @param score Score of player
