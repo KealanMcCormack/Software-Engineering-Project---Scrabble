@@ -1,3 +1,8 @@
+import java.awt.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URI;
 import java.util.Scanner;
 
 public class Scrabble {
@@ -16,7 +21,7 @@ public class Scrabble {
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
         Board gameBoard = new Board();
         ScrabbleBag gameBag = new ScrabbleBag();
         Frame playerOneFrame = new Frame(gameBag);
@@ -30,7 +35,7 @@ public class Scrabble {
             Scanner in = new Scanner(System.in);
             System.out.println("Player " + (turns % 2) + " your turn, what do you want to do");
             input = in.nextLine();
-            //toUpperCase?
+            input.toUpperCase();
             switch (input){
                 case "QUIT":  quit = true;
                     break;
@@ -46,6 +51,8 @@ public class Scrabble {
                     break;
                 case "CHALLENGE": game.challenge();
                     break;
+                case "JAZZ": game.smoothJazz();
+                        break;
                 default: if(input.contains("across") || input.contains("down") || input.contains("ACROSS") || input.contains("DOWN")){ //X Y across/down WORD
                     if(turns % 2 == 1){
                         game.placement(input, playerOneFrame, gameBoard);
@@ -162,8 +169,34 @@ public class Scrabble {
         }
     }
 
-    public void help(){//print from a file or something
-        System.out.println();
+    public void smoothJazz() {
+        try {
+            Desktop desktop = java.awt.Desktop.getDesktop();
+            URI oURL = new URI("https://www.youtube.com/watch?v=Tv5QRmG9ST0&list=PL7nML7u-x2dyqPDhm0g8eMlCfsrEvk89H");
+            desktop.browse(oURL);
+        } catch (Exception e) {
+            throw new IllegalStateException("Unable to jazz");
+        }
+    }
+
+    public void help() throws IOException {
+        File helpFile = new File("assets\\Help.txt");
+
+        if(!helpFile.exists())
+        {
+            throw new FileNotFoundException("ERROR: File not found");
+        }
+
+        else
+        {
+            Desktop desktop = java.awt.Desktop.getDesktop();
+            desktop.open(helpFile);
+        }
+    }
+
+    public void quitMethod()
+    {
+        System.exit(0);
     }
 }
 

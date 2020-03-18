@@ -42,34 +42,4 @@ public class UI extends Application {
         selectStage.setScene(playerScene);
         selectStage.show();
     }
-
-    public void smoothJazz() {
-        try {
-            Desktop desktop = java.awt.Desktop.getDesktop();
-            URI oURL = new URI("https://www.youtube.com/watch?v=Tv5QRmG9ST0&list=PL7nML7u-x2dyqPDhm0g8eMlCfsrEvk89H");
-            desktop.browse(oURL);
-        } catch (Exception e) {
-            throw new IllegalStateException("Unable to jazz");
-        }
-    }
-
-    public void helpMethod() throws IOException {
-        File helpFile = new File("assets\\Help.txt");
-
-        if(!helpFile.exists())
-        {
-            throw new FileNotFoundException("ERROR: File not found");
-        }
-
-        else
-        {
-            Desktop desktop = java.awt.Desktop.getDesktop();
-            desktop.open(helpFile);
-        }
-    }
-
-    public void quitMethod()
-    {
-        System.exit(0);
-    }
 }
