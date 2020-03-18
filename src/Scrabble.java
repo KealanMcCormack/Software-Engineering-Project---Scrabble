@@ -172,7 +172,7 @@ public class Scrabble {
         }
     }
 
-    public void smoothJazz() {
+    private void smoothJazz() {
         try {
             Desktop desktop = java.awt.Desktop.getDesktop();
             URI oURL = new URI("https://www.youtube.com/watch?v=Tv5QRmG9ST0&list=PL7nML7u-x2dyqPDhm0g8eMlCfsrEvk89H");
@@ -182,7 +182,7 @@ public class Scrabble {
         }
     }
 
-    public void help() throws IOException {
+    private void help() throws IOException {
         File helpFile = new File("assets\\Help.txt");
 
         if(!helpFile.exists())
@@ -197,7 +197,7 @@ public class Scrabble {
         }
     }
 
-    public void quit()
+    private void quit()
     {
         System.exit(0);
     }
