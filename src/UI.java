@@ -4,6 +4,7 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.image.*;
@@ -23,9 +24,9 @@ public class UI extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         Stage boardStage = new Stage();
-        Stage playerStage = new Stage();
+        GridPane playerFrame = new GridPane();
         board(boardStage);
-        //playerSelect(playerStage);
+        frame(playerFrame);
     }
 
     public void board(Stage boardStage) throws IOException {
@@ -35,11 +36,10 @@ public class UI extends Application {
         boardStage.setScene(boardScene);
         boardStage.show();
     }
-    public void playerSelect(Stage selectStage) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-        Scene playerScene = new Scene(root);
-        selectStage.setTitle("Player Selection!");
-        selectStage.setScene(playerScene);
-        selectStage.show();
+
+    public void frame(GridPane playerFrame) throws IOException
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("Board.fxml"));
+        GridPane frame = new GridPane();
     }
 }

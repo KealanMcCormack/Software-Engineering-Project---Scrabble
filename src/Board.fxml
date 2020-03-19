@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Point3D?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -279,7 +278,6 @@
             <Font name="Centaur" size="20.0" />
          </font>
       </Text>
-      <TextArea layoutX="9.0" layoutY="4.0" prefHeight="78.0" prefWidth="154.0" style="-fx-background-color: #d76ddb;" text="Commands:&#10;Help, Exchange, Pass&#10;Quit, Challenge" />
       <Text layoutX="259.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SCRABBLE">
          <font>
             <Font name="Franklin Gothic Medium Cond" size="30.0" />
@@ -313,5 +311,6 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
+      <Text layoutX="2.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commands:Help Exchange Pass      Quit Challenge Jazz" wrappingWidth="73.22389221191406" />
    </children>
 </AnchorPane>

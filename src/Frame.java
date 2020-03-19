@@ -16,7 +16,6 @@ import java.util.Scanner;
 public class Frame {
 
 
-
     //Data structure storing player tiles
     private ArrayList<Character> playerTiles = new ArrayList<>();
 
@@ -148,4 +147,7 @@ public char getLetterIndex(int index){
         return playerTiles.get(index - 1);
     }
 
+    public ArrayList<Character> getPlayerTiles() {
+        return playerTiles;
+    }
 }
