@@ -3,8 +3,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Scanner;
 
+//getscore, firstplacement, exceptions
 public class Scrabble {
     int[] letterPoints = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
     // starts with blank letter then follows alphabet
@@ -48,6 +50,7 @@ public class Scrabble {
         Player playerArray[] = {one, two};
         boolean win = false;
         String input;
+        ArrayList<Integer> placed = new ArrayList<Integer>();
         int turns = 1;
         int score = 0;
 
@@ -83,9 +86,9 @@ public class Scrabble {
                         break;
                 default: if(input.contains("across") || input.contains("down") || input.contains("ACROSS") || input.contains("DOWN")){ //X Y across/down WORD
                     if(turns % 2 == 1){
-                        game.placement(input, playerOneFrame, gameBoard);
+                        game.placement(input, playerOneFrame, gameBoard, placed);
                     }else{
-                        game.placement(input, playerTwoFrame, gameBoard);
+                        game.placement(input, playerTwoFrame, gameBoard, placed);
                     }
                 }else{
                     turns--;
@@ -117,7 +120,8 @@ public class Scrabble {
     }
 
     //maybe change the return type to string to act as simple logs
-    public boolean placement(String input, Frame frame, Board board){
+    public boolean placement(String input, Frame frame, Board board, ArrayList<Integer> placed){
+        placed.clear();
         int X, Y;
         String direction, word;
 
@@ -142,6 +146,7 @@ public class Scrabble {
                 if(board.getCharVal(X, Y) == ' '){
                     frame.playLetter(word.charAt(count));
                     board.placeLetter(word.charAt(count), X, Y);
+                    placed.add(Y);
                 }
                 Y++;
             }
@@ -157,6 +162,7 @@ public class Scrabble {
                 if(board.getCharVal(X, Y) == ' '){
                     frame.playLetter(word.charAt(count));
                     board.placeLetter(word.charAt(count), X, Y);
+                    placed.add(X);
                 }
                 X++;
             }
@@ -167,17 +173,39 @@ public class Scrabble {
         return true;
     }
 //will need placement info from placement method
-    public int getScore(int x, int y, int[] placed, String direction, Board gameBoard){
+    public int getScore(int x, int y, ArrayList<Character> placed, String direction, Board gameBoard){
         int score = 0, add = 0, multiplier = 1;
 
-        if(direction == "Across"){
+        if(direction == "ACROSS"){
             while(gameBoard.getCharVal(x, y) != ' '){
-
                 score = score + pointsConversion(gameBoard.getCharVal(x, y));
                 y++;
-                ;//add switch statement
             }
+
+            //multiplier from arraylist, letter then word
+
+
+            int axis = x;
+            for (Character character : placed) {
+                while (gameBoard.getCharVal(axis++, character) != ' ') {
+                    score = score + pointsConversion(gameBoard.getCharVal(axis, character));
+                }
+            }
+            axis = x;
+            for (Character character : placed) {
+                while (gameBoard.getCharVal(axis--, character) != ' ') {
+                    score = score + pointsConversion(gameBoard.getCharVal(axis, character));
+                }
+            }
+            //check other axis
         }
+
+
+        if(placed.size() == 7){
+            score = score + 50;
+            System.out.println("BINGO!");
+        }
+
         return score;
     }
 
