@@ -26,20 +26,13 @@ public class UI extends Application {
         Stage boardStage = new Stage();
         GridPane playerFrame = new GridPane();
         board(boardStage);
-        frame(playerFrame);
     }
 
     public void board(Stage boardStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Board.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Board2.fxml"));
         Scene boardScene = new Scene(root);
         boardStage.setTitle("Scrabble!");
         boardStage.setScene(boardScene);
         boardStage.show();
-    }
-
-    public void frame(GridPane playerFrame) throws IOException
-    {
-        Parent root = FXMLLoader.load(getClass().getResource("Board.fxml"));
-        GridPane frame = new GridPane();
     }
 }

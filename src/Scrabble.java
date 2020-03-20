@@ -251,22 +251,24 @@ public class Scrabble {
             URI oURL = new URI("https://www.youtube.com/watch?v=Tv5QRmG9ST0&list=PL7nML7u-x2dyqPDhm0g8eMlCfsrEvk89H");
             desktop.browse(oURL);
         } catch (Exception e) {
-            throw new IllegalStateException("Unable to jazz");
+            System.out.println("Unable to jazz");
         }
     }
 
     private void help() throws IOException {
-        File helpFile = new File("assets\\Help.txt");
 
-        if(!helpFile.exists())
-        {
-            throw new FileNotFoundException("ERROR: File not found");
-        }
+        try {
+            File helpFile = new File("assets\\Help.txt");
 
-        else
-        {
+            if (!helpFile.exists())
+                throw new FileNotFoundException();
+
             Desktop desktop = java.awt.Desktop.getDesktop();
             desktop.open(helpFile);
+        }
+
+        catch (Exception e){
+            System.out.println("ERROR: Help file not found, check assets folder");
         }
     }
 
