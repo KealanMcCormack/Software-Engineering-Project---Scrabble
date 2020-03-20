@@ -17,6 +17,9 @@ import java.io.FileNotFoundException;
 
 public class UI extends Application {
 
+    public UI() {
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -29,7 +32,9 @@ public class UI extends Application {
     }
 
     public void board(Stage boardStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Board2.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Board2.fxml"));
+        loader.setController(new UI());
+        Parent root = loader.load();
         Scene boardScene = new Scene(root);
         boardStage.setTitle("Scrabble!");
         boardStage.setScene(boardScene);

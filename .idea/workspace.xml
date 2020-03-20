@@ -7,14 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed1df3f4-0d97-4b4b-baa4-0885f7f9e9fd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Board2.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Scrabble/Board.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Scrabble/Board.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Scrabble/Frame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Scrabble/Frame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Scrabble/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Scrabble/Player.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Scrabble/UI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Scrabble/UI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Board.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Board2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board2.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scrabble.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scrabble.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +67,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.UI">
+  <component name="RunManager" selected="Application.Scrabble">
     <configuration name="Board" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Board" />
       <module name="Scrabble" />
@@ -79,6 +78,13 @@
     </configuration>
     <configuration name="GameBoard" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="GameBoard" />
+      <module name="Scrabble" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Scrabble" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Scrabble" />
       <module name="Scrabble" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -104,9 +110,11 @@
       <item itemvalue="Application.GameBoard" />
       <item itemvalue="Application.ScrabbleBagTest" />
       <item itemvalue="Application.UI" />
+      <item itemvalue="Application.Scrabble" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Scrabble" />
         <item itemvalue="Application.UI" />
         <item itemvalue="Application.Board" />
         <item itemvalue="Application.ScrabbleBagTest" />

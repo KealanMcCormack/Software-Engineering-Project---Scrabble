@@ -60,7 +60,6 @@ public class Scrabble {
             Scanner in = new Scanner(System.in);
             gameBoard.printBoard();
             System.out.println("Player " + (turns % 2) + " your turn, what do you want to do");
-
             input = in.nextLine();
             input.toUpperCase();
             switch (input){
@@ -103,6 +102,7 @@ public class Scrabble {
             }
 
             turns++;
+
         }
     }
 
