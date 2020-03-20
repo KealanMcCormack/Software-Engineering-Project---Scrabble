@@ -47,6 +47,7 @@ public class Scrabble {
         Scrabble game = new Scrabble();
         Player one = new Player();
         Player two = new Player();
+        UI ui = new UI();
 
         Player playerArray[] = {one, two};  //Array to store player number
         boolean win = false;  //Boolean to run game until bag is empty
@@ -182,9 +183,19 @@ public class Scrabble {
         }else{
             return false;
         }
+        uiPrintBoard(board);
         return true;
     }
+    public void uiPrintBoard(Board gameBoard){
+        for(int i = 0;i<15;i++){
+            for(int j = 0;j<15;j++){
+               switch (gameBoard.getCharVal(i,j)){
+                   case 'A':
 
+               }
+            }
+        }
+    }
     public int getScore(int x, int y, ArrayList<Character> placed, String direction, Board gameBoard){   //Calculating score for each play
         int score = 0, add = 0, multiplier = 1;
 

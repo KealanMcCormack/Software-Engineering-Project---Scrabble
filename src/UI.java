@@ -17,7 +17,9 @@ import java.io.FileNotFoundException;
 
 public class UI extends Application {
 
-    public UI() {
+    public UI() throws IOException {
+        Stage primaryStage = new Stage();
+        start(primaryStage);
     }
 
     public static void main(String[] args) {
