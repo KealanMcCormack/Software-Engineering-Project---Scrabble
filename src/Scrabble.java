@@ -39,6 +39,7 @@ public class Scrabble {
         }
     }
 
+    int turns = 1;  //Turn counter
     public static void main(String[] args) throws IOException {
         Board gameBoard = new Board();  //Instances of Classes necessary to run game
         ScrabbleBag gameBag = new ScrabbleBag();
@@ -53,7 +54,6 @@ public class Scrabble {
         boolean win = false;  //Boolean to run game until bag is empty
         String input;  //Console Input
         ArrayList<Integer> placed = new ArrayList<Integer>();  //ArrayList for storing placed tile coordinate
-        int turns = 1;  //Turn counter
         int score = 0;  //Single word score
 
         Scanner in = new Scanner(System.in);  //Scanner to take input from user
@@ -65,7 +65,7 @@ public class Scrabble {
 
         while(!win){  //Game loop
             gameBoard.printBoard();  //Printing board
-            System.out.println("Player " + (turns % 2) + " your turn, what do you want to do");
+            System.out.println("Player " + (game.turns % 2) + " your turn, what do you want to do");
 
 
             input = in.nextLine(); //Taking in user input
@@ -78,13 +78,13 @@ public class Scrabble {
                     break;
                 case "HELP": game.help();  //Run help method
                     break;
-                case "EXCHANGE": if((turns % 2) == 1){   //Run exchange method for given player
+                case "EXCHANGE": if((game.turns % 2) == 1){   //Run exchange method for given player
                     game.exchange(gameBag, playerOneFrame, in);
                 }else{
                     game.exchange(gameBag, playerTwoFrame, in);
                 }
                     break;
-                case "CHALLENGE": if((turns % 2) == 0){//presuming the challenger will be the opposing player
+                case "CHALLENGE": if((game.turns % 2) == 0){//presuming the challenger will be the opposing player
                     game.challenge(score, one);
                 } else{
                     game.challenge(score, two);
@@ -93,25 +93,25 @@ public class Scrabble {
                 case "JAZZ": game.smoothJazz();  //Run smoothJazz method (Extra method included for fun)
                         break;
                 default: if(input.contains("across") || input.contains("down") || input.contains("ACROSS") || input.contains("DOWN")){ //X Y across/down WORD
-                    if(turns % 2 == 1){
+                    if(game.turns % 2 == 1){
                         game.placement(input, playerOneFrame, gameBoard, placed);
                     }else{
                         game.placement(input, playerTwoFrame, gameBoard, placed);
                     }
                 }else{
-                    turns--;
+                    game.turns--;
                     System.out.println("Invalid input, please retake your turn and use the command HELP to see instructions");
                 }
             }
 
             System.out.println("Score from that word: " + score);
-            if(turns % 2 == 1){
+            if(game.turns % 2 == 1){
                 System.out.println("Total score: " + one.getScore());
             }else{
                 System.out.println("Total score: " + two.getScore());
             }
 
-            turns++;  //Incrementing turn counter
+            game.turns++;  //Incrementing turn counter
         }
         in.close();
     }

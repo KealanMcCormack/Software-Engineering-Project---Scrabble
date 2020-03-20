@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="910.0" prefWidth="700.0" style="-fx-background-color: #e498ea;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="278.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scrabble!">
+      <Text layoutX="278.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scrabble!">
          <font>
             <Font name="Centaur" size="44.0" />
          </font>

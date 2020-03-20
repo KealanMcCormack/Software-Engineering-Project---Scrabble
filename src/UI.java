@@ -29,7 +29,7 @@ public class UI extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         Stage boardStage = new Stage();
-        GridPane playerFrame = new GridPane();
+        GridPane playerOneFrame = new GridPane();
         board(boardStage);
     }
 
