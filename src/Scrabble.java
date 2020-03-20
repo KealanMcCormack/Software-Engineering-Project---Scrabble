@@ -55,10 +55,11 @@ public class Scrabble {
         int turns = 1;  //Turn counter
         int score = 0;  //Single word score
 
-        game.setup(playerArray);
-
-
         Scanner in = new Scanner(System.in);  //Scanner to take input from user
+        game.setup(playerArray, in);
+
+
+
         gameBoard.createBoard();
 
         while(!win){  //Game loop
@@ -77,9 +78,9 @@ public class Scrabble {
                 case "HELP": game.help();  //Run help method
                     break;
                 case "EXCHANGE": if((turns % 2) == 1){   //Run exchange method for given player
-                    game.exchange(gameBag, playerOneFrame);
+                    game.exchange(gameBag, playerOneFrame, in);
                 }else{
-                    game.exchange(gameBag, playerTwoFrame);
+                    game.exchange(gameBag, playerTwoFrame, in);
                 }
                     break;
                 case "CHALLENGE": if((turns % 2) == 0){//presuming the challenger will be the opposing player
@@ -114,8 +115,8 @@ public class Scrabble {
         in.close();
     }
 
-    public void setup(Player[] players){   //Setup method for start of game
-        Scanner in = new Scanner(System.in);  //Creating scanner
+    public void setup(Player[] players, Scanner in){   //Setup method for start of game
+
 
         System.out.println("Time to set up some names, player 1 your up first");
         System.out.println("Please type in the name you would like to use then hit enter");
@@ -129,7 +130,7 @@ public class Scrabble {
         players[1].setScore(0);  //Setting player score to 0
 
         System.out.println("Both names are now set so lets start the game");
-        in.close();  //Closing Scanner
+
     }
 
 
@@ -226,14 +227,14 @@ public class Scrabble {
         return true;
     }
 
-    public char[] exchange(ScrabbleBag pool, Frame playerFrame){  //Exchange player tiles
+    public char[] exchange(ScrabbleBag pool, Frame playerFrame, Scanner in){  //Exchange player tiles
         try {
             char[] swap = new char[7];  //swap array
             int count = 0;  //Increments for each valid tile to be exchanged
             String input;  //Input for tiles to be exchanged
             System.out.println("Which letters would you like to exchange?");
             //possibly need an escape clause
-            Scanner in = new Scanner(System.in);  //Initiating Scanner
+
             input = in.nextLine();   //User Input
 
             for (int i = 0; i < input.length(); i++) {   //Placing user input into swap array
@@ -253,7 +254,7 @@ public class Scrabble {
             playerFrame.swap(swap, pool); //Swapping tiles
             return swap;
         } catch (IllegalArgumentException e) {
-            return exchange(pool, playerFrame);//Runs the method again
+            return exchange(pool, playerFrame, in);//Runs the method again
         }
     }
 
