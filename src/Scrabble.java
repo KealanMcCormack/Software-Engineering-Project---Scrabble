@@ -6,7 +6,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//getscore, firstplacement, exceptions
+//is the placement connected?, exceptions
 public class Scrabble {
     int[] letterPoints = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10}; //Array for letter score values
     // starts with blank letter then follows alphabet
@@ -15,12 +15,20 @@ public class Scrabble {
 
     }
 
-    public int multiplier(int score, int x, int y, Board board){    //Multiplier calculator for special tiles
+    public int multiplierLetter(int score, int x, int y, Board board){    //Multiplier calculator for special tiles
         switch (board.getTileVal(x, y)){
             case DoubleLetter: score += pointsConversion(board.getCharVal(x, y));
                 break;
             case TripleLetter: score += pointsConversion(board.getCharVal(x, y)) * 2;
                 break;
+            default:
+                return score;
+        }
+        return score;
+    }
+
+    public int multiplierWord(int score, int x, int y, Board board){    //Multiplier calculator for special tiles
+        switch (board.getTileVal(x, y)){
             case DoubleWord: score += score;
                 break;
             case TripleWord: score += (score * 2);
@@ -50,7 +58,8 @@ public class Scrabble {
         Player two = new Player();
         UI ui = new UI();
 
-        Player playerArray[] = {one, two};  //Array to store player number
+        //Array to store player number
+        Player[] playerArray = new Player[]{one, two};
         boolean win = false;  //Boolean to run game until bag is empty
         String input;  //Console Input
         ArrayList<Integer> placed = new ArrayList<Integer>();  //ArrayList for storing placed tile coordinate
@@ -69,7 +78,7 @@ public class Scrabble {
 
 
             input = in.nextLine(); //Taking in user input
-            input.toUpperCase();   //Converting input to uppercase
+            input = input.toUpperCase();   //Converting input to uppercase
 
             switch (input){  //Checking user input to see if it matches commands
                 case "QUIT":  game.quit();  //Run quit method
@@ -92,7 +101,7 @@ public class Scrabble {
                     break;
                 case "JAZZ": game.smoothJazz();  //Run smoothJazz method (Extra method included for fun)
                         break;
-                default: if(input.contains("across") || input.contains("down") || input.contains("ACROSS") || input.contains("DOWN")){ //X Y across/down WORD
+                default: if(input.contains("ACROSS") || input.contains("DOWN")){ //X Y across/down WORD
                     if(game.turns % 2 == 1){
                         game.placement(input, playerOneFrame, gameBoard, placed);
                     }else{
@@ -143,6 +152,11 @@ public class Scrabble {
         X = input.charAt(0);  //Interpreting input from user
         Y = input.charAt(2);  //Interpreting input from user
 
+        if(turns == 1){//For first turn makes sure placement is in the centre
+            X = 7;
+            Y = 7;
+        }
+
         direction = input.substring(4, 8).trim();  //Interpreting direction from input (across/down)
         word = input.substring(10).trim();         //Interpreting word from input
 
@@ -150,7 +164,7 @@ public class Scrabble {
             return false;
         }
 
-        if(direction == "ACROSS"){  //checking validity of placement
+        if(direction.equals("ACROSS")){  //checking validity of placement
             for(int count = 0;count < word.length();count++){
                 if(board.getCharVal(X, Y + count) != word.charAt(count) || !frame.getLetter(word.charAt(count))){
                     return false;
@@ -197,33 +211,67 @@ public class Scrabble {
             }
         }
     }
-    public int getScore(int x, int y, ArrayList<Character> placed, String direction, Board gameBoard){   //Calculating score for each play
-        int score = 0, add = 0, multiplier = 1;
 
-        if(direction == "ACROSS"){  //Calculating score of word going across
+    public int getScore(int x, int y, ArrayList<Integer> placed, String direction, Board gameBoard){   //Calculating score for each play
+        int score = 0;
+
+        if(direction.equals("ACROSS")){  //Calculating score of word going across
             while(gameBoard.getCharVal(x, y) != ' '){
                 score = score + pointsConversion(gameBoard.getCharVal(x, y));
                 y++;
             }
 
-            //multiplier from arraylist, letter then word
+            for (Integer value : placed) {//Checks if any placed letters have multipliers
+                score = multiplierLetter(score, x, value, gameBoard);
+            }
+            //Letter multipliers applied before Word multipliers as specified by scrabble rules
 
+            for (Integer value : placed) {//Checks if any placed letters are placed on word multipliers
+                score = multiplierWord(score, x, value, gameBoard);
+            }
 
             int axis = x;
-            for (Character character : placed) {  //Checking either side of letter placed to see if any other additional word is attached which will increase score
-                while (gameBoard.getCharVal(axis++, character) != ' ') {
-                    score = score + pointsConversion(gameBoard.getCharVal(axis, character));
+            for (int integer : placed) {  //Checking either side of letter placed to see if any other additional word is attached which will increase score
+                while (gameBoard.getCharVal(axis++, integer) != ' ') {
+                    score = score + pointsConversion(gameBoard.getCharVal(axis, integer));
                 }
             }
             axis = x;
-            for (Character character : placed) {  //Checking either side of letter placed to see if any other additional word is attached which will increase score
-                while (gameBoard.getCharVal(axis--, character) != ' ') {
-                    score = score + pointsConversion(gameBoard.getCharVal(axis, character));
+            for (int integer : placed) {  //Checking either side of letter placed to see if any other additional word is attached which will increase score
+                while (gameBoard.getCharVal(axis--, integer) != ' ') {
+                    score = score + pointsConversion(gameBoard.getCharVal(axis, integer));
                 }
             }
-            //check other axis
-        }
 
+        }else{
+            while(gameBoard.getCharVal(x, y) != ' '){
+                score = score + pointsConversion(gameBoard.getCharVal(x, y));
+                x++;
+            }
+
+            for (Integer value : placed) {//Checks if any placed letters have multipliers
+                score = multiplierLetter(score, value, y, gameBoard);
+            }
+            //Letter multipliers applied before Word multipliers as specified by scrabble rules
+
+            for (Integer value : placed) {//Checks if any placed letters are placed on word multipliers
+                score = multiplierWord(score, value, y, gameBoard);
+            }
+
+            int axis = y;
+            for (int integer : placed) {  //Checking either side of letter placed to see if any other additional word is attached which will increase score
+                while (gameBoard.getCharVal(integer, axis++) != ' ') {
+                    score = score + pointsConversion(gameBoard.getCharVal(integer, axis));
+                }
+            }
+
+            axis = y;
+            for (int integer : placed) {  //Checking either side of letter placed to see if any other additional word is attached which will increase score
+                while (gameBoard.getCharVal(integer, axis--) != ' ') {
+                    score = score + pointsConversion(gameBoard.getCharVal(integer, axis));
+                }
+            }
+        }
 
         if(placed.size() == 7){  //Checking if all 7 letters have been played and awarding bonus score
             score = score + 50;
@@ -233,9 +281,9 @@ public class Scrabble {
         return score;
     }
 
-    public boolean challenge(int wordScore, Player player){   //Challenge the players word and subtracts score
+    public int challenge(int wordScore, Player player){   //Challenge the players word and subtracts score
         player.increaseScore(-wordScore);
-        return true;
+        return wordScore;
     }
 
     public char[] exchange(ScrabbleBag pool, Frame playerFrame, Scanner in){  //Exchange player tiles
