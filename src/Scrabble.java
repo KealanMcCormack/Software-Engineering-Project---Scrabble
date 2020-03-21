@@ -47,7 +47,7 @@ public class Scrabble {
         }
     }
 
-    int turns = 1;  //Turn counter
+    int turns = 0;  //Turn counter
     public static void main(String[] args) throws IOException {
         Board gameBoard = new Board();  //Instances of Classes necessary to run game
         ScrabbleBag gameBag = new ScrabbleBag();
@@ -56,9 +56,10 @@ public class Scrabble {
         Scrabble game = new Scrabble();
         Player one = new Player();
         Player two = new Player();
-        UI ui = new UI();
+        //UI ui = new UI();
 
         //Array to store player number
+        Frame[] playerFrame = new Frame[]{playerOneFrame, playerTwoFrame};
         Player[] playerArray = new Player[]{one, two};
         boolean win = false;  //Boolean to run game until bag is empty
         String input;  //Console Input
@@ -68,14 +69,15 @@ public class Scrabble {
         Scanner in = new Scanner(System.in);  //Scanner to take input from user
         game.setup(playerArray, in);
 
-
-
         gameBoard.createBoard();
 
+        //player 1 == 0, player 2 == 1
         while(!win){  //Game loop
-            gameBoard.printBoard();  //Printing board
-            System.out.println("Player " + (game.turns % 2) + " your turn, what do you want to do");
 
+            System.out.println(gameBoard.printBoard());  //Printing board
+            System.out.println(playerFrame[game.turns % 2].displayFrame());
+
+            System.out.println("Player " + playerArray[game.turns % 2].getName() + " your turn, what do you want to do");
 
             input = in.nextLine(); //Taking in user input
             input = input.toUpperCase();   //Converting input to uppercase
@@ -87,23 +89,23 @@ public class Scrabble {
                     break;
                 case "HELP": game.help();  //Run help method
                     break;
-                case "EXCHANGE": if((game.turns % 2) == 1){   //Run exchange method for given player
+                case "EXCHANGE": if((game.turns % 2) == 0){   //Run exchange method for given player
                     game.exchange(gameBag, playerOneFrame, in);
                 }else{
                     game.exchange(gameBag, playerTwoFrame, in);
                 }
                     break;
                 case "CHALLENGE": if((game.turns % 2) == 0){//presuming the challenger will be the opposing player
-                    game.challenge(score, one);
-                } else{
                     game.challenge(score, two);
+                } else{
+                    game.challenge(score, one);
                 }
                     break;
                 case "JAZZ": game.smoothJazz();  //Run smoothJazz method (Extra method included for fun)
                         break;
                 default: if(input.contains("ACROSS") || input.contains("DOWN")){ //X Y across/down WORD
-                    if(game.turns % 2 == 1){
-                        game.placement(input, playerOneFrame, gameBoard, placed);
+                    if(game.turns % 2 == 0){
+                        System.out.println(game.placement(input, playerOneFrame, gameBoard, placed));
                     }else{
                         game.placement(input, playerTwoFrame, gameBoard, placed);
                     }
@@ -114,7 +116,7 @@ public class Scrabble {
             }
 
             System.out.println("Score from that word: " + score);
-            if(game.turns % 2 == 1){
+            if(game.turns % 2 == 0){
                 System.out.println("Total score: " + one.getScore());
             }else{
                 System.out.println("Total score: " + two.getScore());
@@ -152,7 +154,7 @@ public class Scrabble {
         X = input.charAt(0);  //Interpreting input from user
         Y = input.charAt(2);  //Interpreting input from user
 
-        if(turns == 1){//For first turn makes sure placement is in the centre
+        if(turns == 0){//For first turn makes sure placement is in the centre
             X = 7;
             Y = 7;
         }
@@ -166,7 +168,7 @@ public class Scrabble {
 
         if(direction.equals("ACROSS")){  //checking validity of placement
             for(int count = 0;count < word.length();count++){
-                if(board.getCharVal(X, Y + count) != word.charAt(count) || !frame.getLetter(word.charAt(count))){
+                if(board.getCharVal(X, Y + count) != word.charAt(count) && !frame.getLetter(word.charAt(count))){
                     return false;
                 }
             }
@@ -201,6 +203,7 @@ public class Scrabble {
         uiPrintBoard(board);
         return true;
     }
+
     public void uiPrintBoard(Board gameBoard){
         for(int i = 0;i<15;i++){
             for(int j = 0;j<15;j++){
