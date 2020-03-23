@@ -151,24 +151,26 @@ public class Scrabble {
         int X, Y;  //Coordinates of placement
         String direction, word;  //Input storage
 
-        X = input.charAt(0);  //Interpreting input from user
-        Y = input.charAt(2);  //Interpreting input from user
+        X = Integer.parseInt(String.valueOf(input.charAt(0)));;  //Interpreting input from user
+        Y = Integer.parseInt(String.valueOf(input.charAt(2)));;  //Interpreting input from user
 
         if(turns == 0){//For first turn makes sure placement is in the centre
             X = 7;
             Y = 7;
         }
 
-        direction = input.substring(4, 8).trim();  //Interpreting direction from input (across/down)
+        direction = input.substring(4, 10).trim();  //Interpreting direction from input (across/down)
         word = input.substring(10).trim();         //Interpreting word from input
-
+        System.out.println(direction);
+        System.out.println(word);
         if(!board.inBounds(X, Y, direction, word.length())){  //Invalid placement return false
             return false;
         }
 
         if(direction.equals("ACROSS")){  //checking validity of placement
             for(int count = 0;count < word.length();count++){
-                if(board.getCharVal(X, Y + count) != word.charAt(count) && !frame.getLetter(word.charAt(count))){
+                if(!(board.getCharVal(X, Y + count) == word.charAt(count) || frame.getLetter(word.charAt(count)))){
+                    System.out.println("This far gasv");
                     return false;
                 }
             }
@@ -184,7 +186,7 @@ public class Scrabble {
 
         }else if(direction == "DOWN"){  //checking validity of placement
             for(int count = 0;count < word.length();count++){
-                if(board.getCharVal(X + count, Y) != word.charAt(count) || !frame.getLetter(word.charAt(count))){
+                if(!(board.getCharVal(X + count, Y) == word.charAt(count) || frame.getLetter(word.charAt(count)))){
                     return false;
                 }
             }

@@ -80,14 +80,17 @@ public class Frame {
      * @return boolean true if operation successful
      */
     public boolean playLetter(char character) {//removes characters from the frame
-
         if(playerTiles.contains(character)) {//checks if input is valid
-             playerTiles.remove(character);
-             return true;
+            for(int count = 0;count < playerTiles.size();count++){//Finds the character
+                if(playerTiles.get(count) == character){
+                    playerTiles.remove(count);
+                    return true;
+                }
+            }
         }else{
             return false;
         }
-
+      return false;
     }
 
     /**
