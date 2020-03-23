@@ -249,12 +249,22 @@ public class Board{
      * @return
      * inBounds returns true if tile to be placed is in bounds of array
      */
-    protected boolean inBounds(int x, int y) {//Checks any tile being placed is within bounds
-        if (x > -1 && x < 15 && y > -1 && y < 15) {//Checks bounds
-            return true;
-        } else {
+    protected boolean inBounds(int x, int y, String direction, int wordSize) {//Checks any tile being placed is within bounds
+        if (!(x > -1 && x < 15 && y > -1 && y < 15)) {//Checks bounds
             return false;
         }
+
+        if(direction.equals("ACROSS")){
+            y += wordSize;
+        }else{
+            x += wordSize;
+        }
+
+        if (x > -1 && x < 15 && y > -1 && y < 15) {//Checks bounds
+            return true;
+        }
+
+        return false;
     }
 
     /**

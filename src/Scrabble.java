@@ -162,7 +162,7 @@ public class Scrabble {
         direction = input.substring(4, 8).trim();  //Interpreting direction from input (across/down)
         word = input.substring(10).trim();         //Interpreting word from input
 
-        if(!board.inBounds(X, Y)){  //Invalid placement return false
+        if(!board.inBounds(X, Y, direction, word.length())){  //Invalid placement return false
             return false;
         }
 
