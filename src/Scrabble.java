@@ -33,6 +33,8 @@ public class Scrabble {
                 break;
             case TripleWord: score += (score * 2);
                 break;
+            case Centre: score += score;
+                break;
             default:
                 return score;
         }
@@ -43,6 +45,7 @@ public class Scrabble {
         if(letter == '*'){
             return 0;
         }else{
+            System.out.println(letter + "  letter killing things");
             return letterPoints[letter - 65];
         }
     }
@@ -105,7 +108,7 @@ public class Scrabble {
                         break;
                 default: if(input.contains("ACROSS") || input.contains("DOWN")){ //X Y across/down WORD
                     if(game.turns % 2 == 0){
-                        System.out.println(game.placement(input, playerOneFrame, gameBoard, placed));
+                        game.placement(input, playerOneFrame, gameBoard, placed);
                     }else{
                         game.placement(input, playerTwoFrame, gameBoard, placed);
                     }
@@ -115,10 +118,12 @@ public class Scrabble {
                 }
             }
 
-            System.out.println("Score from that word: " + score);
+            System.out.println("Score from that word: " + placed.get(placed.size() - 1));
             if(game.turns % 2 == 0){
+                one.increaseScore(placed.get(placed.size() - 1));
                 System.out.println("Total score: " + one.getScore());
             }else{
+                two.increaseScore(placed.get(placed.size() - 1));
                 System.out.println("Total score: " + two.getScore());
             }
 
@@ -158,7 +163,7 @@ public class Scrabble {
             X = 7;
             Y = 7;
         }
-
+        int scoreX = X, scoreY = Y;
         direction = input.substring(4, 10).trim();  //Interpreting direction from input (across/down)
         word = input.substring(10).trim();         //Interpreting word from input
         System.out.println(direction);
@@ -203,6 +208,7 @@ public class Scrabble {
             return false;
         }
         uiPrintBoard(board);
+        placed.add(getScore(scoreX, scoreY, placed, direction, board));
         return true;
     }
 
@@ -235,16 +241,18 @@ public class Scrabble {
                 score = multiplierWord(score, x, value, gameBoard);
             }
 
-            int axis = x;
+            int axis = x + 1;
             for (int integer : placed) {  //Checking either side of letter placed to see if any other additional word is attached which will increase score
-                while (gameBoard.getCharVal(axis++, integer) != ' ') {
+                while (gameBoard.getCharVal(axis, integer) != ' ') {
                     score = score + pointsConversion(gameBoard.getCharVal(axis, integer));
+                    axis++;
                 }
             }
-            axis = x;
+            axis = x - 1;
             for (int integer : placed) {  //Checking either side of letter placed to see if any other additional word is attached which will increase score
-                while (gameBoard.getCharVal(axis--, integer) != ' ') {
+                while (gameBoard.getCharVal(axis, integer) != ' ') {
                     score = score + pointsConversion(gameBoard.getCharVal(axis, integer));
+                    axis--;
                 }
             }
 
@@ -263,17 +271,19 @@ public class Scrabble {
                 score = multiplierWord(score, value, y, gameBoard);
             }
 
-            int axis = y;
+            int axis = y + 1;
             for (int integer : placed) {  //Checking either side of letter placed to see if any other additional word is attached which will increase score
-                while (gameBoard.getCharVal(integer, axis++) != ' ') {
+                while (gameBoard.getCharVal(integer, axis) != ' ') {
                     score = score + pointsConversion(gameBoard.getCharVal(integer, axis));
+                    axis++;
                 }
             }
 
-            axis = y;
+            axis = y - 1;
             for (int integer : placed) {  //Checking either side of letter placed to see if any other additional word is attached which will increase score
                 while (gameBoard.getCharVal(integer, axis--) != ' ') {
                     score = score + pointsConversion(gameBoard.getCharVal(integer, axis));
+                    axis--;
                 }
             }
         }
