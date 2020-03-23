@@ -66,8 +66,9 @@ public class Scrabble {
         Player[] playerArray = new Player[]{one, two};
         boolean win = false;  //Boolean to run game until bag is empty
         String input;  //Console Input
-        ArrayList<Integer> placed = new ArrayList<Integer>();  //ArrayList for storing placed tile coordinate
+        ArrayList<Integer> placed = new ArrayList<>();  //ArrayList for storing placed tile coordinate
         int score = 0;  //Single word score
+        boolean scoreShow;
 
         Scanner in = new Scanner(System.in);  //Scanner to take input from user
         game.setup(playerArray, in);
@@ -76,7 +77,7 @@ public class Scrabble {
 
         //player 1 == 0, player 2 == 1
         while(!win){  //Game loop
-
+            scoreShow = false;
             System.out.println(gameBoard.printBoard());  //Printing board
             System.out.println(playerFrame[game.turns % 2].displayFrame());
 
@@ -99,18 +100,29 @@ public class Scrabble {
                 }
                     break;
                 case "CHALLENGE": if((game.turns % 2) == 0){//presuming the challenger will be the opposing player
-                    game.challenge(score, two);
+                    System.out.println("Score removed: " + game.challenge(score, two));
                 } else{
-                    game.challenge(score, one);
+                    System.out.println("Score removed: " + game.challenge(score, one));
                 }
+                game.turns--;
                     break;
                 case "JAZZ": game.smoothJazz();  //Run smoothJazz method (Extra method included for fun)
                         break;
                 default: if(input.contains("ACROSS") || input.contains("DOWN")){ //X Y across/down WORD
                     if(game.turns % 2 == 0){
-                        game.placement(input, playerOneFrame, gameBoard, placed);
+                        if(game.placement(input, playerOneFrame, gameBoard, placed)){
+                            scoreShow = true;
+                            playerOneFrame.refill(gameBag);
+                        }else{
+                            System.out.println("Incorrect placement, please consult the help");
+                        }
                     }else{
-                        game.placement(input, playerTwoFrame, gameBoard, placed);
+                        if(game.placement(input, playerTwoFrame, gameBoard, placed)){
+                            scoreShow = true;
+                            playerTwoFrame.refill(gameBag);
+                        }else{
+                            System.out.println("Incorrect placement, please consult the help");
+                        }
                     }
                 }else{
                     game.turns--;
@@ -118,13 +130,23 @@ public class Scrabble {
                 }
             }
 
-            System.out.println("Score from that word: " + placed.get(placed.size() - 1));
-            if(game.turns % 2 == 0){
-                one.increaseScore(placed.get(placed.size() - 1));
-                System.out.println("Total score: " + one.getScore());
-            }else{
-                two.increaseScore(placed.get(placed.size() - 1));
-                System.out.println("Total score: " + two.getScore());
+            if(scoreShow) {
+                if (game.turns % 2 == 0) {
+                    score = one.getScore();
+                    one.increaseScore(placed.get(placed.size() - 1));
+                    System.out.println("Total score: " + one.getScore());
+                    score = one.getScore() - score;
+                } else {
+                    score = two.getScore();
+                    two.increaseScore(placed.get(placed.size() - 1));
+                    System.out.println("Total score: " + two.getScore());
+                    score = two.getScore() - score;
+                }
+                System.out.println("Score from that word: " + score);
+            }
+
+            if(gameBag.isEmpty()){
+                win = true;
             }
 
             game.turns++;  //Incrementing turn counter
@@ -156,8 +178,8 @@ public class Scrabble {
         int X, Y;  //Coordinates of placement
         String direction, word;  //Input storage
 
-        X = Integer.parseInt(String.valueOf(input.charAt(0)));;  //Interpreting input from user
-        Y = Integer.parseInt(String.valueOf(input.charAt(2)));;  //Interpreting input from user
+        X = Integer.parseInt(String.valueOf(input.charAt(0)));  //Interpreting input from user
+        Y = Integer.parseInt(String.valueOf(input.charAt(2)));  //Interpreting input from user
 
         if(turns == 0){//For first turn makes sure placement is in the centre
             X = 7;
@@ -189,7 +211,7 @@ public class Scrabble {
                 Y++;
             }
 
-        }else if(direction == "DOWN"){  //checking validity of placement
+        }else if(direction.equals("DOWN")){  //checking validity of placement
             for(int count = 0;count < word.length();count++){
                 if(!(board.getCharVal(X + count, Y) == word.charAt(count) || frame.getLetter(word.charAt(count)))){
                     return false;
