@@ -44,7 +44,6 @@ public class Scrabble {
         if(letter == '*'){
             return 0;
         }else{
-            System.out.println(letter + "  letter killing things");
             return letterPoints[letter - 65];
         }
     }
@@ -176,19 +175,31 @@ public class Scrabble {
         placed.clear();  //Clear ArrayList of coordinates
         int X, Y;  //Coordinates of placement
         String direction, word;  //Input storage
+        String[] inputStrings;
 
-        X = Integer.parseInt(String.valueOf(input.charAt(0)));  //Interpreting input from user
-        Y = Integer.parseInt(String.valueOf(input.charAt(2)));  //Interpreting input from user
+        inputStrings = input.split(" ");
+
+        if(input.charAt(0) != ' '){  //Interpreting input from user
+            X = Integer.parseInt(inputStrings[0]);
+        }else{
+            return false;
+        }
+
+        if(input.charAt(2) != ' '){
+            Y = Integer.parseInt(inputStrings[1]);  //Interpreting input from user
+        }else{
+            return false;
+        }
 
         if(turns == 0){//For first turn makes sure placement is in the centre
             X = 7;
             Y = 7;
         }
         int scoreX = X, scoreY = Y;
-        direction = input.substring(4, 10).trim();  //Interpreting direction from input (across/down)
-        word = input.substring(10).trim();         //Interpreting word from input
-        System.out.println(direction);
-        System.out.println(word);
+
+        direction = inputStrings[2]; //Interpreting direction from input (across/down)
+        word = inputStrings[3];         //Interpreting word from input
+
         if(!board.inBounds(X, Y, direction, word.length())){  //Invalid placement return false
             return false;
         }
@@ -196,7 +207,6 @@ public class Scrabble {
         if(direction.equals("ACROSS")){  //checking validity of placement
             for(int count = 0;count < word.length();count++){
                 if(!(board.getCharVal(X, Y + count) == word.charAt(count) || frame.getLetter(word.charAt(count)))){
-                    System.out.println("This far gasv");
                     return false;
                 }
             }
@@ -333,11 +343,14 @@ public class Scrabble {
             input = in.nextLine();   //User Input
 
             for (int i = 0; i < input.length(); i++) {   //Placing user input into swap array
-                if (input.indexOf(i) != ' ') {
-                    swap[count] = (char) input.indexOf(i);
+                if (input.charAt(i) != ' ') {
+                    swap[count] = input.charAt(i);
                     count++;
                 }
             }
+
+            count--;
+
             while (count >= 0) {  //Checking validity of tiles to be replaced
                 if (!playerFrame.getLetter(swap[count])) {
                     System.out.println("Sorry one of letters input is not in the frame");
@@ -348,6 +361,7 @@ public class Scrabble {
 
             playerFrame.swap(swap, pool); //Swapping tiles
             return swap;
+
         } catch (IllegalArgumentException e) {
             return exchange(pool, playerFrame, in);//Runs the method again
         }

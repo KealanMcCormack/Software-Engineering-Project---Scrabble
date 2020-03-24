@@ -1,8 +1,4 @@
-
-
-
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Gerard Colman - 18327576
@@ -41,9 +37,6 @@ public class Frame {
      * @return String of letters in frame
      */
     public String hasLetters() {//Checks if there are any letters in the frame and returns a string of them
-        /**
-         * @return returns string of letters in frame
-         */
         if(playerTiles.isEmpty()) {
             return "No letters";
         }else {
@@ -58,12 +51,9 @@ public class Frame {
     /**
      * The method displayFrame returns a String of the
      * letters contained in the Arraylist
-     * @return letters in frame
+     * @return string of characters in the frame
      */
     public String displayFrame() {//returns a string of the characters in the frame
-        /**
-         * @return string of characters in the frame
-         */
         String temp = "";
 
         for(char a:playerTiles) {
@@ -136,10 +126,12 @@ public class Frame {
 
 
  public void swap(char[] swapping, ScrabbleBag pool) {  //Allows the player to exchange tiles,  will require more work
-    for(int count = 0;count < swapping.length;count++){
-        playerTiles.remove(swapping[count]);
-        pool.TileToBag(swapping[count]);
-    }
+     int count = 0;
+     while(swapping[count] != ' '){
+          playerTiles.remove(swapping[count]);
+          pool.TileToBag(swapping[count]);
+          count++;
+     }
   }
 	
 public boolean getLetter(char check){
