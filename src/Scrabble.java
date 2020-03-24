@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -51,7 +50,7 @@ public class Scrabble {
     }
 
     int turns = 0;  //Turn counter
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Board gameBoard = new Board();  //Instances of Classes necessary to run game
         ScrabbleBag gameBag = new ScrabbleBag();
         Frame playerOneFrame = new Frame(gameBag);
@@ -364,7 +363,7 @@ public class Scrabble {
         }
     }
 
-    private void help() throws IOException {  //Displays help file to user
+    private void help() {  //Displays help file to user
 
         try {
             File helpFile = new File("assets\\Help.txt");
