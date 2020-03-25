@@ -1,7 +1,14 @@
+import javafx.scene.image.Image;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -49,7 +56,7 @@ public class Scrabble {
     }
 
     int turns = 0;  //Turn counter
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Board gameBoard = new Board();  //Instances of Classes necessary to run game
         ScrabbleBag gameBag = new ScrabbleBag();
         Frame playerOneFrame = new Frame(gameBag);
@@ -57,7 +64,7 @@ public class Scrabble {
         Scrabble game = new Scrabble();
         Player one = new Player();
         Player two = new Player();
-        //UI ui = new UI();
+        UI ui = new UI();
 
         //Array to store player number
         Frame[] playerFrame = new Frame[]{playerOneFrame, playerTwoFrame};
@@ -108,14 +115,14 @@ public class Scrabble {
                         break;
                 default: if(input.contains("ACROSS") || input.contains("DOWN")){ //X Y across/down WORD
                     if(game.turns % 2 == 0){
-                        if(game.placement(input, playerOneFrame, gameBoard, placed)){
+                        if(game.placement(input, playerOneFrame, gameBoard, placed, ui)){
                             scoreShow = true;
                             playerOneFrame.refill(gameBag);
                         }else{
                             System.out.println("Incorrect placement, please consult the help");
                         }
                     }else{
-                        if(game.placement(input, playerTwoFrame, gameBoard, placed)){
+                        if(game.placement(input, playerTwoFrame, gameBoard, placed, ui)){
                             scoreShow = true;
                             playerTwoFrame.refill(gameBag);
                         }else{
@@ -171,7 +178,7 @@ public class Scrabble {
     }
 
 
-    public boolean placement(String input, Frame frame, Board board, ArrayList<Integer> placed){  //Place words on board
+    public boolean placement(String input, Frame frame, Board board, ArrayList<Integer> placed, UI ui) throws IOException {  //Place words on board
         placed.clear();  //Clear ArrayList of coordinates
         int X, Y;  //Coordinates of placement
         String direction, word;  //Input storage
@@ -238,18 +245,153 @@ public class Scrabble {
         }else{
             return false;
         }
-        uiPrintBoard(board);
+        uiPlacement(word,direction,X,Y,ui);
         placed.add(getScore(scoreX, scoreY, placed, direction, board));
         return true;
     }
 
-    public void uiPrintBoard(Board gameBoard){
-        for(int i = 0;i<15;i++){
-            for(int j = 0;j<15;j++){
-               switch (gameBoard.getCharVal(i,j)){
-                   case 'A':
-
-               }
+    public void uiPlacement(String word, String direction, int x, int y, UI ui) throws IOException {
+        String[] wordArr = word.split("");
+        for(int i = 0;i<wordArr.length;i++){
+            if(wordArr[i].equals("A")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\atile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("B")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\btile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("C")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\ctile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("D")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\dtile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("E")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\etile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("F")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\ftile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("G")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\gtile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("H")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\htile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("I")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\itile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("J")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\jtile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("K")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\ktile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("L")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\ltile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("M")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\mtile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("N")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\ntile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("O")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\otile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("P")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\ptile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("Q")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\qtile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("R")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\rtile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("S")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\stile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("T")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\ttile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("U")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\utile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("V")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\vtile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("W")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\wtile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("W")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\wtile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("X")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\xtile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("Y")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\ytile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals("Z")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\ztile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
+            }
+            if(wordArr[i].equals(" ")){
+                FileInputStream inputstream = new FileInputStream("..\\assets\\blanktile.png");
+                Image img = new Image(inputstream);
+                ui.setGridImage(x,y,img);
             }
         }
     }
