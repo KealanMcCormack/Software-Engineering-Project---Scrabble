@@ -141,7 +141,7 @@ public class Scrabble {
                 }
             }
 
-            if(scoreShow) {
+            if(scoreShow) {  //Displaying player scores
                 if (game.turns % 2 == 0) {
                     score = one.getScore();
                     one.increaseScore(placed.get(placed.size() - 1));
@@ -251,15 +251,15 @@ public class Scrabble {
         }else{
             return false;
         }
-        uiPlacement(word,direction,X,Y,ui);
-        uiFramePlacement(ui, frame);
+        uiPlacement(word,direction,X,Y,ui);  //Calling methods to update UI board
+        uiFramePlacement(ui, frame);         //Calling methods to update UI player frame
         placed.add(getScore(scoreX, scoreY, placed, direction, board));
         return true;
     }
 
     public void uiPlacement(String word, String direction, int x, int y, UI ui) throws IOException {
-        String[] wordArr = word.split("");
-        for(int i = 0;i<wordArr.length;i++){
+        String[] wordArr = word.split("");  //String array of the individual letters in word
+        for(int i = 0;i<wordArr.length;i++){ //For loop to check the letter in the word and place a corresponding letter on UI board
             if(direction.equals("ACROSS")){
                 x++;
             }
@@ -411,7 +411,7 @@ public class Scrabble {
 
     public void uiFramePlacement(UI ui, Frame frame) throws IOException
     {
-            if(frame.getPlayerTiles().contains('A')){
+            if(frame.getPlayerTiles().contains('A')){   //Checking if player frame contains the letter and displaying it in UI frame
                 FileInputStream inputstream = new FileInputStream("..\\assets\\atile.png");
                 Image img = new Image(inputstream);
                 ui.setPlayerFrame(img);
