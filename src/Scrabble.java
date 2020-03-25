@@ -75,6 +75,12 @@ public class Scrabble {
 
         //player 1 == 0, player 2 == 1
         while(!win){  //Game loop
+            if(game.turns % 2 == 0){
+                playerOneFrame.refill(gameBag);
+            }else{
+                playerTwoFrame.refill(gameBag);
+            }
+
             scoreShow = false;
             System.out.println(gameBoard.printBoard());  //Printing board
             System.out.println(playerFrame[game.turns % 2].displayFrame());
@@ -334,7 +340,8 @@ public class Scrabble {
 
     public char[] exchange(ScrabbleBag pool, Frame playerFrame, Scanner in){  //Exchange player tiles
         try {
-            char[] swap = new char[7];  //swap array
+            char[] swap = {' ', ' ', ' ', ' ', ' ', ' ', ' '};  //swap array
+
             int count = 0;  //Increments for each valid tile to be exchanged
             String input;  //Input for tiles to be exchanged
             System.out.println("Which letters would you like to exchange?");
@@ -399,4 +406,3 @@ public class Scrabble {
         System.exit(0);
     }
 }
-

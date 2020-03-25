@@ -127,8 +127,10 @@ public class Frame {
 
  public void swap(char[] swapping, ScrabbleBag pool) {  //Allows the player to exchange tiles,  will require more work
      int count = 0;
-     while(swapping[count] != ' '){
-          playerTiles.remove(swapping[count]);
+
+     while(swapping[count] != ' ' && count < 7){
+         System.out.println(swapping[count]);
+         playerTiles.remove(playerTiles.indexOf(swapping[count]));
           pool.TileToBag(swapping[count]);
           count++;
      }
