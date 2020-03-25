@@ -331,7 +331,7 @@
             <ImageView fitHeight="55.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" />
          </children>
       </GridPane>
-      <TextField layoutX="535.0" layoutY="615.0" prefHeight="34.0" prefWidth="206.0" promptText="Input Command/Word" style="-fx-background-color: #1565c0;" />
-      <TextArea layoutX="538.0" layoutY="13.0" prefHeight="500.0" prefWidth="200.0" style="-fx-background-color: #f0f8ff;" />
+      <TextField layoutX="535.0" layoutY="615.0" prefHeight="34.0" prefWidth="206.0" promptText="Input Command/Word" style="-fx-background-color: #eff2bf;" />
+      <TextArea layoutX="518.0" layoutY="13.0" prefHeight="500.0" prefWidth="247.0" style="-fx-background-color: #eff2bf;" />
    </children>
 </AnchorPane>
