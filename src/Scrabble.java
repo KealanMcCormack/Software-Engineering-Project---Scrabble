@@ -106,6 +106,7 @@ public class Scrabble {
                 case "PASS":  System.out.println("Turn passed");
                     break;
                 case "HELP": game.help();  //Run help method
+                    game.turns--;
                     break;
                 case "EXCHANGE": if((game.turns % 2) == 0){   //Run exchange method for given player
                     game.exchange(gameBag, playerOneFrame, in);
@@ -129,6 +130,7 @@ public class Scrabble {
                             playerOneFrame.refill(gameBag);
                         }else{
                             System.out.println("Incorrect placement, please consult the help");
+                            game.turns--;
                         }
                     }else{
                         if(game.placement(input, playerTwoFrame, gameBoard, placed, cont)){
@@ -136,6 +138,7 @@ public class Scrabble {
                             playerTwoFrame.refill(gameBag);
                         }else{
                             System.out.println("Incorrect placement, please consult the help");
+                            game.turns--;
                         }
                     }
                 }else{
@@ -159,14 +162,26 @@ public class Scrabble {
                 System.out.println("Score from that word: " + score);
             }
 
-            if(gameBag.isEmpty()){
+            if(gameBag.isEmpty()){//Checks if the game has ended
                 win = true;
             }
 
             game.turns++;  //Incrementing turn counter
         }
+
+        if(one.getScore() > two.getScore()){//Displays a winner once the gameBag is empty
+            System.out.println("Congrats to player " + one.getName());
+            System.out.println("You have won the game with a score of " + one.getScore());
+        }else if(one.getScore() < two.getScore()){
+            System.out.println("Congrats to player " + two.getName());
+            System.out.println("You have won the game with a score of " + two.getScore());
+        }else{
+            System.out.println("Its a draw");
+        }
+
         in.close();
     }
+
     public void setup(Player[] players, Scanner in){   //Setup method for start of game
 
 
@@ -218,12 +233,22 @@ public class Scrabble {
         if(!board.inBounds(X, Y, direction, word.length())){  //Invalid placement return false
             return false;
         }
+        boolean correctPlacement = false;
 
         if(direction.equals("ACROSS")){  //checking validity of placement
             for(int count = 0;count < word.length();count++){
                 if(!(board.getCharVal(X, Y + count) == word.charAt(count) || frame.getLetter(word.charAt(count)))){
                     return false;
                 }
+
+                if(board.getCharVal(X, Y + count) == word.charAt(count)){
+                    correctPlacement = true;
+                }
+            }
+
+            if(!correctPlacement && turns != 0){
+                System.out.println("Not connected to a placed tile");
+                return false;
             }
 
             for(int count = 0;count < word.length();count++){  //Placement of word and input to ArrayList for scoring
@@ -240,6 +265,15 @@ public class Scrabble {
                 if(!(board.getCharVal(X + count, Y) == word.charAt(count) || frame.getLetter(word.charAt(count)))){
                     return false;
                 }
+
+                if(board.getCharVal(X, Y + count) == word.charAt(count)){
+                    correctPlacement = true;
+                }
+            }
+
+            if(!correctPlacement && turns != 0){
+                System.out.println("Not connected to a placed tile");
+                return false;
             }
 
             for(int count = 0;count < word.length();count++){  //Placement of word and input to ArrayList for scoring
