@@ -1,7 +1,10 @@
+/*Gerard Colman - 18327576
+        Lukasz Filanowski - 18414616
+        Kealan McCormack - 18312236*/
+
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
