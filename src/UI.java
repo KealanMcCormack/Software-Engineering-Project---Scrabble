@@ -1,6 +1,7 @@
 import javafx.application.Application;
 import javafx.beans.Observable;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -37,6 +38,7 @@ public class UI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+        JFXPanel jfxpanel = new JFXPanel();
         Stage boardStage = new Stage();
         board(boardStage);
     }

@@ -260,6 +260,12 @@ public class Scrabble {
     public void uiPlacement(String word, String direction, int x, int y, UI ui) throws IOException {
         String[] wordArr = word.split("");
         for(int i = 0;i<wordArr.length;i++){
+            if(direction.equals("ACROSS")){
+                x++;
+            }
+            if(direction.equals("DOWN")){
+                y++;
+            }
             if(wordArr[i].equals("A")){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\atile.png");
                 Image img = new Image(inputstream);
@@ -395,7 +401,7 @@ public class Scrabble {
                 Image img = new Image(inputstream);
                 ui.setGridImage(x,y,img);
             }
-            if(wordArr[i].equals(" ")){
+            if(wordArr[i].equals("*")){ //Blank tile
                 FileInputStream inputstream = new FileInputStream("..\\assets\\blanktile.png");
                 Image img = new Image(inputstream);
                 ui.setGridImage(x,y,img);
@@ -674,7 +680,7 @@ public class Scrabble {
     private void help() {  //Displays help file to user
 
         try {
-            File helpFile = new File("assets\\Help.txt");
+            File helpFile = new File("..\\assets\\Help.txt");
 
             if (!helpFile.exists())
                 throw new FileNotFoundException();
