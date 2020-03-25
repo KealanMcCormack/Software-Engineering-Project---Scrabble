@@ -23,6 +23,8 @@ public class UI extends Application {
     Parent root = loader.load();
     GridPane boardGrid = (GridPane)loader.getNamespace().get("boardGrid");
     Scene boardScene = new Scene(root);
+    GridPane frameGridOne = (GridPane)loader.getNamespace().get("playerFrameOne");
+    GridPane frameGridTwo = (GridPane)loader.getNamespace().get("playerFrameTwo");
 
     public UI() throws IOException {
         Stage primaryStage = new Stage();
@@ -36,7 +38,6 @@ public class UI extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         Stage boardStage = new Stage();
-        GridPane playerOneFrame = new GridPane();
         board(boardStage);
     }
 
@@ -55,4 +56,10 @@ public class UI extends Application {
             }
         }
     }
+
+    public void setPlayerFrame(Image img, Frame frame)
+    {
+
+    }
+
 }
