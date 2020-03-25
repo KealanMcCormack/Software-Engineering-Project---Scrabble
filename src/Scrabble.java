@@ -405,145 +405,145 @@ public class Scrabble {
 
     public void uiFramePlacement(UI ui, Frame frame) throws IOException
     {
-            if(frame.getPlayerTiles().contains("A")){
+            if(frame.getPlayerTiles().contains('A')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\atile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("B")){
+            if(frame.getPlayerTiles().contains('B')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\btile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("C")){
+            if(frame.getPlayerTiles().contains('C')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\ctile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("D")){
+            if(frame.getPlayerTiles().contains('D')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\dtile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("E")){
+            if(frame.getPlayerTiles().contains('E')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\etile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("F")){
+            if(frame.getPlayerTiles().contains('F')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\ftile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("G")){
+            if(frame.getPlayerTiles().contains('G')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\gtile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("H")){
+            if(frame.getPlayerTiles().contains('H')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\htile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("I")){
+            if(frame.getPlayerTiles().contains('I')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\itile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("J")){
+            if(frame.getPlayerTiles().contains('J')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\jtile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("K")){
+            if(frame.getPlayerTiles().contains('K')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\ktile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("L")){
+            if(frame.getPlayerTiles().contains('L')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\ltile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("M")){
+            if(frame.getPlayerTiles().contains('M')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\mtile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("N")){
+            if(frame.getPlayerTiles().contains('N')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\ntile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("O")){
+            if(frame.getPlayerTiles().contains('O')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\otile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("P")){
+            if(frame.getPlayerTiles().contains('P')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\ptile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("Q")){
+            if(frame.getPlayerTiles().contains('Q')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\qtile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("R")){
+            if(frame.getPlayerTiles().contains('R')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\rtile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("S")){
+            if(frame.getPlayerTiles().contains('S')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\stile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("T")){
+            if(frame.getPlayerTiles().contains('T')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\ttile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("U")){
+            if(frame.getPlayerTiles().contains('U')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\utile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("V")){
+            if(frame.getPlayerTiles().contains('V')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\vtile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("W")){
+            if(frame.getPlayerTiles().contains('W')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\wtile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("W")){
+            if(frame.getPlayerTiles().contains('W')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\wtile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("X")){
+            if(frame.getPlayerTiles().contains('X')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\xtile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("Y")){
+            if(frame.getPlayerTiles().contains('Y')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\ytile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("Z")){
+            if(frame.getPlayerTiles().contains('Z')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\ztile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
-            if(frame.getPlayerTiles().contains("*")){
+            if(frame.getPlayerTiles().contains('*')){
                 FileInputStream inputstream = new FileInputStream("..\\assets\\blanktile.png");
                 Image img = new Image(inputstream);
-                ui.setPlayerFrame(img, frame);
+                ui.setPlayerFrame(img);
             }
     }
 

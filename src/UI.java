@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -23,8 +24,7 @@ public class UI extends Application {
     Parent root = loader.load();
     GridPane boardGrid = (GridPane)loader.getNamespace().get("boardGrid");
     Scene boardScene = new Scene(root);
-    GridPane frameGridOne = (GridPane)loader.getNamespace().get("playerFrameOne");
-    GridPane frameGridTwo = (GridPane)loader.getNamespace().get("playerFrameTwo");
+    GridPane frameGrid = (GridPane)loader.getNamespace().get("playerFrame");
 
     public UI() throws IOException {
         Stage primaryStage = new Stage();
@@ -57,9 +57,14 @@ public class UI extends Application {
         }
     }
 
-    public void setPlayerFrame(Image img, Frame frame)
+    public void setPlayerFrame(Image img)
     {
-
+        ObservableList<Node> children = frameGrid.getChildren();
+        for(Node node : children)
+        {
+            ImageView iv = (ImageView) node;
+            iv.setImage(img);
+        }
     }
 
 }
