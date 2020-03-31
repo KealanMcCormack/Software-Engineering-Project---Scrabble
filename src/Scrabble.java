@@ -126,6 +126,8 @@ public class Scrabble {
                     break;
                 case "JAZZ": game.smoothJazz();  //Run smoothJazz method (Extra method included for fun)
                     break;
+                case "NAME":
+                    playerArray[game.turns%2].setName(settingName());
                 default: if(input.contains("ACROSS") || input.contains("DOWN")){ //X Y across/down WORD
                     if(game.turns % 2 == 0){
                         if(game.placement(input, playerOneFrame, gameBoard, placed, cont)){
@@ -670,6 +672,16 @@ public class Scrabble {
         return wordScore;
     }
 
+    public static String settingName()
+    {
+        System.out.println("Enter the name you would like: ");
+        Scanner in = new Scanner(System.in);
+
+        String output = in.nextLine();
+
+        return output;
+    }
+
     public char[] exchange(ScrabbleBag pool, Frame playerFrame, Scanner in){  //Exchange player tiles
         try {
             char[] swap = {' ', ' ', ' ', ' ', ' ', ' ', ' '};  //swap array
@@ -718,9 +730,15 @@ public class Scrabble {
 
     private void help() throws IOException {  //Displays help file to user
 
-        File helpFile = new File("src\\assets\\Help.txt");
-        Desktop desktop = java.awt.Desktop.getDesktop();
-        desktop.open(helpFile);
+        try {
+            File helpFile = new File("src\\assets\\Help.txt");
+            Desktop desktop = java.awt.Desktop.getDesktop();
+            desktop.open(helpFile);
+        } catch(Exception e)
+        {
+            System.out.print("ERROR: Help file not found");
+        }
+
     }
 
     private void quit()  //Quits the game
