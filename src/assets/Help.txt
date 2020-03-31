@@ -1,3 +1,24 @@
+How to play this scrabble game
+
+Basic commands
+
+Type in - 
+  QUIT - This will end the game
+  PASS - This will pass your turn
+  EXCHANGE - Will allow you to exchange tiles
+  CHALLENGE - Allows you to challenge your opponents last word score
+  JAZZ - Will play some smooth jazz as a backing track
+  
+For placement of tiles please follow this guide
+  X Y DIRECTION WORD
+  
+Type the x co-ordinate followed by a space then the y co-ordinate
+after this type the direction (either ACROSS or DOWN) followed by a space then the word you
+are trying to place. The word includes the tiles already on the board that will be used in the 
+creation of a new word
+
+The x, y co-ordinates should be where the first letter of the word is to be placed
+
 Scrabble Rules - Scrabble Official Rules:
 When playing Scrabble, anywhere from two to four players will enjoy the game. 
 The object when playing is to score more points than other players. 
