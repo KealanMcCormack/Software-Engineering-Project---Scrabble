@@ -6,11 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed1df3f4-0d97-4b4b-baa4-0885f7f9e9fd" name="Default Changelist" comment="Added uiPrintBoard">
+    <list default="true" id="ed1df3f4-0d97-4b4b-baa4-0885f7f9e9fd" name="Default Changelist" comment="Fixed Project">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Scrabble/Board2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Scrabble/Board2.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scrabble.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scrabble.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +22,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaFXApplication" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -47,7 +44,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PATH_TO_FX$/lib" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
@@ -64,7 +61,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Scrabble">
+  <component name="RunManager" selected="Application.UI">
     <configuration name="Board" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Board" />
       <module name="Scrabble" />
@@ -112,8 +109,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Scrabble" />
         <item itemvalue="Application.UI" />
+        <item itemvalue="Application.Scrabble" />
         <item itemvalue="Application.Board" />
         <item itemvalue="Application.ScrabbleBagTest" />
         <item itemvalue="Application.GameBoard" />
@@ -231,7 +228,28 @@
       <option name="project" value="LOCAL" />
       <updated>1585144125682</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added directions for UI placement">
+      <created>1585151850791</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1585151850791</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Fixed Project">
+      <created>1585165950237</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1585165950238</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Fixed Project">
+      <created>1585171954416</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1585171954416</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,7 +280,9 @@
     <MESSAGE value="Added tile png's" />
     <MESSAGE value="Added uiPrintBoard" />
     <MESSAGE value="Completed uiPlacement" />
-    <option name="LAST_COMMIT_MESSAGE" value="Completed uiPlacement" />
+    <MESSAGE value="Added directions for UI placement" />
+    <MESSAGE value="Fixed Project" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Project" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584541696008">
