@@ -76,7 +76,7 @@ public class Scrabble {
         boolean win = false;  //Boolean to run game until bag is empty
         String input;  //Console Input
         ArrayList<Integer> placed = new ArrayList<>();  //ArrayList for storing placed tile coordinate
-         //Single word score
+        //Single word score
         boolean scoreShow;
 
         Scanner in = new Scanner(System.in);  //Scanner to take input from user
@@ -134,7 +134,7 @@ public class Scrabble {
                     break;
                 case "JAZZ": game.smoothJazz();  //Run smoothJazz method (Extra method included for fun)
                     break;
-                case "NAME":
+                case "NAME": //setting name of player to the input that is entered when prompted
                     playerArray[game.turns%2].setName(settingName());
                 default: if(input.contains("ACROSS") || input.contains("DOWN")){ //X Y across/down WORD
                     if(game.turns % 2 == 0){
@@ -693,7 +693,7 @@ public class Scrabble {
         return false;
     }
 
-    public boolean dictionaryCheck(String word){
+    public boolean dictionaryCheck(String word){  //check to make sure the word is in the dictionary
         if(!dictionarySearch(word)){
             return false;
         }
@@ -701,14 +701,14 @@ public class Scrabble {
         return true;
     }
 
-    public boolean dictionarySearch(String word){
-        char first =  word.charAt(0);
-        int length = word.length();
+    public boolean dictionarySearch(String word){  //searching dictionary for word entered by player
+        char first =  word.charAt(0); //first character in word
+        int length = word.length();  //length of word
         String check;
         FileReader file;
         try {
-            file = new FileReader("src\\assets\\sowpods.txt");
-            BufferedReader in =  new BufferedReader(file);
+            file = new FileReader("src\\assets\\sowpods.txt");  //accessing dictionary file in assets folder
+            BufferedReader in =  new BufferedReader(file);  //buffered reader
 
             while((check = in.readLine()) != null && check.charAt(0) != first);
 
@@ -724,13 +724,13 @@ public class Scrabble {
                 return false;
             }
 
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+        } catch (FileNotFoundException e) {  //handling exception if file not found
+            System.out.println("ERROR: File not found, check assets folder");
             e.printStackTrace();
         }
 
         catch(IOException ex) {
-            System.out.print("Couldn't find the file");
+            System.out.print("ERROR: Couldn't find the file");
         }
         return false;
     }
