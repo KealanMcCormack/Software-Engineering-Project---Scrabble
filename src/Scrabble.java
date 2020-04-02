@@ -7,10 +7,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
@@ -61,6 +58,7 @@ public class Scrabble {
     }
 
     int turns = 0;  //Turn counter
+    int score = 0;
     public static void main(String[] args) throws Exception {
         Board gameBoard = new Board();  //Instances of Classes necessary to run game
         ScrabbleBag gameBag = new ScrabbleBag();
@@ -78,7 +76,7 @@ public class Scrabble {
         boolean win = false;  //Boolean to run game until bag is empty
         String input;  //Console Input
         ArrayList<Integer> placed = new ArrayList<>();  //ArrayList for storing placed tile coordinate
-        int score = 0;  //Single word score
+         //Single word score
         boolean scoreShow;
 
         Scanner in = new Scanner(System.in);  //Scanner to take input from user
@@ -118,9 +116,19 @@ public class Scrabble {
                 }
                     break;
                 case "CHALLENGE": if((game.turns % 2) == 0){//presuming the challenger will be the opposing player
-                    System.out.println("Score removed: " + game.challenge(score, two));
+                    if(game.challenge(game.score, two, input)){
+                        System.out.println("Score removed: " +  game.score);
+                        game.turns--;
+                    }else{
+                        System.out.println("No score removed and turn lost");
+                    }
                 } else{
-                    System.out.println("Score removed: " + game.challenge(score, one));
+                    if(game.challenge(game.score, one, input)){
+                        System.out.println("Score removed: " +  game.score);
+                        game.turns--;
+                    }else{
+                        System.out.println("No score removed and turn lost");
+                    }
                 }
                     game.turns--;
                     break;
@@ -154,17 +162,17 @@ public class Scrabble {
 
             if(scoreShow) {  //Displaying player scores
                 if (game.turns % 2 == 0) {
-                    score = one.getScore();
-                    one.increaseScore(placed.get(placed.size() - 1));
+                    //score = one.getScore();
+                    //one.increaseScore(placed.get(placed.size() - 1));
                     System.out.println("Total score: " + one.getScore());
-                    score = one.getScore() - score;
+                    game.score = one.getScore() - game.score;
                 } else {
-                    score = two.getScore();
-                    two.increaseScore(placed.get(placed.size() - 1));
+                    //score = two.getScore();
+                    //two.increaseScore(placed.get(placed.size() - 1));
                     System.out.println("Total score: " + two.getScore());
-                    score = two.getScore() - score;
+                    game.score = two.getScore() - game.score;
                 }
-                System.out.println("Score from that word: " + score);
+                System.out.println("Score from that word: " + game.score);
             }
 
             if(gameBag.isEmpty()){//Checks if the game has ended
@@ -235,6 +243,11 @@ public class Scrabble {
         direction = inputStrings[2]; //Interpreting direction from input (across/down)
         word = inputStrings[3];         //Interpreting word from input
 
+        if(word.length() < 2){
+            System.out.println("Word must be at least 2 letters long");
+            return false;
+        }
+
         if(!board.inBounds(X, Y, direction, word.length())){  //Invalid placement return false
             return false;
         }
@@ -294,7 +307,7 @@ public class Scrabble {
         }
         contPlacement(word,direction,X,Y,cont);  //Calling methods to update cont board
         contFramePlacement(cont, frame);         //Calling methods to update cont player frame
-        placed.add(getScore(scoreX, scoreY, placed, direction, board));
+        score = getScore(scoreX, scoreY, placed, direction, board);
         return true;
     }
 
@@ -667,9 +680,59 @@ public class Scrabble {
         return score;
     }
 
-    public int challenge(int wordScore, Player player){   //Challenge the players word and subtracts score
-        player.increaseScore(-wordScore);
-        return wordScore;
+    public boolean challenge(int wordScore, Player player, String word){   //Challenge the players word and subtracts score
+        String[] inputStrings;
+        inputStrings = word.split(" ");
+
+        if(dictionaryCheck(inputStrings[4])){
+            player.increaseScore(-wordScore);
+            System.out.println("Correctly challenged, score removed");
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean dictionaryCheck(String word){
+        if(!dictionarySearch(word)){
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean dictionarySearch(String word){
+        char first =  word.charAt(0);
+        int length = word.length();
+        String check;
+        FileReader file;
+        try {
+            file = new FileReader("src\\assets\\sowpods.txt");
+            BufferedReader in =  new BufferedReader(file);
+
+            while((check = in.readLine()) != null && check.charAt(0) != first);
+
+            while((check = in.readLine()) != null && !check.equals(word) && check.charAt(0) == first) ;
+
+            if(check == null) {
+                return false;
+            }
+
+            if(check.equals(word)) {
+                return true;
+            }else {
+                return false;
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+            e.printStackTrace();
+        }
+
+        catch(IOException ex) {
+            System.out.print("Couldn't find the file");
+        }
+        return false;
     }
 
     public static String settingName()
