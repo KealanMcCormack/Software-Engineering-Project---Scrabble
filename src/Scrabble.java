@@ -74,7 +74,8 @@ public class Scrabble {
         Frame[] playerFrame = new Frame[]{playerOneFrame, playerTwoFrame};
         Player[] playerArray = new Player[]{one, two};
         boolean win = false;  //Boolean to run game until bag is empty
-        String input;  //Console Input
+        String input = "";  //Console Input
+        String previousInput = "";
         ArrayList<Integer> placed = new ArrayList<>();  //ArrayList for storing placed tile coordinate
         //Single word score
         boolean scoreShow;
@@ -90,6 +91,10 @@ public class Scrabble {
                 playerOneFrame.refill(gameBag);
             }else{
                 playerTwoFrame.refill(gameBag);
+            }
+
+            if(input.contains("ACROSS") || input.contains("DOWN")){
+                previousInput = input;
             }
 
             scoreShow = false;
@@ -116,14 +121,14 @@ public class Scrabble {
                 }
                     break;
                 case "CHALLENGE": if((game.turns % 2) == 0){//presuming the challenger will be the opposing player
-                    if(game.challenge(game.score, two, input)){
+                    if(game.challenge(game.score, two, gameBoard, previousInput, placed)){
                         System.out.println("Score removed: " +  game.score);
                         game.turns--;
                     }else{
                         System.out.println("No score removed and turn lost");
                     }
                 } else{
-                    if(game.challenge(game.score, one, input)){
+                    if(game.challenge(game.score, one, gameBoard, previousInput, placed)){
                         System.out.println("Score removed: " +  game.score);
                         game.turns--;
                     }else{
@@ -133,9 +138,12 @@ public class Scrabble {
                     game.turns--;
                     break;
                 case "JAZZ": game.smoothJazz();  //Run smoothJazz method (Extra method included for fun)
+                    game.turns--;
                     break;
                 case "NAME": //setting name of player to the input that is entered when prompted
                     playerArray[game.turns%2].setName(settingName());
+                    game.turns--;
+                    break;
                 default: if(input.contains("ACROSS") || input.contains("DOWN")){ //X Y across/down WORD
                     if(game.turns % 2 == 0){
                         if(game.placement(input, playerOneFrame, gameBoard, placed, cont)){
@@ -680,25 +688,23 @@ public class Scrabble {
         return score;
     }
 
-    public boolean challenge(int wordScore, Player player, String word){   //Challenge the players word and subtracts score
+    public boolean challenge(int wordScore, Player player, Board board, String word, ArrayList<Integer> placed){   //Challenge the players word and subtracts score
         String[] inputStrings;
         inputStrings = word.split(" ");
 
-        if(dictionaryCheck(inputStrings[4])){
+        if(!dictionarySearch(inputStrings[3])){
             player.increaseScore(-wordScore);
             System.out.println("Correctly challenged, score removed");
             return true;
         }
 
-        return false;
-    }
-
-    public boolean dictionaryCheck(String word){  //check to make sure the word is in the dictionary
-        if(!dictionarySearch(word)){
-            return false;
+        if(inputStrings[2] == "ACROSS"){
+            int x = Integer.parseInt(inputStrings[0]);
+            int count = 0;
+            
         }
 
-        return true;
+        return false;
     }
 
     public boolean dictionarySearch(String word){  //searching dictionary for word entered by player
