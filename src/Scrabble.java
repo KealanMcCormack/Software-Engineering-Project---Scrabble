@@ -691,6 +691,7 @@ public class Scrabble {
     public boolean challenge(int wordScore, Player player, Board board, String word, ArrayList<Integer> placed){   //Challenge the players word and subtracts score
         String[] inputStrings;
         inputStrings = word.split(" ");
+        String toCheck = "";
 
         if(!dictionarySearch(inputStrings[3])){
             player.increaseScore(-wordScore);
@@ -698,10 +699,60 @@ public class Scrabble {
             return true;
         }
 
-        if(inputStrings[2] == "ACROSS"){
+        if(inputStrings[2].equals("ACROSS")){
             int x = Integer.parseInt(inputStrings[0]);
-            int count = 0;
-            
+
+            for(int count = 0;count < placed.size();count++){
+                if(board.getCharVal(x + 1, placed.get(count)) != ' '){
+                    while(board.getCharVal(x++, placed.get(count)) != ' '){
+                        toCheck = board.getCharVal(x, placed.get(count)) + toCheck;
+                    }
+                }
+
+                x = Integer.parseInt(inputStrings[0]);
+                toCheck = board.getCharVal(x, placed.get(count)) + toCheck;
+
+                if(board.getCharVal(x - 1, placed.get(count)) != ' '){
+                    while(board.getCharVal(x--, placed.get(count)) != ' '){
+                        toCheck = toCheck + board.getCharVal(x, placed.get(count));
+                    }
+                }
+                if(toCheck.length() > 1){
+                    if(!dictionarySearch(toCheck)){
+                        player.increaseScore(-wordScore);
+                        System.out.println("Correctly challenged, score removed");
+                        return true;
+                    }
+                }
+            }
+        }
+
+        if(inputStrings[2].equals("DOWN")){
+            int y = Integer.parseInt(inputStrings[1]);
+
+            for(int count = 0;count < placed.size();count++){
+                if(board.getCharVal(placed.get(count), y + 1) != ' '){
+                    while(board.getCharVal(placed.get(count), y++) != ' '){
+                        toCheck = board.getCharVal(placed.get(count), y) + toCheck;
+                    }
+                }
+
+                y = Integer.parseInt(inputStrings[1]);
+                toCheck = board.getCharVal(placed.get(count), y) + toCheck;
+
+                if(board.getCharVal(placed.get(count), y - 1) != ' '){
+                    while(board.getCharVal(placed.get(count), y--) != ' '){
+                        toCheck = toCheck + board.getCharVal(placed.get(count), y);
+                    }
+                }
+                if(toCheck.length() > 1){
+                    if(!dictionarySearch(toCheck)){
+                        player.increaseScore(-wordScore);
+                        System.out.println("Correctly challenged, score removed");
+                        return true;
+                    }
+                }
+            }
         }
 
         return false;
@@ -709,7 +760,6 @@ public class Scrabble {
 
     public boolean dictionarySearch(String word){  //searching dictionary for word entered by player
         char first =  word.charAt(0); //first character in word
-        int length = word.length();  //length of word
         String check;
         FileReader file;
         try {
