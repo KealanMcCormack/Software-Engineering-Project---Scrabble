@@ -718,7 +718,7 @@ public class Scrabble {
                     }
                 }
                 if(toCheck.length() > 1){
-                    if(!dictionarySearch(toCheck)){
+                    if(dictionarySearch(toCheck)){
                         player.increaseScore(-wordScore);
                         System.out.println("Correctly challenged, score removed");
                         return true;
@@ -746,7 +746,7 @@ public class Scrabble {
                     }
                 }
                 if(toCheck.length() > 1){
-                    if(!dictionarySearch(toCheck)){
+                    if(dictionarySearch(toCheck)){
                         player.increaseScore(-wordScore);
                         System.out.println("Correctly challenged, score removed");
                         return true;
@@ -774,11 +774,7 @@ public class Scrabble {
                 return false;
             }
 
-            if(check.equals(word)) {
-                return true;
-            }else {
-                return false;
-            }
+            return check.equals(word);
 
         } catch (FileNotFoundException e) {  //handling exception if file not found
             System.out.println("ERROR: File not found, check assets folder");
