@@ -127,15 +127,14 @@ public class Scrabble {
                     }else{
                         System.out.println("No score removed and turn lost");
                     }
-                } else{
-                    if(game.challenge(game.score, one, gameBoard, previousInput, placed)){
-                        System.out.println("Score removed: " +  game.score);
+                } else {
+                    if (game.challenge(game.score, one, gameBoard, previousInput, placed)) {
+                        System.out.println("Score removed: " + game.score);
                         game.turns--;
-                    }else{
+                    } else {
                         System.out.println("No score removed and turn lost");
                     }
                 }
-                    game.turns--;
                     break;
                 case "JAZZ": game.smoothJazz();  //Run smoothJazz method (Extra method included for fun)
                     game.turns--;
@@ -313,8 +312,8 @@ public class Scrabble {
         }else{
             return false;
         }
-        contPlacement(word,direction,X,Y,cont);  //Calling methods to update cont board
-        contFramePlacement(cont, frame);         //Calling methods to update cont player frame
+        //contPlacement(word,direction,X,Y,cont);  //Calling methods to update cont board
+        //contFramePlacement(cont, frame);         //Calling methods to update cont player frame
         score = getScore(scoreX, scoreY, placed, direction, board);
         return true;
     }
