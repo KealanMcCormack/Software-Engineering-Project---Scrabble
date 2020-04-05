@@ -556,9 +556,8 @@ public class Scrabble {
     }
 
     private void help() throws IOException {  //Displays help file to user
-
         try {
-            File helpFile = new File("src\\assets\\Help.txt");
+            File helpFile = new File("Dumb-Dumber-Dumbest\\src\\assets\\Help.txt");
             Desktop desktop = java.awt.Desktop.getDesktop();
             desktop.open(helpFile);
         } catch(Exception e)
@@ -576,142 +575,142 @@ public class Scrabble {
     public void contFramePlacement(Board2Controller cont, Frame frame) throws IOException
     {
         if(frame.getPlayerTiles().contains('A')){   //Checking if player frame contains the letter and displaying it in cont frame
-            FileInputStream inputstream = new FileInputStream("src\\assets\\atile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\atile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('B')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\btile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\btile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('C')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\ctile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\ctile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('D')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\dtile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\dtile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('E')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\etile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\etile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('F')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\ftile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\ftile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('G')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\gtile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\gtile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('H')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\htile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\htile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('I')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\itile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\itile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('J')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\jtile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\jtile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('K')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\ktile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\ktile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('L')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\ltile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\ltile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('M')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\mtile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\mtile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('N')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\ntile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\ntile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('O')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\otile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\otile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('P')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\ptile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\ptile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('Q')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\qtile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\qtile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('R')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\rtile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\rtile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('S')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\stile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\stile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('T')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\ttile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\ttile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('U')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\utile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\utile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('V')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\vtile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\vtile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('W')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\wtile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\wtile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('W')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\wtile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\wtile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('X')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\xtile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\xtile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('Y')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\ytile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\ytile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('Z')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\ztile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\ztile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
         if(frame.getPlayerTiles().contains('*')){
-            FileInputStream inputstream = new FileInputStream("src\\assets\\blanktile.png");
+            FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\blanktile.png");
             Image img = new Image(inputstream);
             cont.setPlayerFrame(img);
         }
