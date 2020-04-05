@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.net.MalformedURLException;
@@ -402,7 +403,7 @@ public class Scrabble {
 
     public boolean challenge(int wordScore, Player player, Board board, String word, ArrayList<Integer> placed){   //Challenge the players word and subtracts score
         String[] inputStrings;
-        inputStrings = word.split(" ");
+        inputStrings = word.split("");
         String toCheck = "";
 
         if(!dictionarySearch(inputStrings[3])){
@@ -473,10 +474,10 @@ public class Scrabble {
     public boolean dictionarySearch(String word){  //searching dictionary for word entered by player
         char first =  word.charAt(0); //first character in word
         String check;
-        FileReader file;
         try {
-            file = new FileReader("src\\assets\\sowpods.txt");  //accessing dictionary file in assets folder
-            BufferedReader in =  new BufferedReader(file);  //buffered reader
+            InputStream file = this.getClass().getResourceAsStream("sowpods.txt");
+            InputStreamReader isr = new InputStreamReader(file);
+            BufferedReader in =  new BufferedReader(isr);  //buffered reader
 
             while((check = in.readLine()) != null && check.charAt(0) != first);
 
@@ -557,12 +558,17 @@ public class Scrabble {
 
     private void help() throws IOException {  //Displays help file to user
         try {
-            File helpFile = new File("Dumb-Dumber-Dumbest\\src\\assets\\Help.txt");
-            Desktop desktop = java.awt.Desktop.getDesktop();
-            desktop.open(helpFile);
+//            File helpFile = new File("\\src\\assets\\Help.txt");
+//            Desktop desktop = java.awt.Desktop.getDesktop();
+//            desktop.open(helpFile);
+            InputStream inputStream = this.getClass().getResourceAsStream("Help.txt");
+            Scanner scanner = new Scanner(inputStream);
+            while(scanner.hasNext()){
+                System.out.println(scanner.nextLine());
+            }
         } catch(Exception e)
         {
-            System.out.print("ERROR: Help file not found");
+            System.out.println("ERROR: Help file not found");
         }
 
     }
@@ -726,7 +732,7 @@ public class Scrabble {
                 y++;
             }
             if(wordArr[i].equals("A")){
-                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\atile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\btile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }

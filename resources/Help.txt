@@ -1,0 +1,136 @@
+How to play this scrabble game
+
+Basic commands
+
+Type in - 
+  QUIT - This will end the game
+  PASS - This will pass your turn
+  EXCHANGE - Will allow you to exchange tiles
+  CHALLENGE - Allows you to challenge your opponents last word score
+  JAZZ - Will play some smooth jazz as a backing track
+  
+For placement of tiles please follow this guide
+  X Y DIRECTION WORD
+  
+Type the x co-ordinate followed by a space then the y co-ordinate
+after this type the direction (either ACROSS or DOWN) followed by a space then the word you
+are trying to place. The word includes the tiles already on the board that will be used in the 
+creation of a new word
+
+The x, y co-ordinates should be where the first letter of the word is to be placed
+
+Scrabble Rules - Scrabble Official Rules:
+When playing Scrabble, anywhere from two to four players will enjoy the game. 
+The object when playing is to score more points than other players. 
+As words are placed on the game board, points are collected and each letter that is used in the game will have a different point value. 
+The main strategy is to play words that have the highest possible score based on the combination of letters.
+
+
+The Scrabble Board:
+A standard Scrabble board will consist of cells that are located in a large square grid.
+The board offers 15 cells high and 15 cells wide. 
+The tiles used on the game will fit in each cell on the board.
+
+
+Scrabble Tiles:
+There are 100 tiles that are used in the game and 98 of them will contain letters and point values.
+There are 2 blank tiles that can be used as wild tiles to take the place of any letter. 
+When a blank is played, it will remain in the game as the letter it substituted for.
+
+Different letters in the game will have various point values and this will depend on how rare the letter is and how difficult it may be to lay that letter. 
+Blank tiles will have no point values.
+
+
+Tile Values:
+Below are the point values for each letter that is used in a Scrabble game.
+
+0 Points - Blank tile.
+
+1 Point - A, E, I, L, N, O, R, S, T and U.
+
+2 Points - D and G.
+
+3 Points - B, C, M and P.
+
+4 Points - F, H, V, W and Y.
+
+5 Points - K.
+
+8 Points - J and X.
+
+10 Points - Q and Z.
+
+
+Extra Point Values:
+When looking at the board, players will see that some squares offer multipliers. 
+Should a tile be placed on these squares, the value of the tile will be multiplied by 2x or 3x. 
+Some squares will also multiply the total value of the word and not just the single point value of one tile.
+
+Double Letter Scores - The light blue cells in the board are isolated and when these are used, they will double the value of the tile placed on that square.
+
+Triple Letter Score - The dark blue cell in the board will be worth triple the amount, so any tile placed here will earn more points.
+
+Double Word Score - When a cell is light red in colour, it is a double word cell and these run diagonally on the board, towards the four corners. 
+When a word is placed on these squares, the entire value of the word will be doubled.
+
+Triple Word Score - The dark red square is where the high points can be earned as this will triple the word score. Placing any word on these squares will boos points drastically. These are found on all four sides of the board and are equidistant from the corners.
+
+One Single Use - When using the extra point squares on the board, they can only be used one time. 
+If a player places a word here, it cannot be used as a multiplier by placing another word on the same square.
+
+
+Starting the Game:
+Without looking at any of the tiles in the bag, players will take one tile. The player that has the letter that is closest to “A” will begin the game. A blank tile will win the start of the game. The tiles are them replaced to the bag and used in the remainder of the game.
+
+Every player will start their turn by drawing seven tiles from the Scrabble bag. There are three options during any turn. The player can place a word, they can exchange tiles for new tiles or they can choose to pass. In most cases, players will try to place a word as the other two options will result in no score.
+
+When a player chooses to exchange tiles, they can choose to exchange one or all of the tiles they currently hold. After tiles are exchanged, the turn is over and players will have to wait until their next turn to place a word on the board.
+
+Players can choose to pass at any time. They will forfeit that turn and hope to be able to play the next time. If any player passes two times in a row, the game will end and the one with the highest score will win.
+
+
+The First Word Score:
+When the game begins, the first player will place their word on the star spin in the centre of the board. 
+The star is a double square and will offer a double word score. 
+All players following will build their words off of this word, extending the game to other squares on the board.
+
+Play continues in a clockwise direction around the Scrabble board.
+
+
+Replacing Scrabble Tiles:
+Once tiles are played on the board, players will draw new tiles to replace those. 
+Players will always have seven tiles during the game. 
+Drawing tiles is always done without looking into the bag so that the letters are always unknown.
+
+
+The Fifty Point Bonus:
+Exciting rewards can come when players use all seven tiles to create a word on the board. 
+When this happens, players will receive a 50 point bonus, in addition to the value of the word. 
+If the game is near the end and players are not holding seven tiles, they do not get the bonus for using all of their tiles. 
+This is only collected for seven letter words placed.
+
+
+The End of a Scrabble Game:
+Once all tiles are gone from the bag and a single player has placed all of their tiles, the game will end and the player with the highest score wins.
+
+
+Tallying Scrabble Scores:
+When the game ends, each player will count all points that are remaining on their tiles that have not been played. 
+This amount will be deducted from the final score.
+
+An added bonus is awarded to the player that ended the game and has no remaining tiles. The tile values of all remaining players will be added to the score of the player who is out of tiles to produce the final score for the game.
+
+The Scrabble player with the highest score after all final scores are tallied wins.
+
+
+Accepted Scrabble Words
+Any word that is found in a standard English dictionary can be used in the game of Scrabble. 
+There are also Official Scrabble Dictionaries that can be purchased for more word options.
+
+There are some words that are not allowed to be played and these include suffixes, prefixes and abbreviations. 
+Any word that requires the use of a hyphen or apostrophe cannot be played in the game. 
+Any word that required the use of a capital letter is not allowed.
+
+When playing an English version of the game, foreign words are not allowed to be placed on the board. 
+However, if the foreign word does appear in a standard English dictionary, it is allowed. 
+The reason for this is due to the fact that the word is spoken enough and is considered part of the English language.
