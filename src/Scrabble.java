@@ -59,7 +59,7 @@ public class Scrabble {
 
 
     int turns = 0;  //Turn counter
-    int score = 0;
+    int score = 0;  //Tracks score
     public static void main(String[] args) throws Exception {
 
         Board gameBoard = new Board();  //Instances of Classes necessary to run game
@@ -405,16 +405,16 @@ public class Scrabble {
         inputStrings = word.split(" ");
         String toCheck = "";
 
-        if(!dictionarySearch(inputStrings[3])){
-            player.increaseScore(-wordScore);
+        if(!dictionarySearch(inputStrings[3])){//Checks word that was played
+            player.increaseScore(-wordScore);//Removes score
             System.out.println("Correctly challenged, score removed");
             return true;
         }
 
-        if(inputStrings[2].equals("ACROSS")){
+        if(inputStrings[2].equals("ACROSS")){//Checks words that are adjacent to placed tiles
             int x = Integer.parseInt(inputStrings[0]);
 
-            for(int count = 0;count < placed.size();count++){
+            for(int count = 0;count < placed.size();count++){//Checks above placed tiles
                 if(board.getCharVal(x + 1, placed.get(count)) != ' '){
                     while(board.getCharVal(x++, placed.get(count)) != ' '){
                         toCheck = board.getCharVal(x, placed.get(count)) + toCheck;
@@ -424,13 +424,13 @@ public class Scrabble {
                 x = Integer.parseInt(inputStrings[0]);
                 toCheck = board.getCharVal(x, placed.get(count)) + toCheck;
 
-                if(board.getCharVal(x - 1, placed.get(count)) != ' '){
+                if(board.getCharVal(x - 1, placed.get(count)) != ' '){//Checks below placed tiles
                     while(board.getCharVal(x--, placed.get(count)) != ' '){
                         toCheck = toCheck + board.getCharVal(x, placed.get(count));
                     }
                 }
                 if(toCheck.length() > 1){
-                    if(dictionarySearch(toCheck)){
+                    if(dictionarySearch(toCheck)){//Checks the word found against the dictionary
                         player.increaseScore(-wordScore);
                         System.out.println("Correctly challenged, score removed");
                         return true;
@@ -439,10 +439,10 @@ public class Scrabble {
             }
         }
 
-        if(inputStrings[2].equals("DOWN")){
+        if(inputStrings[2].equals("DOWN")){//Checks words that are adjacent to placed tiles
             int y = Integer.parseInt(inputStrings[1]);
 
-            for(int count = 0;count < placed.size();count++){
+            for(int count = 0;count < placed.size();count++){//Checks letters adjacent to form a word
                 if(board.getCharVal(placed.get(count), y + 1) != ' '){
                     while(board.getCharVal(placed.get(count), y++) != ' '){
                         toCheck = board.getCharVal(placed.get(count), y) + toCheck;
@@ -452,7 +452,7 @@ public class Scrabble {
                 y = Integer.parseInt(inputStrings[1]);
                 toCheck = board.getCharVal(placed.get(count), y) + toCheck;
 
-                if(board.getCharVal(placed.get(count), y - 1) != ' '){
+                if(board.getCharVal(placed.get(count), y - 1) != ' '){//Checks letters adjacent to form a word
                     while(board.getCharVal(placed.get(count), y--) != ' '){
                         toCheck = toCheck + board.getCharVal(placed.get(count), y);
                     }
