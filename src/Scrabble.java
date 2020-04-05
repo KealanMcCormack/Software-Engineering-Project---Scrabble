@@ -36,7 +36,7 @@ public class Scrabble {
     }
 
     public int multiplierWord(int score, int x, int y, Board board){    //Multiplier calculator for special tiles
-         switch (board.getTileVal(x, y)){
+        switch (board.getTileVal(x, y)){
             case DoubleWord: score += score;
                 break;
             case TripleWord: score += (score * 2);
@@ -176,7 +176,7 @@ public class Scrabble {
 
             if(scoreShow) {  //Displaying player scores
                 if (game.turns % 2 == 0) {
-                   one.increaseScore(game.score);
+                    one.increaseScore(game.score);
                     System.out.println("Total score: " + one.getScore());
 
                 } else {
@@ -727,142 +727,142 @@ public class Scrabble {
                 y++;
             }
             if(wordArr[i].equals("A")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\atile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\atile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("B")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\btile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\btile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("C")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\ctile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\ctile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("D")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\dtile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\dtile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("E")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\etile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\etile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("F")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\ftile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\ftile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("G")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\gtile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\gtile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("H")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\htile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\htile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("I")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\itile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\itile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("J")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\jtile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\jtile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("K")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\ktile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\ktile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("L")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\ltile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\ltile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("M")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\mtile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\mtile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("N")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\ntile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\ntile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("O")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\otile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\otile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("P")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\ptile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\ptile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("Q")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\qtile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\qtile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("R")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\rtile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\rtile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("S")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\stile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\stile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("T")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\ttile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\ttile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("U")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\utile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\utile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("V")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\vtile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\vtile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("W")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\wtile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\wtile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("W")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\wtile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\wtile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("X")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\xtile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\xtile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("Y")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\ytile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\ytile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("Z")){
-                FileInputStream inputstream = new FileInputStream("src\\assets\\ztile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\ztile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
             if(wordArr[i].equals("*")){ //Blank tile
-                FileInputStream inputstream = new FileInputStream("src\\assets\\blanktile.png");
+                FileInputStream inputstream = new FileInputStream("Dumb-Dumber-Dumbest\\src\\assets\\blanktile.png");
                 Image img = new Image(inputstream);
                 cont.setGridImage(x,y,img);
             }
