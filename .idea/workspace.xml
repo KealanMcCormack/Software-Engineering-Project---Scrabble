@@ -8,8 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ed1df3f4-0d97-4b4b-baa4-0885f7f9e9fd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bot/Bot0.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/Bot0.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bot/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/UserInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bot/Dictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/Dictionary.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +64,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.FUCKme">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Board" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Board" />
       <module name="Scrabble" />
@@ -81,17 +80,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Scrabble" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Scrabble" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Bot.Main" />
       <module name="Scrabble" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\javafx-sdk-14\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Bot.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ScrabbleBagTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ScrabbleBagTest" />
+    <configuration name="Scrabble" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Scrabble" />
       <module name="Scrabble" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\javafx-sdk-14\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -106,18 +111,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.Board" />
-      <item itemvalue="Application.ScrabbleBagTest" />
       <item itemvalue="Application.UI" />
       <item itemvalue="Application.Scrabble" />
       <item itemvalue="Application.FUCKme" />
+      <item itemvalue="Application.Main" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.FUCKme" />
         <item itemvalue="Application.UI" />
         <item itemvalue="Application.Scrabble" />
         <item itemvalue="Application.Board" />
-        <item itemvalue="Application.ScrabbleBagTest" />
       </list>
     </recent_temporary>
   </component>
@@ -285,7 +290,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586528010142</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Added bot files">
+      <created>1586528481687</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1586528481687</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
