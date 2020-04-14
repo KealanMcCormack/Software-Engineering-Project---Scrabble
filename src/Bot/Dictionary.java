@@ -1,7 +1,6 @@
 package Bot;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -13,7 +12,7 @@ public class Dictionary implements DictionaryAPI {
 
     Dictionary() throws FileNotFoundException {
         root = new Node();
-        FileInputStream inputFile = new FileInputStream("resources\\sowpods.txt");
+        File inputFile = new File(inputFileName);
         Scanner in = new Scanner(inputFile);
         while (in.hasNextLine()) {
             String word = in.nextLine();

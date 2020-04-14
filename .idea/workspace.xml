@@ -8,7 +8,28 @@
   <component name="ChangeListManager">
     <list default="true" id="ed1df3f4-0d97-4b4b-baa4-0885f7f9e9fd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bot/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bot/BoardAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/BoardAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bot/Bot0.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/Bot0.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bot/Bot1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/Bot1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bot/BotAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/BotAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bot/Bots.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/Bots.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bot/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/Coordinates.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Bot/Dictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/Dictionary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bot/DictionaryAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/DictionaryAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bot/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/Frame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bot/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bot/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bot/OpponentAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/OpponentAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bot/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bot/PlayerAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/PlayerAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bot/Pool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/Pool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bot/Scrabble.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/Scrabble.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bot/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/Square.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bot/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bot/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/UserInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bot/UserInterfaceAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/UserInterfaceAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bot/Word.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bot/Word.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -297,7 +318,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586528481687</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Fixing Chris's mistakes">
+      <created>1586528981666</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1586528981666</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -334,7 +362,8 @@
     <MESSAGE value="Completed Jar for Assignment 4" />
     <MESSAGE value="Fixed Assignment 4" />
     <MESSAGE value="Added bot files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added bot files" />
+    <MESSAGE value="Fixing Chris's mistakes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing Chris's mistakes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584541696008">
