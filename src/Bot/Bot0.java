@@ -1,5 +1,7 @@
 package Bot;
 
+import java.util.ArrayList;
+
 public class Bot0 implements BotAPI {
 
     // The public API of Bot must not change
@@ -51,5 +53,7 @@ public class Bot0 implements BotAPI {
         turnCount++;
         return command;
     }
+    public ArrayList searchDictionary(ArrayList list){
 
+    }
 }
