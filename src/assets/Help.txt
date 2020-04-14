@@ -8,6 +8,7 @@ Type in -
   EXCHANGE - Will allow you to exchange tiles
   CHALLENGE - Allows you to challenge your opponents last word score
   JAZZ - Will play some smooth jazz as a backing track
+  NAME - Will allow to change name of player, the name you wish to change your name to can be entered when prompted
   
 For placement of tiles please follow this guide
   X Y DIRECTION WORD
