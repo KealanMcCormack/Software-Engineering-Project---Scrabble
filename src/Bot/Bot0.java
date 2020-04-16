@@ -1,6 +1,7 @@
 package Bot;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Bot0 implements BotAPI {
 
@@ -53,7 +54,31 @@ public class Bot0 implements BotAPI {
         turnCount++;
         return command;
     }
-    public ArrayList searchDictionary(ArrayList list){
+     /**
+      * 1. Get Frame Reference - DONE
+      * 2. Fill * in list with letters from frame
+      * 3. if letter made is a word put into outlist
+      * 4. if not try again
+      * 5. return outlist
+      * */
+    public ArrayList searchDictionary(ArrayList<String> list){
+        ArrayList<String> outList = new ArrayList<>(); //Output
+        int listSize = list.size();
+        String test = makeWord(list.get(0));
+        System.out.println(test);
+    }
 
+    /*Takes in a string with * and returns string with letters in the *'s place*/
+    private String makeWord(String input){
+        char[] inputArr = input.toCharArray();
+        Random random = new Random();
+        String frame = me.getFrameAsString(); //Getting player frame
+        for(int i = 0;i<input.length();i++){
+            if(inputArr[i] != '*'){ //Incrementing pointer if the letter is already set
+                i++;
+            }
+            inputArr[i] = frame.charAt(random.nextInt(frame.length())); //Fills a section of the array with a letter from the frame
+        }
+        return inputArr.toString();
     }
 }
