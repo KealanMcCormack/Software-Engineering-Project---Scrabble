@@ -66,6 +66,7 @@ public class Bot0 implements BotAPI {
         int listSize = list.size();
         String test = makeWord(list.get(0));
         System.out.println(test);
+        return outList;
     }
 
     /*Takes in a string with * and returns string with letters in the *'s place*/
@@ -95,21 +96,127 @@ public class Bot0 implements BotAPI {
                 }
             }
         }
-
         //Figure out what placements are available
 
         for(int i = 0;i < 15;i++){ //Fills the array with the current board layout
             for(int j = 0;j < 15;j++){
                 if(array[i][j] != '*'){
                     //Add a helper to make the strings to be added to the array being returned
-                    returnArray.addAll();
+                    returnArray.addAll(makeWordStringAcross(i, j, array));
+                }
+            }
+        }
+        return returnArray;
+    }
 
+    public ArrayList<String> makeWordStringAcross(int row, int column, char[][] array){
+        ArrayList<String> output = new ArrayList<String>();  //output array list
+        int count = 0;
+        int i;
 
+        for(i = column; i < 15; i++)  //count number of blank squares for potential placement
+        {
+            if(array[row][i] == '*')
+            {
+                count++;
 
+                if(count == 7)  //once 7 tile count is exceeded, break the loop
+                {
+                    break;
                 }
             }
         }
 
+        if(i+1 < 15 && array[row][i+1] != '*')  //if the potential word has a letter immediately after the end coordinate, end coordinate increased to encompass extra letters
+        {
+            i++;
+            while(i < 15 && array[row][i] != '*')
+            {
+                i++;
+            }
+        }
 
+        for(int x = count; x > 0; x--)  //starting from end coordinate, goes backwards across the row, removing potential placement spaces
+        {
+            output.add(stringMakerAcross(row, column, i, array));  //saving potential placement options to output ArrayList
+            i--;
+
+            while(array[row][i] != '*')
+            {
+                i--;
+            }
+        }
+
+        return output;
+    }
+
+    public ArrayList<String> makeWordStringDown(int row, int column, char[][] array){
+        ArrayList<String> output = new ArrayList<String>();  //output array list
+        int count = 0;
+        int i;
+
+        for(i = row; i < 15; i++)  //count number of blank squares for potential placement
+        {
+            if(array[i][column] == '*')
+            {
+                count++;
+
+                if(count == 7)  //once 7 tile count is exceeded, break the loop
+                {
+                    break;
+                }
+            }
+        }
+
+        if(i+1 < 15 && array[i+1][column] != '*')  //if the potential word has a letter immediately after the end coordinate, end coordinate increased to encompass extra letters
+        {
+            i++;
+            while(i < 15 && array[i][column] != '*')
+            {
+                i++;
+            }
+        }
+
+        for(int x = count; x > 0; x--)  //starting from end coordinate, goes backwards across the row, removing potential placement spaces
+        {
+            output.add(stringMakerDown(row, i, column, array));  //saving potential placement options to output ArrayList
+            i--;
+
+            while(array[i][column] != '*')
+            {
+                i--;
+            }
+        }
+
+        return output;
+    }
+
+
+    public String stringMakerAcross(int row, int startColumn, int endColumn, char[][] array)
+    {
+        String output = "";  //output string
+        output += (char)(row+65);  //adding row coordinate as letter
+        output += startColumn + " A ";  //adding column and indicator if word is down or across
+
+        for(int i = startColumn; i <= endColumn; i++)  //adding spaces between the 2 coordinates to output string
+        {
+            output += array[row][i];
+        }
+
+        return output;
+    }
+
+    public String stringMakerDown(int startRow, int endRow, int column, char[][] array)
+    {
+        String output = "";  //output string
+        output += (char)(startRow+65);  //adding row coordinate as letter
+        output += column + " D ";  //adding column and indicator if word is down or across
+
+        for(int i = startRow; i <= endRow; i++)   //adding spaces between the 2 coordinates to output string
+        {
+            output += array[i][column];
+        }
+
+        return output;
     }
 }
