@@ -81,4 +81,35 @@ public class Bot0 implements BotAPI {
         }
         return inputArr.toString();
     }
+
+    public ArrayList<String> placements(){
+        char array[][] = new char[15][15];
+        ArrayList<String> returnArray = new ArrayList<String>();
+
+        for(int i = 0;i < 15;i++){ //Fills the array with the current board layout
+            for(int j = 0;j < 15;j++){
+                if(board.getSquareCopy(i,j).getTile().getLetter() == '_'){
+                    array[i][j] = '*';
+                }else{
+                    array[i][j] = board.getSquareCopy(i,j).getTile().getLetter();
+                }
+            }
+        }
+
+        //Figure out what placements are available
+
+        for(int i = 0;i < 15;i++){ //Fills the array with the current board layout
+            for(int j = 0;j < 15;j++){
+                if(array[i][j] != '*'){
+                    //Add a helper to make the strings to be added to the array being returned
+                    returnArray.addAll();
+
+
+
+                }
+            }
+        }
+
+
+    }
 }
