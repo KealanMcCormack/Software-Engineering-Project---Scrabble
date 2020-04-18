@@ -1,6 +1,7 @@
 package Bot;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Bot0 implements BotAPI {
@@ -64,27 +65,52 @@ public class Bot0 implements BotAPI {
     public ArrayList searchDictionary(ArrayList<String> list){
         ArrayList<String> outList = new ArrayList<>(); //Output
         int listSize = list.size();
-        String test = makeWord(list.get(0));
-        System.out.println(test);
+        for(int i = 0;i<listSize;i++){
+            boolean isWord = false;
+            while(!isWord){
+                String newWord = makeWord(list.get(i)); //Generate a random new word
+                Word temp = new Word(0,0,true, newWord); //making a new word Object
+                ArrayList<Word> checkingList = new ArrayList<>(); //List to pass to areWords function
+                checkingList.add(temp);
+                isWord = dictionary.areWords(checkingList);
+                if(isWord){
+                    outList.add(newWord);
+                }
+            }
+        }
         return outList;
     }
 
     /*Takes in a string with * and returns string with letters in the *'s place*/
-    private String makeWord(String input){
+    private String makeWord(String input) {
         char[] inputArr = input.toCharArray();
+        ArrayList<Integer> usedLetterIndex = new ArrayList<>(); //List of used numbers
+        usedLetterIndex.add(-1); //making sure the random number generation enters the loop on the first letter
+        int temp = 0;
+        //int lowerBounds = 0;
         Random random = new Random();
         String frame = me.getFrameAsString(); //Getting player frame
-        for(int i = 0;i<input.length();i++){
-            if(inputArr[i] != '*'){ //Incrementing pointer if the letter is already set
+        for (int i = 0; i < input.length(); i++) {
+            if (inputArr[i] != '*') { //Incrementing pointer if the letter is already set
                 i++;
             }
-            inputArr[i] = frame.charAt(random.nextInt(frame.length())); //Fills a section of the array with a letter from the frame
+            temp = frame.charAt(random.nextInt(frame.length())); //Fills a section of the array with a letter from the frame
+            for(int j = 0;j<usedLetterIndex.size();j++){ //Random number/letter generation loop
+                if(temp == usedLetterIndex.get(j)){
+                    temp = frame.charAt(random.nextInt(frame.length()));
+                    j=0; //Starting checking loop again
+                }
+                if(j==usedLetterIndex.size()-1){ //If the number hasn't been used yet
+                    usedLetterIndex.add(temp);
+                    break;
+                }
+            }
+            inputArr[i] = frame.charAt(temp);
         }
-        return inputArr.toString();
+        return Arrays.toString(inputArr);
     }
-
     public ArrayList<String> placements(){
-        char array[][] = new char[15][15];
+        char[][] array = new char[15][15];
         ArrayList<String> returnArray = new ArrayList<String>();
 
         for(int i = 0;i < 15;i++){ //Fills the array with the current board layout
