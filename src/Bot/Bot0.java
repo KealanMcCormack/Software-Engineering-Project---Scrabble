@@ -109,6 +109,9 @@ public class Bot0 implements BotAPI {
         }
         return Arrays.toString(inputArr);
     }
+
+
+
     public ArrayList<String> placements(){
         char[][] array = new char[15][15];
         ArrayList<String> returnArray = new ArrayList<String>();
@@ -222,7 +225,7 @@ public class Bot0 implements BotAPI {
     public String stringMakerAcross(int row, int startColumn, int endColumn, char[][] array)
     {
         String output = "";  //output string
-        output += (char)(row+65);  //adding row coordinate as letter
+        output += row;  //adding row coordinate as letter
         output += startColumn + " A ";  //adding column and indicator if word is down or across
 
         for(int i = startColumn; i <= endColumn; i++)  //adding spaces between the 2 coordinates to output string
@@ -236,7 +239,7 @@ public class Bot0 implements BotAPI {
     public String stringMakerDown(int startRow, int endRow, int column, char[][] array)
     {
         String output = "";  //output string
-        output += (char)(startRow+65);  //adding row coordinate as letter
+        output += 65;  //adding row coordinate as letter
         output += column + " D ";  //adding column and indicator if word is down or across
 
         for(int i = startRow; i <= endRow; i++)   //adding spaces between the 2 coordinates to output string
