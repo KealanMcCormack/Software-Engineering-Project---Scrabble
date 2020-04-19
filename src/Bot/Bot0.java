@@ -259,4 +259,71 @@ public class Bot0 implements BotAPI {
 
         return output.toUpperCase();
     }
+
+    public int multiplierLetter(int score, int x, int y){    //Multiplier calculator for special tiles
+        switch (board.getSquareCopy(x, y).getLetterMuliplier()){
+            case 2: score += pointsConversion(board.getSquareCopy(x, y).getTile().getLetter());
+                break;
+            case 3: score += pointsConversion(board.getSquareCopy(x, y).getTile().getLetter()) * 2;
+                break;
+            default:
+                return score;
+        }
+        return score;
+    }
+
+    public int multiplierWord(int score, int x, int y){    //Multiplier calculator for special tiles
+        switch (board.getSquareCopy(x, y).getWordMultiplier()){
+            case 2: score += score;
+                break;
+            case 3: score += (score * 2);
+                break;
+            default:
+                return score;
+        }
+        return score;
+    }
+
+    int[] letterPoints = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10}; //Array for letter score values
+
+    public int pointsConversion(char letter){  //Converts letters to points
+        if(letter == '_'){
+            return 0;
+        }else{
+            return letterPoints[letter - 65];
+        }
+    }
+
+    public int getScore(String input){
+        String[] inputStrings;
+        inputStrings = input.split(" ");
+        int score = 0;
+
+        int x, y;
+
+        x = (int) inputStrings[0].charAt(0);
+        y = (int) inputStrings[0].charAt(1);
+
+        for(int count = 0;count < inputStrings[2].length();count++){
+            score += pointsConversion(inputStrings[2].charAt(count));
+
+            if(inputStrings[1] == "A"){
+                score += multiplierLetter(score, x, y + count);
+            }else{
+                score += multiplierLetter(score, x + count, y);
+            }
+
+        }
+
+        for(int count = 0;count < inputStrings[2].length();count++){
+            if(inputStrings[1] == "A"){
+                score += multiplierWord(score, x, y + count);
+            }else{
+                score += multiplierWord(score, x + count, y);
+            }
+
+        }
+
+        return score;
+    }
 }
