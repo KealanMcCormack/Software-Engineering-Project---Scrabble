@@ -260,11 +260,11 @@ public class Bot0 implements BotAPI {
         return output.toUpperCase();
     }
 
-    public int multiplierLetter(int score, int x, int y){    //Multiplier calculator for special tiles
+    public int multiplierLetter(int score, char letter, int x, int y){    //Multiplier calculator for special tiles
         switch (board.getSquareCopy(x, y).getLetterMuliplier()){
-            case 2: score += pointsConversion(board.getSquareCopy(x, y).getTile().getLetter());
+            case 2: score += pointsConversion(letter);
                 break;
-            case 3: score += pointsConversion(board.getSquareCopy(x, y).getTile().getLetter()) * 2;
+            case 3: score += pointsConversion(letter) * 2;
                 break;
             default:
                 return score;
@@ -294,9 +294,16 @@ public class Bot0 implements BotAPI {
         }
     }
 
-    public int getScore(String input){
-        String[] inputStrings;
+
+    //input is the string with co-ordinates etc with a word in to be scored
+    //rawInput is the string with co-ordinates etc with a word made of asterisks
+
+    //Should possibly use the words off the main word for score as well
+    //This will be easier to test though, best to add that later
+    public int getScore(String input, String rawInput){
+        String[] inputStrings, rawInputStrings;
         inputStrings = input.split(" ");
+        rawInputStrings = rawInput.split(" ");
         int score = 0;
 
         int x, y;
@@ -307,16 +314,16 @@ public class Bot0 implements BotAPI {
         for(int count = 0;count < inputStrings[2].length();count++){
             score += pointsConversion(inputStrings[2].charAt(count));
 
-            if(inputStrings[1] == "A"){
-                score += multiplierLetter(score, x, y + count);
+            if(inputStrings[1] == "A" && rawInputStrings[2].charAt(count) == '*'){
+                score += multiplierLetter(score, inputStrings[2].charAt(count), x, y + count);
             }else{
-                score += multiplierLetter(score, x + count, y);
+                score += multiplierLetter(score, inputStrings[2].charAt(count), x + count, y);
             }
 
         }
 
         for(int count = 0;count < inputStrings[2].length();count++){
-            if(inputStrings[1] == "A"){
+            if(inputStrings[1] == "A" && rawInputStrings[2].charAt(count) == '*'){
                 score += multiplierWord(score, x, y + count);
             }else{
                 score += multiplierWord(score, x + count, y);
