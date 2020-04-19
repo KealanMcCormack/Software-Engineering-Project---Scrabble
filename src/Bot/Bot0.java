@@ -239,7 +239,7 @@ public class Bot0 implements BotAPI {
     public String stringMakerDown(int startRow, int endRow, int column, char[][] array)
     {
         String output = "";  //output string
-        output += 65;  //adding row coordinate as letter
+        output += startRow;  //adding row coordinate as letter
         output += column + " D ";  //adding column and indicator if word is down or across
 
         for(int i = startRow; i <= endRow; i++)   //adding spaces between the 2 coordinates to output string
