@@ -233,7 +233,7 @@ public class Bot0 implements BotAPI {
             output += array[row][i];
         }
 
-        return output;
+        return output.toUpperCase();
     }
 
     public String stringMakerDown(int startRow, int endRow, int column, char[][] array)
@@ -247,6 +247,6 @@ public class Bot0 implements BotAPI {
             output += array[i][column];
         }
 
-        return output;
+        return output.toUpperCase();
     }
 }
