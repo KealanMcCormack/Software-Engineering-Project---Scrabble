@@ -129,6 +129,7 @@ public class Bot0 implements BotAPI {
                 if(array[i][j] != '*'){
                     //Add a helper to make the strings to be added to the array being returned
                     returnArray.addAll(makeWordStringAcross(i, j, array));
+                    returnArray.addAll(makeWordStringDown(i, j, array));
                 }
             }
         }
