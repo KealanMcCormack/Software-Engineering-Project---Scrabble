@@ -56,48 +56,54 @@ public class Bot0 implements BotAPI {
         return command;
     }
      /**
-      * 1. Get Frame Reference - DONE
-      * 2. Fill * in list with letters from frame
-      * 3. if letter made is a word put into outlist
-      * 4. if not try again
-      * 5. return outlist
+      * 1. Change to output array of word objects
+      * 2. list contains (XY DIRECTION WORD)
+      * 3. Parse that shit white boy
       * */
     public ArrayList searchDictionary(ArrayList<String> list){
-        ArrayList<String> outList = new ArrayList<>(); //Output
+        ArrayList<Word> outList = new ArrayList<>(); //Output
         int listSize = list.size();
         for(int i = 0;i<listSize;i++){
             boolean isWord = false;
-            while(!isWord){
-                String newWord = makeWord(list.get(i)); //Generate a random new word
-                Word temp = new Word(0,0,true, newWord); //making a new word Object
-                ArrayList<Word> checkingList = new ArrayList<>(); //List to pass to areWords function
-                checkingList.add(temp);
-                isWord = dictionary.areWords(checkingList);
-                if(isWord){
-                    outList.add(newWord);
+                String[] listStrings = list.get(i).split(" "); //Parsing list string and adding it to word object
+                int x = listStrings[0].charAt(0);
+                int y = listStrings[0].charAt(1);
+                boolean isHorizontal;
+                if(listStrings[1].equals("A")){
+                    isHorizontal = true;
+                }else{
+                    isHorizontal = false;
                 }
-            }
+                while(!isWord) {
+                    Word word = new Word(x, y, isHorizontal, wordCreate(listStrings[2]));
+                    ArrayList<Word> checkingList = new ArrayList<>(); //List to pass to areWords function
+                    checkingList.add(word);
+                    isWord = dictionary.areWords(checkingList);
+                    if (isWord) {
+                        outList.add(word);
+                    }
+                }
         }
         return outList;
     }
 
     /*Takes in a string with * and returns string with letters in the *'s place*/
-    private String makeWord(String input) {
+    private String wordCreate(String input) {
+        String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         char[] inputArr = input.toCharArray();
         ArrayList<Integer> usedLetterIndex = new ArrayList<>(); //List of used numbers
         usedLetterIndex.add(-1); //making sure the random number generation enters the loop on the first letter
         int temp = 0;
-        //int lowerBounds = 0;
         Random random = new Random();
         String frame = me.getFrameAsString(); //Getting player frame
         for (int i = 0; i < input.length(); i++) {
             if (inputArr[i] != '*') { //Incrementing pointer if the letter is already set
                 i++;
             }
-            temp = frame.charAt(random.nextInt(frame.length())); //Fills a section of the array with a letter from the frame
+            temp = random.nextInt(frame.length()); //Fills a section of the array with a letter from the frame
             for(int j = 0;j<usedLetterIndex.size();j++){ //Random number/letter generation loop
                 if(temp == usedLetterIndex.get(j)){
-                    temp = frame.charAt(random.nextInt(frame.length()));
+                    temp = random.nextInt(frame.length());
                     j=0; //Starting checking loop again
                 }
                 if(j==usedLetterIndex.size()-1){ //If the number hasn't been used yet
@@ -105,7 +111,11 @@ public class Bot0 implements BotAPI {
                     break;
                 }
             }
-            inputArr[i] = frame.charAt(temp);
+            if(frame.charAt(temp) == '_'){ //If tile is blank tile
+                inputArr[i] = ALPHABET.charAt(random.nextInt(26));
+            }else { //If tile is a regular tile
+                inputArr[i] = frame.charAt(temp);
+            }
         }
         return Arrays.toString(inputArr);
     }
