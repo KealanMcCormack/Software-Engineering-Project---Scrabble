@@ -1,8 +1,11 @@
 package Bot;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Bot0 implements BotAPI {
 
@@ -29,95 +32,57 @@ public class Bot0 implements BotAPI {
     }
 
     public String getCommand() {
-        // Add your code here to input your commands
-        // Your code must give the command NAME <botname> at the start of the game
-        String command = "";
-        switch (turnCount) {
-            case 0:
-                command = "NAME Bot0";
-                break;
-            case 1:
-                command = "PASS";
-                break;
-            case 2:
-                command = "HELP";
-                break;
-            case 3:
-                command = "SCORE";
-                break;
-            case 4:
-                command = "POOL";
-                break;
-            default:
-                command = "H8 A AN";
-                break;
-        }
-        turnCount++;
-        return command;
+        /*
+        * 1. Game loop - Lukaszzzzzzzzz
+        * 2. Dictionary Overhaul - Gerard
+        * 3. getError (use get info) - Kealan
+        * 4. Pass function - Lukas
+        * 5. Commenting - Gerard
+        * 6. Testing - together <3
+        * 7. Scoring - Kealan
+         */
     }
      /**
       * 1. Change to output array of word objects
       * 2. list contains (XY DIRECTION WORD)
       * 3. Parse that shit white boy
       * */
-    public ArrayList searchDictionary(ArrayList<String> list){
+    public ArrayList searchDictionary(ArrayList<String> list) throws FileNotFoundException {
         ArrayList<Word> outList = new ArrayList<>(); //Output
         int listSize = list.size();
-        for(int i = 0;i<listSize;i++){
-            boolean isWord = false;
-                String[] listStrings = list.get(i).split(" "); //Parsing list string and adding it to word object
-                int x = listStrings[0].charAt(0);
-                int y = listStrings[0].charAt(1);
-                boolean isHorizontal;
-                if(listStrings[1].equals("A")){
-                    isHorizontal = true;
-                }else{
-                    isHorizontal = false;
-                }
-                while(!isWord) {
-                    Word word = new Word(x, y, isHorizontal, wordCreate(listStrings[2]));
-                    ArrayList<Word> checkingList = new ArrayList<>(); //List to pass to areWords function
-                    checkingList.add(word);
-                    isWord = dictionary.areWords(checkingList);
-                    if (isWord) {
-                        outList.add(word);
+        for(int i = 0;i<listSize;i++){ //Cycles through list
+            String[] listStrings = list.get(i).split(" "); //Parsing list string and adding it to word object
+            int x = listStrings[0].charAt(0);
+            int y = listStrings[0].charAt(1);
+            boolean isHorizontal;
+            if(listStrings[1].equals("A")){
+                isHorizontal = true;
+            }else{
+                isHorizontal = false;
+            }
+            /*Searching Dictionary file for correct word*/
+            String input = listStrings[3]; //Word were looking for
+            FileInputStream inputStream = new FileInputStream("resources\\sowpods.txt");
+            Scanner in = new Scanner(inputStream);
+            while(in.hasNextLine()){
+                String dictionaryEntry = in.nextLine();
+                if(dictionaryEntry.charAt(0) == input.charAt(0)){ //Only runs for loop if it starts with correct letter
+                    for(int j = 0;i<input.length();i++){
+                        if(input.charAt(j) != '*'){
+                            if(input.charAt(j) != dictionaryEntry.charAt(j)){
+                                break;
+                            }
+                            j++;
+                        }
+                        if( (dictionaryEntry.charAt(j) == dictionaryEntry.charAt(dictionaryEntry.length()-1)) && j == input.length() - 1 ){ //If satisfactory word is found
+                            Word newWord = new Word(x,y,isHorizontal,dictionaryEntry);
+                            outList.add(newWord);
+                        }
                     }
                 }
+            }
         }
         return outList;
-    }
-
-    /*Takes in a string with * and returns string with letters in the *'s place*/
-    private String wordCreate(String input) {
-        String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        char[] inputArr = input.toCharArray();
-        ArrayList<Integer> usedLetterIndex = new ArrayList<>(); //List of used numbers
-        usedLetterIndex.add(-1); //making sure the random number generation enters the loop on the first letter
-        int temp = 0;
-        Random random = new Random();
-        String frame = me.getFrameAsString(); //Getting player frame
-        for (int i = 0; i < input.length(); i++) {
-            if (inputArr[i] != '*') { //Incrementing pointer if the letter is already set
-                i++;
-            }
-            temp = random.nextInt(frame.length()); //Fills a section of the array with a letter from the frame
-            for(int j = 0;j<usedLetterIndex.size();j++){ //Random number/letter generation loop
-                if(temp == usedLetterIndex.get(j)){
-                    temp = random.nextInt(frame.length());
-                    j=0; //Starting checking loop again
-                }
-                if(j==usedLetterIndex.size()-1){ //If the number hasn't been used yet
-                    usedLetterIndex.add(temp);
-                    break;
-                }
-            }
-            if(frame.charAt(temp) == '_'){ //If tile is blank tile
-                inputArr[i] = ALPHABET.charAt(random.nextInt(26));
-            }else { //If tile is a regular tile
-                inputArr[i] = frame.charAt(temp);
-            }
-        }
-        return Arrays.toString(inputArr);
     }
 
     char[][] challengeArray = new char[15][15];
@@ -127,18 +92,18 @@ public class Bot0 implements BotAPI {
         char direction = ' ';
         int count = 0,x = 0,y = 0;
 
-        for(int i = 0;i < 15;i++){   //for loops to traverse board
+        for(int i = 0;i < 15;i++){
             for(int j = 0;j < 15;j++){
-                char onBoard = board.getSquareCopy(i, j).getTile().getLetter();  //checking current letter on tile
-                if(onBoard != '_' && challengeArray[i][j] != onBoard){  //if letter isn't blank and not in previous word, add it to the challenge array
+                char onBoard = board.getSquareCopy(i, j).getTile().getLetter();
+                if(onBoard != '_' && challengeArray[i][j] != onBoard){
                     challengeArray[i][j] = onBoard;
                     check += onBoard;
-                    if(count == 0){  //setting coordinate of letter
+                    if(count == 0){
                         x = i;
                         y = j;
                         count++;
                     }
-                    if(count == 1){  //setting direction of word
+                    if(count == 1){
                         if(x == i){
                             direction = 'A';
                         }
@@ -151,9 +116,9 @@ public class Bot0 implements BotAPI {
         }
 
 
-            Word wordA = new Word(x, y, true, check);  //creating word across
+            Word wordA = new Word(x, y, true, wordCreate(check));
 
-            Word wordD = new Word(x, y, false, check); //creating word down
+            Word wordD = new Word(x, y, false, wordCreate(check));
 
 
 
@@ -165,7 +130,7 @@ public class Bot0 implements BotAPI {
         }
 
 
-        return dictionary.areWords(checkingList);  //returning true/false depending on if the word is valid
+        return dictionary.areWords(checkingList);
 
     }
 
@@ -379,9 +344,5 @@ public class Bot0 implements BotAPI {
         }
 
         return score;
-    }
-
-    public boolean getError(){
-        return info.getLatestInfo().contains("Error");
     }
 }
