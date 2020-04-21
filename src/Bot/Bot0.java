@@ -29,15 +29,31 @@ public class Bot0 implements BotAPI {
     }
 
     public String getCommand() {
-        /*
-        * 1. Game loop - Lukaszzzzzzzzz
-        * 2. Dictionary Overhaul - Gerard
-        * 3. getError (use get info) - Kealan
-        * 4. Pass function - Lukas
-        * 5. Commenting - Gerard
-        * 6. Testing - together <3
-        * 7. Scoring - Kealan
-         */
+        // Add your code here to input your commands
+        // Your code must give the command NAME <botname> at the start of the game
+        String command = "";
+        switch (turnCount) {
+            case 0:
+                command = "NAME Bot0";
+                break;
+            case 1:
+                command = "PASS";
+                break;
+            case 2:
+                command = "HELP";
+                break;
+            case 3:
+                command = "SCORE";
+                break;
+            case 4:
+                command = "POOL";
+                break;
+            default:
+                command = "H8 A AN";
+                break;
+        }
+        turnCount++;
+        return command;
     }
      /**
       * 1. Change to output array of word objects
@@ -111,18 +127,18 @@ public class Bot0 implements BotAPI {
         char direction = ' ';
         int count = 0,x = 0,y = 0;
 
-        for(int i = 0;i < 15;i++){
+        for(int i = 0;i < 15;i++){   //for loops to traverse board
             for(int j = 0;j < 15;j++){
-                char onBoard = board.getSquareCopy(i, j).getTile().getLetter();
-                if(onBoard != '_' && challengeArray[i][j] != onBoard){
+                char onBoard = board.getSquareCopy(i, j).getTile().getLetter();  //checking current letter on tile
+                if(onBoard != '_' && challengeArray[i][j] != onBoard){  //if letter isn't blank and not in previous word, add it to the challenge array
                     challengeArray[i][j] = onBoard;
                     check += onBoard;
-                    if(count == 0){
+                    if(count == 0){  //setting coordinate of letter
                         x = i;
                         y = j;
                         count++;
                     }
-                    if(count == 1){
+                    if(count == 1){  //setting direction of word
                         if(x == i){
                             direction = 'A';
                         }
@@ -135,9 +151,9 @@ public class Bot0 implements BotAPI {
         }
 
 
-            Word wordA = new Word(x, y, true, wordCreate(check));
+            Word wordA = new Word(x, y, true, check);  //creating word across
 
-            Word wordD = new Word(x, y, false, wordCreate(check));
+            Word wordD = new Word(x, y, false, check); //creating word down
 
 
 
@@ -149,7 +165,7 @@ public class Bot0 implements BotAPI {
         }
 
 
-        return dictionary.areWords(checkingList);
+        return dictionary.areWords(checkingList);  //returning true/false depending on if the word is valid
 
     }
 
