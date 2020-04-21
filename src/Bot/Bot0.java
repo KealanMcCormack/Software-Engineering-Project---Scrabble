@@ -120,7 +120,54 @@ public class Bot0 implements BotAPI {
         return Arrays.toString(inputArr);
     }
 
+    char[][] challengeArray = new char[15][15];
 
+    public boolean challenge(){ // Needs to be called before play and after to not call challenge on our own play
+        String check = "";
+        char direction = ' ';
+        int count = 0,x = 0,y = 0;
+
+        for(int i = 0;i < 15;i++){
+            for(int j = 0;j < 15;j++){
+                char onBoard = board.getSquareCopy(i, j).getTile().getLetter();
+                if(onBoard != '_' && challengeArray[i][j] != onBoard){
+                    challengeArray[i][j] = onBoard;
+                    check += onBoard;
+                    if(count == 0){
+                        x = i;
+                        y = j;
+                        count++;
+                    }
+                    if(count == 1){
+                        if(x == i){
+                            direction = 'A';
+                        }
+                        if(y == i){
+                            direction = 'D';
+                        }
+                    }
+                }
+            }
+        }
+
+
+            Word wordA = new Word(x, y, true, wordCreate(check));
+
+            Word wordD = new Word(x, y, false, wordCreate(check));
+
+
+
+        ArrayList<Word> checkingList = new ArrayList<>(); //List to pass to areWords function
+        if(direction == 'A'){
+            checkingList.add(wordA);
+        }else{
+            checkingList.add(wordD);
+        }
+
+
+        return dictionary.areWords(checkingList);
+
+    }
 
     public ArrayList<String> placements(){
         char[][] array = new char[15][15];
