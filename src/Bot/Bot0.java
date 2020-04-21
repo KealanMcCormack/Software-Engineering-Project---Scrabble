@@ -380,4 +380,8 @@ public class Bot0 implements BotAPI {
 
         return score;
     }
+
+    public boolean getError(){
+        return info.getLatestInfo().contains("Error");
+    }
 }
