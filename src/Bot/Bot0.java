@@ -30,6 +30,8 @@ public class Bot0 implements BotAPI {
 
     ArrayList<Word> outList = new ArrayList<>(); //Output
 
+    //Need to finish challenge, challenge array needed for scoring
+    //Need sleep first
     public String getCommand() {
         String command = "PASS";
 
@@ -38,12 +40,12 @@ public class Bot0 implements BotAPI {
             return "NAME DUMB_DUMBER_DUMBEST";
         }
 
-        if(getError())
+        if(getError())//Need to fix this
         {
             getPlacementRanking(outList);
         }
 
-        if(getPlacementRanking() == null)
+        if(getPlacementRanking(outList) == null)//Just no
         {
             return command;
         }
@@ -54,7 +56,7 @@ public class Bot0 implements BotAPI {
         }
 
         searchDictionary(placements());
-        command = getPLacementRanking;
+        command = getPlacementRanking(outList);
 
         turnCount++;
         return command;
@@ -311,30 +313,6 @@ public class Bot0 implements BotAPI {
         return output.toUpperCase();
     }
 
-    public int multiplierLetter(int score, char letter, int x, int y){    //Multiplier calculator for special tiles
-        switch (board.getSquareCopy(x, y).getLetterMuliplier()){
-            case 2: score += pointsConversion(letter);
-                break;
-            case 3: score += pointsConversion(letter) * 2;
-                break;
-            default:
-                return score;
-        }
-        return score;
-    }
-
-    public int multiplierWord(int score, int x, int y){    //Multiplier calculator for special tiles
-        switch (board.getSquareCopy(x, y).getWordMultiplier()){
-            case 2: score += score;
-                break;
-            case 3: score += (score * 2);
-                break;
-            default:
-                return score;
-        }
-        return score;
-    }
-
     int[] letterPoints = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10}; //Array for letter score values
 
     public int pointsConversion(char letter){  //Converts letters to points
@@ -346,46 +324,215 @@ public class Bot0 implements BotAPI {
     }
 
 
-    //input is the string with co-ordinates etc with a word in to be scored
-    //rawInput is the string with co-ordinates etc with a word made of asterisks
-
-    //Should possibly use the words off the main word for score as well
-    //This will be easier to test though, best to add that later
-    public int getScore(String input, String rawInput){
-        String[] inputStrings, rawInputStrings;
-        inputStrings = input.split(" ");
-        rawInputStrings = rawInput.split(" ");
-        int score = 0;
-
-        int x, y;
-
-        x = (int) inputStrings[0].charAt(0);
-        y = (int) inputStrings[0].charAt(1);
-
-        for(int count = 0;count < inputStrings[2].length();count++){
-            score += pointsConversion(inputStrings[2].charAt(count));
-
-            if(inputStrings[1] == "A" && rawInputStrings[2].charAt(count) == '*'){
-                score += multiplierLetter(score, inputStrings[2].charAt(count), x, y + count);
-            }else{
-                score += multiplierLetter(score, inputStrings[2].charAt(count), x + count, y);
-            }
-
-        }
-
-        for(int count = 0;count < inputStrings[2].length();count++){
-            if(inputStrings[1] == "A" && rawInputStrings[2].charAt(count) == '*'){
-                score += multiplierWord(score, x, y + count);
-            }else{
-                score += multiplierWord(score, x + count, y);
-            }
-
-        }
-
-        return score;
-    }
-
     public boolean getError(){
         return info.getLatestInfo().contains("Error");
     }
+    private ArrayList<Coordinates> newLetterCoords;
+
+    public String getPlacementRanking(ArrayList<Word> rankingArray){
+        if(rankingArray.size() == 0){
+            return null;
+        }
+
+        int highest = 0, highestIndex = 0;
+        for(int count = 0;count < rankingArray.size();count++){
+            newLetterCoords = new ArrayList<>();
+
+            int x = rankingArray.get(count).getRow(); //Gets basic info
+            int y = rankingArray.get(count).getColumn();
+            String lookUp = rankingArray.get(count).getLetters();
+            char direction = ' ';
+            if(rankingArray.get(count).isHorizontal()){
+                direction = 'A';
+            }else{
+                direction = 'D';
+            }
+
+            //Find placement co-ordinates
+            for(int i = 0;i < lookUp.length();i++){
+                if(direction == 'A'){
+                    if(board.getSquareCopy(x, y + i).getTile().getLetter() != '_'){
+                        newLetterCoords.add(new Coordinates(x,y + i));
+                    }
+                }else{
+                    if(board.getSquareCopy(x + i, y).getTile().getLetter() != '_'){
+                        newLetterCoords.add(new Coordinates(x + i,y));
+                    }
+                }
+            }
+
+            ArrayList<Word> a = new ArrayList<>();
+            a.add(rankingArray.get(count));
+
+            if(getAllPoints(a) > highest){ //Finds highest and keeps index
+                highestIndex = count;
+                highest = getAllPoints(a);
+            }
+
+        }
+        return wordToString(rankingArray.remove(highestIndex));
+
+    }
+
+    public String wordToString(Word input){
+        int x = input.getRow();
+        int y = input.getColumn();
+        char direction;
+        String blankReplace = "";
+
+        if(input.isHorizontal()){
+            direction = 'A';
+        }else{
+            direction = 'D';
+        }
+
+        String phrase = input.getLetters();
+
+        //Check for use of blank tile
+        if(me.getFrameAsString().contains("_")){
+            if(direction == 'A'){
+                for(int i = 0;i < phrase.length();i++){
+                    if(me.getFrameAsString().indexOf(phrase.charAt(i)) == -1 && board.getSquareCopy(x, y + i).getTile().getLetter() == '_'){
+                        blankReplace += phrase.charAt(i);
+                        phrase.replace(phrase.charAt(i), '_');
+                    }
+                }
+            }else{
+                for(int i = 0;i < phrase.length();i++){
+                    if(me.getFrameAsString().indexOf(phrase.charAt(i)) == -1 && board.getSquareCopy(x + i, y).getTile().getLetter() == '_'){
+                        blankReplace += phrase.charAt(i);
+                        phrase.replace(phrase.charAt(i), '_');
+                    }
+                }
+            }
+        }
+
+        //Get ready for correct layout for command
+        char row = (char) (x + 65);
+        if(blankReplace != ""){
+            return " " + row + "" + y + " " + direction + " " + phrase + " " + blankReplace;
+        }
+
+        return " " + row + "" + y + " " + direction + " " + phrase;
+    }
+
+
+    private boolean isAdditionalWord(int r, int c, boolean isHorizontal) {
+        if ((isHorizontal &&
+                (r>0 && board.getSquareCopy(r-1, c).getTile().getLetter() != '_' || (r<15-1 && board.getSquareCopy(r+1, c).getTile().getLetter() != '_'))) ||
+                (!isHorizontal) &&
+                        (c>0 && board.getSquareCopy(r, c - 1).getTile().getLetter() != '_' || (c<15-1 && board.getSquareCopy(r, c + 1).getTile().getLetter() != '_')) ) {
+            return true;
+        }
+        return false;
+    }
+
+    private Word getAdditionalWord(int mainWordRow, int mainWordCol, boolean mainWordIsHorizontal, Word mainWord) {
+        int firstRow = mainWordRow;
+        int firstCol = mainWordCol;
+
+        int x = mainWordRow, y = mainWordCol;
+        for(int i = 0;i < mainWord.getLetters().length();i++){
+            challengeArray[x][y] = mainWord.getLetter(i);
+            if(mainWordIsHorizontal){
+                y++;
+            }else{
+                x++;
+            }
+        }
+        // search up or left for the first letter
+        while (firstRow >= 0 && firstCol >= 0 && challengeArray[firstCol][firstRow] != '_') {
+            if (mainWordIsHorizontal) {
+                firstRow--;
+            } else {
+                firstCol--;
+            }
+        }
+        // went too far
+        if (mainWordIsHorizontal) {
+            firstRow++;
+        } else {
+            firstCol++;
+        }
+        // collect the letters by moving down or right
+        String letters = "";
+        int r = firstRow;
+        int c = firstCol;
+        while (r<15 && c< 15 && challengeArray[r][c] != '_') {
+            letters = letters + challengeArray[r][c];
+            if (mainWordIsHorizontal) {
+                r++;
+            } else {
+                c++;
+            }
+        }
+
+        x = mainWordRow;
+        y = mainWordCol;
+        for(int i = 0;i < mainWord.getLetters().length();i++){
+            challengeArray[x][y] = '_';
+            if(mainWordIsHorizontal){
+                y++;
+            }else{
+                x++;
+            }
+        }
+
+        return new Word (firstRow, firstCol, !mainWordIsHorizontal, letters);
+    }
+
+    public ArrayList<Word> getAllWords(Word mainWord) {
+        ArrayList<Word> words = new ArrayList<>();
+        words.add(mainWord);
+        int r = mainWord.getFirstRow();
+        int c = mainWord.getFirstColumn();
+        for (int i=0; i<mainWord.length(); i++) {
+            if (newLetterCoords.contains(new Coordinates(r,c))) {
+                if (isAdditionalWord(r, c, mainWord.isHorizontal())) {
+                    words.add(getAdditionalWord(r, c, mainWord.isHorizontal(), mainWord));
+                }
+            }
+            if (mainWord.isHorizontal()) {
+                c++;
+            } else {
+                r++;
+            }
+        }
+        return words;
+    }
+
+    private int getWordPoints(Word word) {
+        int wordValue = 0;
+        int wordMultipler = 1;
+        int r = word.getFirstRow();
+        int c = word.getFirstColumn();
+        for (int i = 0; i<word.length(); i++) {
+            int letterValue = pointsConversion(word.getDesignatedLetter(i));
+            if (newLetterCoords.contains(new Coordinates(r,c))) {
+                wordValue = wordValue + letterValue * board.getSquareCopy(r, c).getLetterMuliplier();
+                wordMultipler = wordMultipler * board.getSquareCopy(r, c).getWordMultiplier();
+            } else {
+                wordValue = wordValue + letterValue;
+            }
+            if (word.isHorizontal()) {
+                c++;
+            } else {
+                r++;
+            }
+        }
+        return wordValue * wordMultipler;
+    }
+
+    public int getAllPoints(ArrayList<Word> words) {
+        int points = 0;
+        for (Word word : words) {
+            points = points + getWordPoints(word);
+        }
+        if (newLetterCoords.size() == Frame.MAX_TILES) {
+            points = points + 50;
+        }
+        return points;
+    }
+
+
 }
