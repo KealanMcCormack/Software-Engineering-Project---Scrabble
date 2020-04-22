@@ -43,6 +43,11 @@ public class Bot0 implements BotAPI {
             return "NAME DUMB_DUMBER_DUMBEST";
         }
 
+        if(!getError()){
+            outList.clear();
+            outList.addAll(searchDictionary(placements()));  //find potential placements
+        }
+
         Word temp = challengeUpdate;  //create temporary word as update for challenge
         String turnOutput = getPlacementRanking(outList);  //output of turn saved as the top plays available
 
@@ -61,7 +66,7 @@ public class Bot0 implements BotAPI {
             return "CHALLENGE";
         }
 
-        searchDictionary(placements());  //find potential placements
+
         command = turnOutput;  //setting command to turn output
 
         updateChallengeArray();  //update array with word
@@ -69,10 +74,10 @@ public class Bot0 implements BotAPI {
         turnCount++;  //increment turn count
         return command;  //return command
     }
+
      /**
       * 1. Change to output array of word objects
       * 2. list contains (XY DIRECTION WORD)
-      * 3. Parse that shit white boy
       * */
     public ArrayList searchDictionary(ArrayList<String> list) {
         ArrayList<Word> outList = new ArrayList<>(); //Output
@@ -166,8 +171,9 @@ public class Bot0 implements BotAPI {
 
     }
 
-    public void updateChallengeArray(){
-        int x = challengeUpdate.getRow();
+    public void updateChallengeArray(){ //Updates challenge Array with our placement
+
+        int x = challengeUpdate.getRow(); //Sets basic variables
         int y = challengeUpdate.getColumn();
 
         char direction;
@@ -180,7 +186,7 @@ public class Bot0 implements BotAPI {
 
         String phrase = challengeUpdate.getLetters();
 
-        if(direction == 'A'){
+        if(direction == 'A'){ //Adds the word to the array
             for(int count = 0;count < phrase.length();count++){
                 challengeArray[x][y + count] = phrase.charAt(count);
             }
@@ -191,8 +197,9 @@ public class Bot0 implements BotAPI {
         }
     }
 
-    public void deleteFromChallengeArray(Word input){
-        int x = input.getRow();
+    public void deleteFromChallengeArray(Word input){ //Removes our previous play from the array
+
+        int x = input.getRow(); //Sets up basic variables
         int y = input.getColumn();
 
         char direction;
@@ -205,7 +212,7 @@ public class Bot0 implements BotAPI {
 
         String phrase = input.getLetters();
 
-        if(direction == 'A'){
+        if(direction == 'A'){ //Fills the spaces with blanks
             for(int count = 0;count < phrase.length();count++){
                 challengeArray[x][y + count] = '_';
             }
@@ -216,7 +223,7 @@ public class Bot0 implements BotAPI {
         }
     }
 
-    public ArrayList<String> placements(){
+    public ArrayList<String> placements(){ //Finds valid placements for words
         char[][] array = new char[15][15];
         ArrayList<String> returnArray = new ArrayList<String>();
 
@@ -367,10 +374,12 @@ public class Bot0 implements BotAPI {
 
     public boolean getError(){
         return info.getLatestInfo().contains("Error");
-    }
+    } //Checks if an error code was printed
+
     private ArrayList<Coordinates> newLetterCoords;
 
     public String getPlacementRanking(ArrayList<Word> rankingArray){
+
         if(rankingArray.size() == 0){
             challengeUpdate = null;
             return null;
@@ -413,14 +422,15 @@ public class Bot0 implements BotAPI {
 
         }
 
-        challengeUpdate = rankingArray.get(highest);
+        challengeUpdate = rankingArray.get(highest); //Updates variable
 
         return wordToString(rankingArray.remove(highestIndex));
 
     }
 
-    public String wordToString(Word input){
-        int x = input.getRow();
+    public String wordToString(Word input){ //Makes a word into a correctly formatted string
+
+        int x = input.getRow(); //Set basic variable
         int y = input.getColumn();
         char direction;
         String blankReplace = "";
@@ -526,11 +536,13 @@ public class Bot0 implements BotAPI {
         return new Word (firstRow, firstCol, !mainWordIsHorizontal, letters);
     }
 
-    public ArrayList<Word> getAllWords(Word mainWord) {
+    public ArrayList<Word> getAllWords(Word mainWord) { //Scoring method
         ArrayList<Word> words = new ArrayList<>();
         words.add(mainWord);
+
         int r = mainWord.getFirstRow();
         int c = mainWord.getFirstColumn();
+
         for (int i=0; i<mainWord.length(); i++) {
             if (newLetterCoords.contains(new Coordinates(r,c))) {
                 if (isAdditionalWord(r, c, mainWord.isHorizontal())) {
@@ -546,7 +558,7 @@ public class Bot0 implements BotAPI {
         return words;
     }
 
-    private int getWordPoints(Word word) {
+    private int getWordPoints(Word word) { //Scoring method
         int wordValue = 0;
         int wordMultipler = 1;
         int r = word.getFirstRow();
@@ -568,7 +580,7 @@ public class Bot0 implements BotAPI {
         return wordValue * wordMultipler;
     }
 
-    public int getAllPoints(ArrayList<Word> words) {
+    public int getAllPoints(ArrayList<Word> words) { //Scoring method
         int points = 0;
         for (Word word : words) {
             points = points + getWordPoints(word);
