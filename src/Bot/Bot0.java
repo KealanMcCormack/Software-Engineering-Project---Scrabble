@@ -34,9 +34,7 @@ public class Bot0 implements BotAPI {
     ArrayList<Word> outList = new ArrayList<>(); //Output
 
     Word challengeUpdate;
-
-    //Need to finish challenge, challenge array needed for scoring
-    //Need sleep first
+    
     public String getCommand() {
         String command = "PASS";
 
@@ -45,14 +43,17 @@ public class Bot0 implements BotAPI {
             return "NAME DUMB_DUMBER_DUMBEST";
         }
 
-        if(getError())//Need to fix this
-        {
-            getPlacementRanking(outList);
-        }
+        Word temp = challengeUpdate;
+        String turnOutput = getPlacementRanking(outList);
 
-        if(getPlacementRanking(outList) == null)//Just no
+        if(getError())
         {
-            return command;
+            deleteFromChallengeArray(temp);
+
+            if(turnOutput == null)
+            {
+                return command;
+            }
         }
 
         if(challenge())
@@ -61,7 +62,9 @@ public class Bot0 implements BotAPI {
         }
 
         searchDictionary(placements());
-        command = getPlacementRanking(outList);
+        command = turnOutput;
+
+        updateChallengeArray();
 
         turnCount++;
         return command;
@@ -188,19 +191,19 @@ public class Bot0 implements BotAPI {
         }
     }
 
-    public void deleteFromChallengeArray(){
-        int x = challengeUpdate.getRow();
-        int y = challengeUpdate.getColumn();
+    public void deleteFromChallengeArray(Word input){
+        int x = input.getRow();
+        int y = input.getColumn();
 
         char direction;
 
-        if(challengeUpdate.isHorizontal()){
+        if(input.isHorizontal()){
             direction = 'A';
         }else{
             direction = 'D';
         }
 
-        String phrase = challengeUpdate.getLetters();
+        String phrase = input.getLetters();
 
         if(direction == 'A'){
             for(int count = 0;count < phrase.length();count++){
@@ -369,6 +372,7 @@ public class Bot0 implements BotAPI {
 
     public String getPlacementRanking(ArrayList<Word> rankingArray){
         if(rankingArray.size() == 0){
+            challengeUpdate = null;
             return null;
         }
 
