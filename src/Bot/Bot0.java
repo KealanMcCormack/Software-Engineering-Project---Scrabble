@@ -1,8 +1,11 @@
 package Bot;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Bot0 implements BotAPI {
 
@@ -68,7 +71,7 @@ public class Bot0 implements BotAPI {
       * 2. list contains (XY DIRECTION WORD)
       * 3. Parse that shit white boy
       * */
-    public ArrayList searchDictionary(ArrayList<String> list){
+    public ArrayList searchDictionary(ArrayList<String> list) {
         ArrayList<Word> outList = new ArrayList<>(); //Output
         int listSize = list.size();
         for(int i = 0;i<listSize;i++){
@@ -82,50 +85,33 @@ public class Bot0 implements BotAPI {
                 }else{
                     isHorizontal = false;
                 }
-                while(!isWord) {
-                    Word word = new Word(x, y, isHorizontal, wordCreate(listStrings[2]));
-                    ArrayList<Word> checkingList = new ArrayList<>(); //List to pass to areWords function
-                    checkingList.add(word);
-                    isWord = dictionary.areWords(checkingList);
-                    if (isWord) {
-                        outList.add(word);
+            /*Searching Dictionary file for correct word*/
+            String input = listStrings[3]; //Word were looking for
+            try{
+                FileInputStream inputStream = new FileInputStream("resources\\sowpods.txt");
+                Scanner in = new Scanner(inputStream);
+                while(in.hasNextLine()){
+                    String dictionaryEntry = in.nextLine();
+                    if(dictionaryEntry.charAt(0) == input.charAt(0)){ //Only runs for loop if it starts with correct letter
+                        for(int j = 0;i<input.length();i++){
+                            if(input.charAt(j) != '*'){
+                                if(input.charAt(j) != dictionaryEntry.charAt(j)){
+                                    break;
+                                }
+                                j++;
+                            }
+                            if( (dictionaryEntry.charAt(j) == dictionaryEntry.charAt(dictionaryEntry.length()-1)) && j == input.length() - 1 ){ //If satisfactory word is found
+                                Word newWord = new Word(x,y,isHorizontal,dictionaryEntry);
+                                outList.add(newWord);
+                            }
+                        }
                     }
                 }
+            }catch(Exception e){
+                System.out.println("COULDN'T FIND DICTIONARY FILE (GERARD CRIES)");
+            }
         }
         return outList;
-    }
-
-    /*Takes in a string with * and returns string with letters in the *'s place*/
-    private String wordCreate(String input) {
-        String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        char[] inputArr = input.toCharArray();
-        ArrayList<Integer> usedLetterIndex = new ArrayList<>(); //List of used numbers
-        usedLetterIndex.add(-1); //making sure the random number generation enters the loop on the first letter
-        int temp = 0;
-        Random random = new Random();
-        String frame = me.getFrameAsString(); //Getting player frame
-        for (int i = 0; i < input.length(); i++) {
-            if (inputArr[i] != '*') { //Incrementing pointer if the letter is already set
-                i++;
-            }
-            temp = random.nextInt(frame.length()); //Fills a section of the array with a letter from the frame
-            for(int j = 0;j<usedLetterIndex.size();j++){ //Random number/letter generation loop
-                if(temp == usedLetterIndex.get(j)){
-                    temp = random.nextInt(frame.length());
-                    j=0; //Starting checking loop again
-                }
-                if(j==usedLetterIndex.size()-1){ //If the number hasn't been used yet
-                    usedLetterIndex.add(temp);
-                    break;
-                }
-            }
-            if(frame.charAt(temp) == '_'){ //If tile is blank tile
-                inputArr[i] = ALPHABET.charAt(random.nextInt(26));
-            }else { //If tile is a regular tile
-                inputArr[i] = frame.charAt(temp);
-            }
-        }
-        return Arrays.toString(inputArr);
     }
 
     char[][] challengeArray = new char[15][15];
