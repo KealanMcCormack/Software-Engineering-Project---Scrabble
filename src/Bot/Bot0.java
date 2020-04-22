@@ -38,36 +38,36 @@ public class Bot0 implements BotAPI {
     public String getCommand() {
         String command = "PASS";
 
-        if(turnCount == 0)
+        if(turnCount == 0)  //on first turn, set name of bot
         {
             return "NAME DUMB_DUMBER_DUMBEST";
         }
 
-        Word temp = challengeUpdate;
-        String turnOutput = getPlacementRanking(outList);
+        Word temp = challengeUpdate;  //create temporary word as update for challenge
+        String turnOutput = getPlacementRanking(outList);  //output of turn saved as the top plays available
 
         if(getError())
         {
-            deleteFromChallengeArray(temp);
+            deleteFromChallengeArray(temp);  //deleting word from challenge array if error is thrown
 
-            if(turnOutput == null)
+            if(turnOutput == null)  //if there's no word to play, pass the turn
             {
                 return command;
             }
         }
 
-        if(challenge())
+        if(challenge())  //if opponents word isn't in dictionary, return challenge and challenge
         {
             return "CHALLENGE";
         }
 
-        searchDictionary(placements());
-        command = turnOutput;
+        searchDictionary(placements());  //find potential placements
+        command = turnOutput;  //setting command to turn output
 
-        updateChallengeArray();
+        updateChallengeArray();  //update array with word
 
-        turnCount++;
-        return command;
+        turnCount++;  //increment turn count
+        return command;  //return command
     }
      /**
       * 1. Change to output array of word objects
