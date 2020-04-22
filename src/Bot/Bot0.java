@@ -30,6 +30,8 @@ public class Bot0 implements BotAPI {
 
     ArrayList<Word> outList = new ArrayList<>(); //Output
 
+    Word challengeUpdate;
+
     //Need to finish challenge, challenge array needed for scoring
     //Need sleep first
     public String getCommand() {
@@ -173,6 +175,56 @@ public class Bot0 implements BotAPI {
 
         return dictionary.areWords(checkingList);  //returning true/false depending on if the word is valid
 
+    }
+
+    public void updateChallengeArray(){
+        int x = challengeUpdate.getRow();
+        int y = challengeUpdate.getColumn();
+
+        char direction;
+
+        if(challengeUpdate.isHorizontal()){
+            direction = 'A';
+        }else{
+            direction = 'D';
+        }
+
+        String phrase = challengeUpdate.getLetters();
+
+        if(direction == 'A'){
+            for(int count = 0;count < phrase.length();count++){
+                challengeArray[x][y + count] = phrase.charAt(count);
+            }
+        }else{
+            for(int count = 0;count < phrase.length();count++){
+                challengeArray[x + count][y] = phrase.charAt(count);
+            }
+        }
+    }
+
+    public void deleteFromChallengeArray(){
+        int x = challengeUpdate.getRow();
+        int y = challengeUpdate.getColumn();
+
+        char direction;
+
+        if(challengeUpdate.isHorizontal()){
+            direction = 'A';
+        }else{
+            direction = 'D';
+        }
+
+        String phrase = challengeUpdate.getLetters();
+
+        if(direction == 'A'){
+            for(int count = 0;count < phrase.length();count++){
+                challengeArray[x][y + count] = '_';
+            }
+        }else{
+            for(int count = 0;count < phrase.length();count++){
+                challengeArray[x + count][y] = '_';
+            }
+        }
     }
 
     public ArrayList<String> placements(){
@@ -370,6 +422,9 @@ public class Bot0 implements BotAPI {
             }
 
         }
+
+        challengeUpdate = rankingArray.get(highest);
+
         return wordToString(rankingArray.remove(highestIndex));
 
     }
