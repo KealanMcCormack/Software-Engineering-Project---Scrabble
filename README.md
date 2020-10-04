@@ -1,8 +1,8 @@
 # Scrabble Readme
 ### this was made in windows 10
-> Gerard Colman - 18327576 <br>
-> Kealan McCormack - 18312236 <br>
-> Lukasz Filanowski - 18414616 <br>
+> Gerard  - <br>
+> Kealan  <br>
+> Lukasz  <br>
 
 This requires running from command line, when you run the jar close out of UI to continue <br>
 Run with this command: java -jar Scrabble.jar
