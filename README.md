@@ -1,6 +1,6 @@
 # Scrabble Readme
 ### this was made in windows 10
-> Gerard  - <br>
+> Gerard  <br>
 > Kealan  <br>
 > Lukasz  <br>
 
